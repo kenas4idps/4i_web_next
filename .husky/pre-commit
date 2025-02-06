@@ -1,2 +1,2 @@
 echo "[Husky]: Running linting and formatting"
-npm run format
+pnpm run lint-staged
