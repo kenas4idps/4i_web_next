@@ -62,6 +62,8 @@ Read [VSCode](https://code.visualstudio.com/) to learn more.
 
 It is required to have prettier as an extension for your VSCode.
 
+Also added the [tailwind prettier plugin](https://tailwindcss.com/blog/automatic-class-sorting-with-prettier) to auto sort tailwind css classes.
+
 Read [Prettier](https://prettier.io/docs/en/index.html) to learn more.
 
 ### ESLint (v9)
