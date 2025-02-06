@@ -1,0 +1,8 @@
+echo "[Husky]: Running linting and formatting"
+npm run format
+
+echo "[Husky]: Running build"
+npm run build || {
+  echo "[Husky]: Build failed. Aborting push."
+  exit 1
+}

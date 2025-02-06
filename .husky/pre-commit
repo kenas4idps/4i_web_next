@@ -1,0 +1,2 @@
+echo "[Husky]: Running linting and formatting"
+npm run format
