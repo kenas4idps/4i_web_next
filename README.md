@@ -34,6 +34,7 @@ Things to note about this template:
 - This project uses [husky](https://typicode.github.io/husky/get-started.html) for git hooks.
 - This project uses [next-intl](https://next-intl.dev/docs/getting-started) to handle internationalization.
 - This project uses [Tailwind CSS v4](https://tailwindcss.com/) for styling.
+- This project uses [shadcn/ui](https://ui.shadcn.com/docs/components/button) as the UI library. (only manual installation)
 
 ## Learn More
 
