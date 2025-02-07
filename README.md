@@ -52,6 +52,12 @@ Every styling configuration will be inside CSS and be kept in the CSS. No more J
 
 Read [Tailwind CSS](https://tailwindcss.com/docs) to learn more.
 
+### 🔥🔥 i18n - next-intl 🔥🔥
+
+We are using next-intl its an internationalization for Next.js. It supports /app router and has many built-in features, that will help us to keep our codebase maintainable.
+
+Read [next-intl](https://next-intl.dev/docs/getting-started) to learn more.
+
 ### VSCode (Preferred IDE)
 
 Please just use VSCode as your IDE.
