@@ -32,6 +32,7 @@ Things to note about this template:
 - This project uses [ESLint](https://eslint.org/) for code linting.
 - This project is written in [Typescript](https://www.typescriptlang.org/).
 - This project uses [husky](https://typicode.github.io/husky/get-started.html) for git hooks.
+- This project uses [next-intl](https://next-intl.dev/docs/getting-started) to handle internationalization.
 - This project uses [Tailwind CSS v4](https://tailwindcss.com/) for styling.
 
 ## Learn More
