@@ -1,1 +1,12 @@
 export { caseStudyApi } from './caseStudy';
+export { companyHistoryApi } from './companyHistoryApi';
+export { contactUsApi } from './contactUsApi';
+export { eventApi } from './eventApi';
+export { getInTouchFormApi } from './getInTouchFormApi';
+export { homePageApi } from './homePageApi';
+export { insightApi } from './insightApi';
+export { newsletterSubscriberApi } from './newsletterSubscriberApi';
+export { sharedApi } from './sharedApi';
+export { solutionApi } from './solutionApi';
+export { toolsApi } from './toolsApi';
+export { whitePaperFormApi } from './whitePaperFormApi';
