@@ -1,0 +1,39 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.rich-text-cmp {
+  h1 {
+    @include title-8;
+    padding: 20px 0 40px 0;
+    &:nth-child(1) {
+      padding-top: 0;
+    }
+  }
+
+  h2 {
+    @include title-5;
+    padding: 15px 0 15px 0;
+  }
+
+  p {
+    @include text-2;
+    padding: 10px 0 10px 0;
+    margin: 0;
+  }
+
+  a {
+    color: $color-7;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  ul,
+  ol {
+    padding: 10px 0 10px 30px;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

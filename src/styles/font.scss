@@ -1,0 +1,306 @@
+@import './other.scss';
+
+/* Text mixin list */
+@mixin text-1($font-weight: 400) {
+  font-family: 'Karla';
+  font-size: 16px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 14px;
+  }
+}
+
+@mixin text-2($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 14px;
+  }
+}
+
+@mixin text-3($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 10px;
+  }
+}
+
+@mixin text-4($font-weight: 400) {
+  font-family: 'Karla';
+  font-size: 14px;
+  font-weight: $font-weight;
+}
+
+@mixin text-5($font-weight: 400) {
+  font-family: 'Karla';
+  font-size: 40px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 16px;
+  }
+}
+
+@mixin text-6($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 16px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 12px;
+  }
+}
+
+@mixin text-7($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 22px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 14px;
+  }
+}
+
+@mixin text-8($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 12px;
+  font-weight: $font-weight;
+}
+
+@mixin text-9($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 24px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 16px;
+  }
+}
+
+@mixin text-10($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 32px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 20px;
+  }
+}
+
+@mixin text-11($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 18px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 14px;
+  }
+}
+
+@mixin text-12($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 16px;
+  font-weight: $font-weight;
+}
+
+@mixin text-13($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 28px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 14px;
+  }
+}
+
+@mixin text-14($font-weight: 400) {
+  font-family: 'Karla';
+  font-size: 24px;
+  font-weight: $font-weight;
+}
+
+@mixin text-15($font-weight: 400) {
+  font-family: 'Raleway';
+  font-size: 32px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 16px;
+  }
+}
+
+@mixin text-16($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: $font-weight;
+}
+
+@mixin text-17($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 16px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 12px;
+  }
+}
+
+/* Title mixin list */
+@mixin title-1 {
+  font-family: 'Karla';
+  font-size: 70px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 30px;
+  }
+}
+
+@mixin title-2($font-weight: 400) {
+  font-family: 'Roboto';
+  font-size: 32px;
+  font-weight: $font-weight;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-3 {
+  font-family: 'Karla';
+  font-size: 48px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-4 {
+  font-family: 'Raleway';
+  font-size: 24px;
+  font-weight: 700;
+}
+
+@mixin title-5 {
+  font-family: 'Karla';
+  font-size: 32px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-6 {
+  font-family: 'Karla';
+  font-size: 16px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 12px;
+  }
+}
+
+@mixin title-7 {
+  font-family: 'Raleway';
+  font-size: 64px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 32px;
+  }
+}
+
+@mixin title-8 {
+  font-family: 'Raleway';
+  font-size: 48px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 32px;
+  }
+}
+
+@mixin title-9 {
+  font-family: 'Raleway';
+  font-size: 72px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 64px;
+  }
+}
+
+@mixin title-10 {
+  font-family: 'Raleway';
+  font-size: 28px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 18px;
+  }
+}
+
+@mixin title-11 {
+  font-family: 'Raleway';
+  font-size: 92px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 45px;
+  }
+}
+
+@mixin title-12 {
+  font-family: 'Raleway';
+  font-size: 32px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-13 {
+  font-family: 'Raleway';
+  font-size: 80px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-14 {
+  font-family: 'Raleway';
+  font-size: 45px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 18px;
+  }
+}
+
+@mixin title-15 {
+  font-family: 'Raleway';
+  font-size: 48px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 24px;
+  }
+}
+
+@mixin title-16 {
+  font-family: 'Raleway';
+  font-size: 24px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 16px;
+  }
+}
+
+@mixin title-17 {
+  font-family: 'Raleway';
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@mixin title-18 {
+  font-family: 'Raleway';
+  font-size: 48px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 20px;
+  }
+}
+
+@mixin number-1 {
+  font-family: 'Karla';
+  font-size: 48px;
+  font-weight: 700;
+  @media (max-width: $media-query-phone) {
+    font-size: 35px;
+  }
+}

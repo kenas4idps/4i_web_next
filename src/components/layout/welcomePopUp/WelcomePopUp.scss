@@ -1,0 +1,121 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.welcome-pop-up {
+  z-index: 500;
+  position: relative;
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $color-1;
+    opacity: 0.8;
+  }
+
+  .pop-up-container {
+    z-index: 501;
+    max-width: 540px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-3;
+    border-radius: 10px;
+    width: calc(100% - $padding-page-wrapper - $padding-page-wrapper);
+    overflow: hidden;
+    .top-border {
+      display: flex;
+      .left-border {
+        width: 50%;
+        height: 11px;
+        background-color: #c8152b;
+      }
+
+      .right-border {
+        width: 50%;
+        height: 11px;
+        background-color: #1a4cbd;
+      }
+    }
+
+    .close-pop-up {
+      position: absolute;
+      top: 25px;
+      right: 14px;
+      width: 25px;
+      height: 25px;
+      cursor: pointer;
+      &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $color-1;
+        height: 30px;
+        width: 2px;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background-color: $color-1;
+        height: 30px;
+        width: 2px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+
+    .content {
+      text-align: center;
+      padding: 52px 32px 52px 32px;
+      .title {
+        @include title-5;
+        padding-bottom: 37px;
+      }
+    }
+
+    .picture-list {
+      display: flex;
+      .picture {
+        width: 50%;
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .pop-up-container {
+      .close-pop-up {
+        width: 15px;
+        height: 15px;
+        &:after {
+          height: 20px;
+        }
+
+        &:before {
+          height: 20px;
+        }
+      }
+
+      .content {
+        text-align: center;
+        padding: 45px 16px 30px 16px;
+        .title {
+          @include title-5;
+          padding-bottom: 25px;
+        }
+      }
+
+      .picture-list {
+        flex-direction: column;
+        .picture {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

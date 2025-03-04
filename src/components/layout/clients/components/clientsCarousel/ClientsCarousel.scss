@@ -1,0 +1,110 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+
+.clients-carousel {
+  position: relative;
+  left: 0;
+  padding: 0;
+  width: calc(100% - 30px - 30px);
+  padding: 0 30px;
+
+  .right-click {
+    cursor: pointer;
+    z-index: 100;
+    position: absolute;
+    right: 0px;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      right: -4%;
+      top: calc(50% + 4px);
+      width: 14px;
+      height: 2px;
+      background-color: $color-2;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:after {
+      top: calc(50% - 4px);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  .left-click {
+    cursor: pointer;
+    z-index: 100;
+    position: absolute;
+    left: 15px;
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      right: -4%;
+      top: calc(50% + 4px);
+      width: 14px;
+      height: 2px;
+      background-color: $color-2;
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &:after {
+      top: calc(50% - 4px);
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+
+  .carousel-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel {
+    display: flex;
+    gap: 20px;
+    transition: 0.3s;
+    width: 100%;
+    .carousel-item {
+      border-radius: 8px;
+      overflow: hidden;
+      .client-container {
+        .client-bg {
+          margin: auto;
+          width: 100%;
+          padding-top: 100%;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    width: calc(100% - 30px - 30px);
+    &.desktop-only {
+      display: none;
+    }
+
+    &.mobile-only {
+      display: block;
+    }
+
+    .carousel {
+      .carousel-item {
+        .client-container {
+          margin: 0 10px 0 10px;
+        }
+      }
+    }
+  }
+}

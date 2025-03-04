@@ -1,0 +1,73 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+
+.share-cmp {
+  display: flex;
+  align-items: center;
+  .label {
+    margin-right: 48px;
+    color: $color-2;
+    @include text-16(700);
+    position: relative;
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      right: -75%;
+      top: calc(50% + 4px);
+      width: 14px;
+      height: 2px;
+      background-color: $color-2;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+
+    &:after {
+      top: calc(50% - 5px);
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+  }
+
+  .share-options {
+    color: $color-7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    .share-option {
+      margin-right: 16px;
+      display: flex;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  @media (min-width: $media-query-phone) {
+    &.vertical {
+      transform: rotate(90deg);
+      width: 32px;
+      height: 330px;
+      .label {
+        transform: rotate(180deg);
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+          right: auto;
+          left: -50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &:after {
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+      }
+
+      .share-options {
+        .share-option {
+          transform: rotate(-90deg);
+        }
+      }
+    }
+  }
+}

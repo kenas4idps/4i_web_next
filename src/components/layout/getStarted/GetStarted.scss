@@ -1,0 +1,44 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.get-started {
+  padding-bottom: 110px;
+
+  &.get-started-onInSight {
+    padding: 95px;
+  }
+
+  .get-started-container {
+    padding: 64px 200px;
+    background: linear-gradient(180deg, #961f50 0%, #370c1e 100%);
+    border-radius: 40px;
+    color: $color-3;
+    text-align: center;
+    .title {
+      @include title-15;
+      padding-bottom: 24px;
+    }
+
+    .content {
+      @include text-16;
+      padding-bottom: 48px;
+      max-width: 70%;
+      margin: auto;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    &.get-started-onInSight {
+      padding: 30px;
+    }
+
+    padding-bottom: 75px;
+    .get-started-container {
+      padding: 46px 34px;
+      .content {
+        padding-bottom: 24px;
+        max-width: 100%;
+      }
+    }
+  }
+}

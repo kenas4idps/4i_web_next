@@ -1,0 +1,24 @@
+{
+  "incomingEventsTitle": "受信イベント",
+  "at": "At",
+  "comingSoonTitle": "近日公開",
+  "comingSoonDescription": {
+    "beforeLink": "現在、リストされているイベントはありません。 無料で登録できます",
+    "link": "ここ",
+    "afterLink": " 今後のイベントの通知を受け取ります。"
+  },
+  "exploreLink": "探索",
+  "loadMoreBtn": "さらにロード",
+  "noEventTag": "イベント",
+  "noEventTitle": "4i Tech イベントが近日開催されます!",
+  "noEventDescription": {
+    "beforeLink": "現在、リストされているイベントはありません。 無料で登録できます",
+    "link": "{{linkText}}",
+    "afterLink": " 今後のイベントの通知を受け取ります。"
+  },
+  "on": "開",
+  "shareBtn": "今すぐ共有",
+  "registerBtn": "今すぐ登録",
+  "registerTitle": "今すぐ登録",
+  "googleFormLink": "https://forms.gle/YE7zgSmPj5DobMwQA"
+}

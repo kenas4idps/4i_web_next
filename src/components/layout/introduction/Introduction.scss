@@ -1,0 +1,16 @@
+@import 'styles/font.scss';
+
+.intro {
+  padding: 0 0 94px 0;
+
+  .intro-title {
+    @include title-18;
+  }
+
+  .intro-description {
+    @include text-15;
+    .colored {
+      font-weight: 700;
+    }
+  }
+}

@@ -1,0 +1,209 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.footer {
+  @include text-1(500);
+  background-color: $color-1;
+  color: $color-3;
+  padding: 62px 0 32px 0;
+  .content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: -25px;
+    right: -25px;
+    width: calc(100% + 25px + 25px);
+    padding-bottom: 106px;
+    .column {
+      width: calc(25% - 25px - 25px);
+      padding-right: 25px;
+      padding-left: 25px;
+      &.info {
+        .logo {
+          width: 140px;
+          padding-bottom: 17px;
+        }
+
+        .description {
+          padding-bottom: 47px;
+        }
+
+        .newsletter {
+          .consent-link {
+            color: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          .subscription-status {
+            height: calc(16.5px + 15px + 15px);
+
+            p {
+              margin: 0;
+              padding: 15px 0;
+            }
+
+            .subscription-message {
+              color: $color-sucess;
+            }
+
+            .subscription-error {
+              color: $color-error;
+            }
+          }
+        }
+      }
+
+      &.links {
+        width: calc(25% - 25px - 25px);
+        padding-right: 25px;
+        padding-left: 25px;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        .links-column-container {
+          .links-container {
+            .title {
+              @include title-6;
+              padding-bottom: 24px;
+            }
+
+            .links-list {
+              .link {
+                padding-bottom: 8px;
+                cursor: pointer;
+              }
+            }
+          }
+
+          .social-media {
+            margin-top: 20px;
+
+            .title {
+              padding-bottom: 24px;
+            }
+
+            .list-social-media {
+              .social-link {
+                display: inline-block;
+                position: relative;
+                color: $color-7;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid $color-7;
+                margin-right: 23px;
+                .text {
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.offices {
+        .office-container {
+          padding-bottom: 46px;
+          .title {
+            padding-bottom: 20px;
+          }
+
+          .with-icon {
+            padding-left: 40px;
+            background-position: top left;
+            background-repeat: no-repeat;
+            &.adress {
+              padding-bottom: 10px;
+            }
+
+            &.phone {
+              min-height: 21px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    opacity: 0.5;
+    .other-links {
+      display: flex;
+      .link {
+        cursor: pointer;
+        padding-right: 24px;
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .content {
+      flex-direction: column;
+      width: 100%;
+      position: static;
+      padding-bottom: 64px;
+      .column {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+        &.links {
+          width: 100%;
+          padding-right: 0;
+          padding-left: 0;
+          align-items: flex-start;
+          margin-top: 40px;
+          .links-column-container {
+            .links-container {
+              .links-list {
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                max-height: 150px;
+                padding-bottom: 24px;
+                .link {
+                  padding-bottom: 16px;
+                  padding-right: 37px;
+                }
+              }
+            }
+
+            .social-media {
+              margin-top: 0;
+            }
+          }
+        }
+
+        &.offices {
+          display: none;
+        }
+      }
+    }
+
+    .footer-bottom {
+      flex-direction: column;
+      .right-reserved {
+        padding-bottom: 32px;
+      }
+
+      .other-links {
+        flex-direction: column;
+        .link {
+          padding-right: 0px;
+          padding-bottom: 8px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+}

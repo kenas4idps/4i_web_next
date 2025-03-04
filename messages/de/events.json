@@ -1,0 +1,24 @@
+{
+  "incomingEventsTitle": "Eingehende Ereignisse",
+  "at": "At",
+  "comingSoonTitle": "In Kürze erhältlich",
+  "comingSoonDescription": {
+    "beforeLink": "Derzeit sind keine Veranstaltungen aufgeführt. Sie können sich kostenlos anmelden ",
+    "link": "Hier",
+    "afterLink": " und Benachrichtigungen über unsere bevorstehenden Veranstaltungen erhalten. "
+  },
+  "exploreLink": "Erkunden",
+  "loadMoreBtn": "Mehr laden",
+  "noEventTag": "Ereignisse",
+  "noEventTitle": "4iTech-Event kommt bald!",
+  "noEventDescription": {
+    "beforeLink": "Derzeit sind keine Veranstaltungen aufgeführt. Sie können sich kostenlos anmelden",
+    "link": "{{linkText}}",
+    "afterLink": "und Benachrichtigungen über unsere bevorstehenden Veranstaltungen erhalten. "
+  },
+  "on": "Ein",
+  "shareBtn": "Jetzt teilen",
+  "registerBtn": "Jetzt registrieren",
+  "registerTitle": "Jetzt registrieren",
+  "googleFormLink": "https://forms.gle/ykTAFZHcEqgzcvC6A"
+}

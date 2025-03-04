@@ -1,0 +1,24 @@
+{
+  "incomingEventsTitle": "目前沒有活動",
+  "at": "在",
+  "comingSoonTitle": "Coming Soon",
+  "comingSoonDescription": {
+    "beforeLink": "您可以",
+    "link": "在此免費註冊",
+    "afterLink": " 並獲取我們即將舉行的活動的通知"
+  },
+  "exploreLink": "探索",
+  "loadMoreBtn": "載入更多",
+  "noEventTag": "事件",
+  "noEventTitle": "4i Tech 活動即將推出！",
+  "noEventDescription": {
+    "beforeLink": "您可以在此免費註冊",
+    "link": "{{linkText}}",
+    "afterLink": " 並取得我們即將舉行的活動的通知。 “}"
+  },
+  "on": "開",
+  "shareBtn": "立即分享",
+  "registerBtn": "立即註冊",
+  "registerTitle": "立即註冊",
+  "googleFormLink": "https://forms.gle/VR8bgB8LPwYcXJ659"
+}

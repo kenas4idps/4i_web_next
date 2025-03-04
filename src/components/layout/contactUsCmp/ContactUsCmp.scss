@@ -1,0 +1,54 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.contact-us-cmp {
+  margin-bottom: 120px;
+  .contact-us-cmp-container {
+    display: flex;
+    .left-column {
+      width: 50%;
+      .left-column-container {
+        padding-right: 43px;
+        .title {
+          @include title-8;
+        }
+      }
+    }
+
+    .right-column {
+      width: 50%;
+      .right-column-container {
+        .description {
+          @include text-16;
+          padding-bottom: 40px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    margin-bottom: 48px;
+
+    .contact-us-cmp-container {
+      flex-direction: column;
+      .left-column {
+        width: 100%;
+        .left-column-container {
+          padding-right: 0px;
+          .title {
+            padding-bottom: 42px;
+          }
+        }
+      }
+
+      .right-column {
+        width: 100%;
+        .right-column-container {
+          .description {
+            padding-bottom: 42px;
+          }
+        }
+      }
+    }
+  }
+}

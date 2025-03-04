@@ -1,0 +1,51 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+
+.simple-text {
+  padding-top: 125px;
+  padding-bottom: 125px;
+  @include text-5(700);
+  text-align: center;
+  background-color: $color-11;
+  &.with-bubbles {
+    .simple-text-container {
+      background-size: contain;
+      background-position: right;
+      background-repeat: no-repeat;
+      text-align: left;
+      @include text-10(700);
+      line-height: 50px;
+      .simple-text-content {
+        padding-right: 200px;
+      }
+    }
+  }
+
+  .simple-text-container {
+    h1,
+    h2 {
+      color: $color-16;
+    }
+
+    .colored {
+      color: $color-4;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 91px;
+    padding-bottom: 60px;
+    &.with-bubbles {
+      .simple-text-container {
+        background-size: 135px 293px;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        line-height: 36px;
+        .simple-text-content {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

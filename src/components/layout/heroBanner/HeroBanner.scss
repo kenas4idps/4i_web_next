@@ -1,0 +1,71 @@
+@import 'styles/font.scss';
+@import 'styles/color.scss';
+@import 'styles/other.scss';
+
+.hero-banner {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  .bg-gradiant {
+    height: 100%;
+    background: linear-gradient(
+      82deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.24) 59.8%,
+      rgba(149, 28, 78, 0) 100%
+    );
+    color: $color-3;
+    .hero-super-container {
+      height: 100%;
+      .hero-container {
+        position: relative;
+        height: 100%;
+        .hero-content {
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          max-width: 100%;
+          .title {
+            @include title-7;
+            padding-bottom: 22px;
+            .colored {
+              background-color: $color-5;
+            }
+          }
+
+          p {
+            @include text-9(700);
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .bg-gradiant {
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.8) 0%,
+        rgba(0, 0, 0, 0.24) 59.8%,
+        rgba(149, 28, 78, 0) 100%
+      );
+      .hero-super-container {
+        text-align: center;
+        .hero-content {
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          max-width: 100%;
+          .title {
+            @include title-7;
+            padding-bottom: 22px;
+          }
+
+          .description {
+            @include text-9(700);
+          }
+        }
+      }
+    }
+  }
+}

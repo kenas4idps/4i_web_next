@@ -1,0 +1,24 @@
+{
+  "incomingEventsTitle": "Événements entrants",
+  "at": "À",
+  "comingSoonTitle": "Bientôt disponible",
+  "comingSoonDescription": {
+    "beforeLink": "Il n'y a actuellement aucun événement répertorié. Vous pouvez vous inscrire gratuitement ",
+    "link": "ici",
+    "afterLink": " et recevoir des notifications pour nos événements à venir. "
+  },
+  "exploreLink": "Explorer",
+  "loadMoreBtn": "Charger plus",
+  "noEventTag": "Événements",
+  "noEventTitle": "L'événement 4i Tech arrive bientôt !",
+  "noEventDescription": {
+    "beforeLink": "Il n'y a actuellement aucun événement répertorié. Vous pouvez vous inscrire gratuitement ",
+    "link": "{{linkText}}",
+    "afterLink": " et recevoir des notifications pour nos événements à venir. "
+  },
+  "on": "activé",
+  "shareBtn": "Partager maintenant",
+  "registerBtn": "Inscrivez-vous maintenant",
+  "registerTitle": "Inscrivez-vous maintenant",
+  "googleFormLink": "https://forms.gle/BjWjYzGbAr6eqxfcA"
+}

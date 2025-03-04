@@ -1,0 +1,66 @@
+@import 'styles/color.scss';
+@import 'styles/other.scss';
+
+.simple-text-page {
+  padding-top: 300px;
+  padding-bottom: 97px;
+  .simple-text-page-container {
+    position: relative;
+    .blur-circle-container {
+      right: 100px;
+      top: 50px;
+      transform: translate(50%, -50%);
+    }
+
+    .go-back-link {
+      position: relative;
+      margin-bottom: 104px;
+      padding-left: 20px;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
+      .arrow {
+        position: absolute;
+        top: 7px;
+        left: 0;
+        display: block;
+        width: 5px;
+        height: 5px;
+        border-top: 2px solid $color-1;
+        border-left: 2px solid $color-1;
+        transform: rotate(-45deg) translate(0, 0);
+        &:after {
+          content: '';
+          display: block;
+          width: 2px;
+          height: 10px;
+          background-color: $color-1;
+          transform: rotate(-45deg) translate(3px, 1px);
+          left: 0;
+          top: 0;
+        }
+
+        &:before {
+          background-color: transparent;
+        }
+      }
+    }
+
+    .description {
+      padding-bottom: 48px;
+      border-bottom: 1px solid $color-1;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 200px;
+    .simple-text-page-container {
+      .go-back-link {
+        margin-bottom: 44px;
+        padding-left: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

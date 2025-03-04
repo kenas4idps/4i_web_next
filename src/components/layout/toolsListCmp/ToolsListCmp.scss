@@ -1,0 +1,74 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+
+.tools-list-cmp {
+  text-align: center;
+  .info {
+    padding-bottom: 64px;
+    .tag {
+      @include text-16(700);
+      padding-bottom: 24px;
+      color: $color-2;
+    }
+
+    .title {
+      @include title-15;
+    }
+
+    .description {
+      padding-top: 24px;
+      @include text-16;
+      color: $color-2;
+    }
+  }
+
+  .tools-list-container {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    left: -32px;
+    right: -32px;
+    width: calc(100% + 64px);
+    .tool {
+      width: calc(14.28%);
+      display: flex;
+      align-items: center;
+      .img-container {
+        opacity: 0.4;
+        padding: 32px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .info {
+      padding-bottom: 32px;
+      .tag {
+        padding-bottom: 8px;
+      }
+
+      .description {
+        padding-top: 32px;
+      }
+    }
+
+    .tools-list-container {
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      left: -15px;
+      right: -15px;
+      width: calc(100% + 15px + 15px);
+      .tool {
+        width: calc(33.333%);
+        .img-container {
+          padding: 15px;
+        }
+      }
+    }
+  }
+}

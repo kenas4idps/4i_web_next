@@ -1,0 +1,129 @@
+@import 'styles/font.scss';
+@import 'styles/color.scss';
+@import 'styles/other.scss';
+
+.video-wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  .hero-video-banner {
+    position: absolute;
+    top: 0;
+    right: 50%;
+    transform: translate(50%, 0);
+    min-width: 100%;
+    min-height: 100%;
+  }
+
+  .main-container {
+    position: relative;
+    z-index: 10;
+    height: calc(100vh - 250px);
+    padding-top: 250px;
+    background: linear-gradient(
+      82deg,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0) 59.8%,
+      rgba(149, 28, 78, 0) 100%
+    );
+    color: $color-3;
+    .title {
+      @include title-1;
+      padding-bottom: 40px;
+      .colored {
+        background-color: $color-5;
+      }
+    }
+
+    .subtitle {
+      @include title-2;
+      padding-bottom: 24px;
+    }
+
+    .btn-container {
+      padding-top: 50px;
+      .btn {
+        margin-right: 18px;
+      }
+    }
+
+    .play-button-container {
+      margin-top: 25px;
+      background-color: transparent;
+      cursor: pointer;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      @include text-2;
+
+      .play-button-text {
+        margin: 0;
+      }
+
+      .play-button {
+        border-radius: 50%;
+        border: 2px solid $color-3;
+        position: relative;
+        width: 18px;
+        height: 18px;
+        margin-left: 15px;
+
+        &::before,
+        &::after {
+          top: 50%;
+          left: 50%;
+          content: '';
+          position: absolute;
+        }
+
+        &.play {
+          &::before {
+            transform: translate(-35%, -50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 3px 0 3px 6px;
+            border-color: transparent transparent transparent $color-3;
+          }
+        }
+
+        &.pause {
+          &::before,
+          &::after {
+            left: 40%;
+            transform: translate(-50%, -50%);
+            width: 1px;
+            height: 7px;
+            background-color: $color-3;
+          }
+          &::after {
+            left: 60%;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .main-container {
+      height: calc(100vh - 100px);
+      padding-top: 100px;
+
+      .title {
+        padding-bottom: 20px;
+      }
+
+      .subtitle {
+        padding-bottom: 5px;
+      }
+
+      .btn-container {
+        padding-top: 25px;
+        .btn {
+          margin-bottom: 16px;
+        }
+      }
+    }
+  }
+}

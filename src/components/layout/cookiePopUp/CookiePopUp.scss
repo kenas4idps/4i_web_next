@@ -1,0 +1,61 @@
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+@import 'styles/color.scss';
+
+.cookie-popup-container {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: $color-3;
+  z-index: 400;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  .cookie-pop-up-main {
+    padding: 10px $padding-page-wrapper 10px $padding-page-wrapper;
+    display: flex;
+    max-width: $max-width-main;
+    margin: auto;
+    .statement {
+      .consent-link {
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+
+    .buttons-container {
+      display: flex;
+      padding-left: 20px;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      .consent-popup-button {
+        &.accept {
+          background-color: $color-info;
+        }
+
+        &.deny {
+          background-color: $color-10;
+          color: $color-1;
+        }
+      }
+    }
+
+    .to-policy-page {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .cookie-pop-up-main {
+      flex-direction: column;
+      .statement {
+        text-align: center;
+      }
+
+      .buttons-container {
+        justify-content: center;
+        padding-left: 0;
+      }
+    }
+  }
+}

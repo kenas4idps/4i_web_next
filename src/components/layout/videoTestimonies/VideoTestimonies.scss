@@ -1,0 +1,124 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+
+.video-testimonies {
+  overflow: hidden;
+  .top-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 75px;
+    .title {
+      @include title-3;
+    }
+
+    .controls {
+      display: flex;
+      .arrow {
+        position: relative;
+        width: 64px;
+        cursor: pointer;
+        &:before,
+        &:after {
+          content: '';
+          transition: 0.5s;
+          position: absolute;
+          right: 50%;
+          top: calc(50% + 5px);
+          width: 16px;
+          height: 4px;
+          background-color: $color-5;
+          transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        &:after {
+          top: calc(50% - 5px);
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &.right-arrow {
+          margin-left: 24px;
+          &:before {
+            transform: translate(-50%, -50%) rotate(-45deg);
+          }
+
+          &:after {
+            top: calc(50% - 5px);
+            transform: translate(-50%, -50%) rotate(45deg);
+          }
+        }
+
+        &.innactive {
+          &:before,
+          &:after {
+            background-color: $color-10;
+          }
+        }
+
+        &.mobile-only {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .carousel {
+    display: flex;
+    transition: 0.3s;
+    margin-left: -8px;
+    margin-right: -8px;
+    .testimony-container {
+      position: relative;
+      .video-container {
+        margin: 0 8px 0 8px;
+        width: calc(100% - 16px);
+        display: flex;
+        vertical-align: middle;
+        .video {
+          width: 100%;
+          min-width: 100%;
+          min-height: 100%;
+        }
+
+        .play-btn {
+          position: absolute;
+          cursor: pointer;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 57px;
+          height: 57px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .top-container {
+      padding-bottom: 31px;
+      .controls {
+        .arrow {
+          width: 15px;
+          &.right-arrow {
+            margin-left: 24px;
+            &:before {
+              transform: translate(-50%, -50%) rotate(-45deg);
+            }
+
+            &:after {
+              top: calc(50% - 5px);
+              transform: translate(-50%, -50%) rotate(45deg);
+            }
+          }
+
+          &.desktop-only {
+            display: none;
+          }
+
+          &.mobile-only {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
