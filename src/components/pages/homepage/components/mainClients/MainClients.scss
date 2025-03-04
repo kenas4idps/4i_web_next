@@ -1,0 +1,42 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.main-clients {
+  padding-top: 65px;
+  padding-bottom: 125px;
+  @include text-5(700);
+  text-align: center;
+  position: relative;
+  display: none;
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 41px;
+    .title {
+      @include title-6;
+    }
+  }
+  &.show {
+    display: block;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 36px;
+    padding-bottom: 60px;
+    margin-bottom: 59px;
+    .top-bar {
+      display: block;
+      .title {
+        text-align: center;
+      }
+
+      .link-clients-btn {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
+  }
+}

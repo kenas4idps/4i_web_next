@@ -31,7 +31,7 @@
   "anyQuestionTitle": "Do you have any questions?",
   "anyQuestionDescription": "If you have any questions or would like to discuss your software development needs, we would love to hear from you. Our team of experts is ready to provide personalized assistance and find the best solutions for your business. Contact us today to start the conversation.",
   "anyQuestionBtn": "Let's Talk",
-  "consentStatement": "By transmitting your data, you consent to the processing of your request. You have the right to revoke this consent at any time. Further information about our data processing can be found in our {{privacy policy}}.",
+  "consentStatement": "By transmitting your data, you consent to the processing of your request. You have the right to revoke this consent at any time. Further information about our data processing can be found in our <link>privacy policy</link>.",
   "noConsentError": "Consent box is not checked.",
   "tankYouTag": "Thank You for Downloading Our White Paper",
   "thankYouTitle": "Your white paper download request has been received. We appreciate your interest in our content.",

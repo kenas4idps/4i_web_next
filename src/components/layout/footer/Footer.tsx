@@ -1,31 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
-import { validateEmail } from 'utils/validate';
+import { validateEmail } from '@/utils/validate';
+import { api } from '@/api';
+import { NewsletterSubscriberType } from '@/api/models/shared';
 
-import NewsletterSubscriberApi from 'api/NewsletterSubscriberApi';
+import PageWrapper from '@/components/common/pageWrapper';
+import CustomInputText from '@/components/common/customInputText';
+import InlineErrorMessage from '@/components/common/inlineErrorMessage';
+import CustomCheckBox from '@/components/common/customCheckBox';
 
-import PageWrapper from 'components/common/pageWrapper';
-import CustomInputText from 'components/common/customInputText';
-import InlineErrorMessage from 'components/common/inlineErrorMessage';
-import CustomCheckBox from 'components/common/customCheckBox/CustomCheckBox';
+import { InputTextStyles } from '@/components/common/customInputText';
 
-import { InputTextStyles } from 'components/common/customInputText/SharedTypes';
-import { NewsletterSubscriberType } from 'types/SharedType';
-
-import { transformCurlyFromLangStrToLink } from 'utils/langTransform';
-
-import Logo from 'assets/icons/logoWhite.svg';
-import MapPositionIcon from 'assets/icons/mapPosition.svg';
-import PhoneIcon from 'assets/icons/phone.svg';
+import Logo from '@/public/assets/icons/logoWhite.svg';
+import MapPositionIcon from '@/public/assets/icons/mapPosition.svg';
+import PhoneIcon from '@/public/assets/icons/phone.svg';
 
 import './Footer.scss';
+import Link from 'next/link';
 
 const Footer = () => {
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation('footer');
-  const { t: tOffices } = useTranslation('offices');
+  const router = useRouter();
+  const t = useTranslations('footer');
+  const tOffices = useTranslations('offices');
+  const locale = useLocale();
 
   const [email, setEmail] = useState<string>('');
   const [emailError, setEmailError] = useState<string[]>([]);
@@ -35,8 +35,6 @@ const Footer = () => {
   const [subscriptionError, setSubscriptionError] = useState<string>('');
 
   const timeoutFunc = useRef<NodeJS.Timeout | null>(null);
-
-  const newsletterSubscriberApi = NewsletterSubscriberApi();
 
   const linksList = [
     {
@@ -103,30 +101,33 @@ const Footer = () => {
     const isEmailValid = checkEmail(email);
     const isConsentValid = checkConsent(isConsentChecked);
 
-    let isNoError = isEmailValid && isConsentValid;
+    const isNoError = isEmailValid && isConsentValid;
 
     if (isNoError) {
       try {
-        const subscriber = await newsletterSubscriberApi.getSubscriberinfo(
-          i18n.language,
+        const response = await api.newsletterSubscriber.collection.getSubscriberinfo(
+          locale,
           userEmail,
         );
-        if (subscriber?.length === 0) {
-          createSubscriber();
-        } else {
-          setEmail('');
-          setIsConsentChecked(false);
-          if (subscriber[0]?.attributes?.confirmed) {
-            setSubscriptionMessage(`${t('subscribed')}`);
+        if ('content' in response) {
+          const subscriber = response.content;
+          if (!subscriber || subscriber.length === 0) {
+            createSubscriber();
           } else {
-            await newsletterSubscriberApi?.updateSubscriberConfimationStatus(
-              subscriber[0]?.id,
-              false,
-            );
-            setSubscriptionMessage(`${t('subscriptionMessage')}`);
+            setEmail('');
+            setIsConsentChecked(false);
+            if (subscriber[0]?.attributes?.confirmed) {
+              setSubscriptionMessage(`${t('subscribed')}`);
+            } else {
+              await api.newsletterSubscriber.collection.updateSubscriberConfimationStatus(
+                subscriber[0]?.id,
+                false,
+              );
+              setSubscriptionMessage(`${t('subscriptionMessage')}`);
+            }
           }
         }
-      } catch (error) {
+      } catch {
         setSubscriptionError(`${t('subscriptionError')}`);
       }
     }
@@ -138,20 +139,20 @@ const Footer = () => {
 
       const formData: NewsletterSubscriberType = {
         user_email: email,
-        locale: i18n.language,
+        locale: locale,
         request_base_url: url,
       };
 
-      const result = await newsletterSubscriberApi?.createSubscriberEntry(formData);
+      const response = await api.newsletterSubscriber.collection.createSubscriberEntry(formData);
 
-      if ((await result) === 200) {
+      if ('content' in response && response.content === 200) {
         setEmail('');
         setIsConsentChecked(false);
         setSubscriptionMessage(`${t('subscriptionMessage')}`);
-      } else if (result.code === 'ERR_NETWORK') {
+      } else {
         setSubscriptionError(`${t('subscriptionError')}`);
       }
-    } catch (error) {
+    } catch {
       setSubscriptionError(`${t('subscriptionError')}`);
     }
   };
@@ -204,7 +205,13 @@ const Footer = () => {
                 onChange={setIsConsentChecked}
                 value={isConsentChecked}
               >
-                *{transformCurlyFromLangStrToLink(t('consentStatement'), '/privacy-policy', true)}
+                {t.rich('consentStatement', {
+                  link: chunks => (
+                    <Link href="/privacy-policy" target="_blank">
+                      {chunks}
+                    </Link>
+                  ),
+                })}
               </CustomCheckBox>
 
               <div className="subscription-status">
@@ -229,7 +236,7 @@ const Footer = () => {
                 <div className="links-list">
                   {linksList.map((link, key) => {
                     return (
-                      <div key={key} onClick={() => navigate(link.destination)} className="link">
+                      <div key={key} onClick={() => router.push(link.destination)} className="link">
                         {link.label}
                       </div>
                     );
@@ -339,7 +346,7 @@ const Footer = () => {
           <div className="right-reserved">{t('allRightReserved')}</div>
 
           <div className="other-links">
-            <div className="link" onClick={() => navigate('/privacy-policy')}>
+            <div className="link" onClick={() => router.push('/privacy-policy')}>
               {t('privacyPolicy')}
             </div>
 

@@ -27,6 +27,6 @@
   "inputMessagesPlaceholder": "Écrivez vos messages ici",
   "messageEmptyErrorMessage": "Veuillez saisir votre message.",
   "formBtnLabel": "Envoyer un message",
-  "consentStatement": "En soumettant ce formulaire, vous acceptez le traitement de vos données personnelles conformément à la {{Politique de confidentialité}} de 4i Tech.",
+  "consentStatement": "En soumettant ce formulaire, vous acceptez le traitement de vos données personnelles conformément à la <link>Politique de confidentialité</link> de 4i Tech.",
   "noConsentError": "La case de consentement n'est pas cochée."
 }

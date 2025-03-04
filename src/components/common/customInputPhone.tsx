@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLocale } from 'next-intl';
 import PhoneInput from 'react-phone-input-2';
 import cnLocal from 'react-phone-input-2/lang/cn.json';
 import frLocal from 'react-phone-input-2/lang/fr.json';
@@ -53,17 +53,19 @@ const CustomInputPhone = ({
   errorsList = [],
   isRequired = false,
 }: Props) => {
-  const { i18n } = useTranslation();
+  const locale = useLocale();
   const [inputValue, setInputValue] = useState<string>('');
 
   const handleInputChange = (value: string) => {
     setInputValue(value);
-    onChange && onChange(value);
+    if (onChange) {
+      onChange(value);
+    }
   };
 
   const getDefaultCountry = () => {
     let res = 'us';
-    switch (i18n.language) {
+    switch (locale) {
       case 'en':
         res = 'us';
         break;
@@ -89,7 +91,7 @@ const CustomInputPhone = ({
 
   const getLocal = () => {
     let res = undefined;
-    switch (i18n.language) {
+    switch (locale) {
       case 'en':
         res = undefined;
         break;

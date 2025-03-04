@@ -20,7 +20,7 @@
   "subscribeBtn": "訂閱",
   "subscribePrivacyStatement": "隱私權聲明：請放心，您的資訊在我們這裡是安全的。我們尊重您的隱私，絕不會分享或出售您的資料。",
   "subscribeTerme": "透過訂閱本新聞通訊，您也同意接收我們關於軟體開發和產業趨勢的不定期更新和寶貴見解。您可以隨時取消訂閱",
-  "consentStatement": "提交此表格，即表示您同意根據4i Tech 的隱私政策處理您的個人資料{{請參閱隱私政策頁面}}.",
+  "consentStatement": "提交此表格，即表示您同意根據4i Tech 的隱私政策處理您的個人資料<link>請參閱隱私政策頁面</link>.",
   "relatedInsightTitle": "相關文章",
   "subscribed": "您已經成功訂閱 !",
   "subscriptionMessage": "請到您的收件匣中收取電子郵件確認信件。",

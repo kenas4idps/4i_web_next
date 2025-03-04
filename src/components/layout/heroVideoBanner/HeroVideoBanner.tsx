@@ -1,12 +1,12 @@
 import { useRef, useState } from 'react';
 
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import ReactMarkdown from 'react-markdown';
 
-import CustomButton from 'components/common/customButton';
-import PageWrapper from 'components/common/pageWrapper';
+import CustomButton, { BtnStyles } from '@/components/common/customButton';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import { getColoredText } from 'utils/ColoredText';
+import { getColoredText } from '@/utils/ColoredText';
 
 import './HeroVideoBanner.scss';
 
@@ -33,7 +33,7 @@ const HeroVideoBanner = ({
   description,
   btnList,
 }: Props) => {
-  const { t } = useTranslation('homepage');
+  const t = useTranslations('homepage');
 
   const [isPlaying, setIsPlaying] = useState<boolean>(true);
 
@@ -56,14 +56,14 @@ const HeroVideoBanner = ({
 
           <h2 className="subtitle">{subtitle}</h2>
 
-          <ReactMarkdown className="">{`${description}`}</ReactMarkdown>
+          <ReactMarkdown>{`${description}`}</ReactMarkdown>
 
           <div className="btn-container">
             {btnList.map((item, key) => {
               return (
                 <CustomButton
                   onClickBtn={item.onClickBtn}
-                  btnStyle={item.btnStyle && item.btnStyle}
+                  btnStyle={item.btnStyle as BtnStyles}
                   key={key}
                 >
                   {item.btnTxt}

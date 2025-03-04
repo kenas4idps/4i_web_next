@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLocale } from 'next-intl';
 
-import { TestimonialContext } from 'providers/testimonialDataProvider/testimonialProvider';
+import { TestimonialContext } from '@/providers/testimonialDataProvider/testimonialProvider';
 
-import PlayVideoIcon from 'assets/icons/playVideo.svg';
+import PlayVideoIcon from '@/public/assets/icons/playVideo.svg';
 
-import variables from 'styles/_other.module.scss';
+import variables from '@/styles/_other.module.scss';
 import './VideoTestimonies.scss';
 
 interface Props {
@@ -17,7 +17,7 @@ const dektopItemSize = 50;
 const mobileItemSize = 100;
 
 const VideoTestimonies = ({ title, onFetch }: Props) => {
-  const { i18n } = useTranslation();
+  const locale = useLocale();
   const { videoTestimonials, init } = useContext(TestimonialContext);
 
   const [isMobile, setIsMobile] = useState(false);
@@ -28,15 +28,15 @@ const VideoTestimonies = ({ title, onFetch }: Props) => {
 
   useEffect(() => {
     if (videoTestimonials && videoTestimonials?.length > 0) {
-      onFetch && onFetch(false);
+      if (onFetch) onFetch(false);
       setIsVideoPlaying(new Array(videoTestimonials?.length)?.fill(false));
     } else {
-      onFetch && onFetch(true);
+      if (onFetch) onFetch(true);
     }
 
     init();
     // eslint-disable-next-line
-  }, [videoTestimonials, i18n.language]);
+  }, [videoTestimonials, locale]);
 
   const goToprev = () => {
     if (index > 0) {
@@ -90,7 +90,7 @@ const VideoTestimonies = ({ title, onFetch }: Props) => {
   };
 
   useEffect(() => {
-    const phoneSize = parseInt(variables.mediaQueryPhone.slice(0, -2));
+    const phoneSize = parseInt(variables?.mediaQueryPhone?.slice(0, -2));
 
     const handleResize = () => {
       if (window.innerWidth <= phoneSize) {
@@ -145,7 +145,11 @@ const VideoTestimonies = ({ title, onFetch }: Props) => {
                       <video
                         className="video"
                         poster={testimony?.video?.thumbnail}
-                        ref={el => (videoRefArray.current[key] = el!)}
+                        ref={el => {
+                          if (el) {
+                            videoRefArray.current[key] = el;
+                          }
+                        }}
                         onClick={() => pauseVideo(key)}
                         onEnded={() => pauseVideo(key)}
                       >

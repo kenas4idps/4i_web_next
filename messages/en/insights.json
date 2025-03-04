@@ -20,7 +20,7 @@
   "subscribeBtn": "Subscribe",
   "subscribePrivacyStatement": "Privacy Statement: Rest assured that your information is safe with us. We respect your privacy and will never share or sell your data.",
   "subscribeTerme": "By subscribing to this newsletter, you also agree to receive occasional updates and valuable insights from us related to software development and industry trends. You can unsubscribe at any time",
-  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s {{Privacy Policy}}",
+  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s <link>Privacy Policy</link>",
   "relatedInsightTitle": "Related Articles",
   "subscribed": "You have already been subscribed !",
   "subscriptionMessage": "Please check your inbox for a confirmation email.",

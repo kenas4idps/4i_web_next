@@ -1,5 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
+import { ClientIndustryTypeBE } from '../models/ClientIndustry';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -101,12 +102,14 @@ export function sharedApi({ axios }: userAPIProps) {
       }
     },
 
-    async getClientIndustries(locale: string): Promise<ApiResponse<any>> {
+    async getClientIndustries(locale: string): Promise<ApiResponse<ClientIndustryTypeBE[]>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/industries?locale=${locale}&populate=*&pagination[limit]=-1&sort=name`,
         );
-        return new SuccessfulApiResponse(response.data);
+        return new SuccessfulApiResponse(response.data.data, (data: any[]) =>
+          data.map(item => new ClientIndustryTypeBE(item)),
+        );
       } catch (error) {
         return new FailedApiResponse(error);
       }

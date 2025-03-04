@@ -1,11 +1,11 @@
+'use client';
+
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLocale } from 'next-intl';
 
 import { NotificationContext } from '@/providers/notificationProvider';
-
-import SharedApi from 'api/SharedApi';
-
-import { ClientBE } from '@/components/layout/clients/SharedType';
+import { api } from '@/api';
+import { ClientIndustryTypeBE } from '@/api/models/ClientIndustry';
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -13,16 +13,6 @@ interface ApiProviderProps {
 
 interface ClientIndustryTypeFE {
   name: string;
-}
-
-interface ClientIndustryTypeBE {
-  id: number;
-  attributes: {
-    name: string;
-    clients: {
-      data: ClientBE[];
-    };
-  };
 }
 
 interface ClientDataContextType {
@@ -59,28 +49,25 @@ const handleClientsIndustryListData = (caseStudyTypeData: ClientIndustryTypeBE[]
 
 const ClientIndustryListProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
-  const { i18n } = useTranslation();
-
+  const locale = useLocale();
   const [clientsIndustryList, setClientsIndustryListList] = useState<ClientIndustryTypeFE[]>();
   const [language, setLanguage] = useState<string>('');
   const [fetched, setFetched] = useState<boolean>();
 
-  const sharedApi = SharedApi();
-
   const getClientsIndustryList = async () => {
-    if (!fetched || language !== i18n.language) {
+    if (!fetched || language !== locale) {
       try {
-        const clientsIndustryListData: ClientIndustryTypeBE[] = await sharedApi.getClientIndustries(
-          i18n.language,
-        );
+        const response = await api.shared.collection.getClientIndustries(locale);
+        if ('content' in response) {
+          const clientsIndustryListData = response.content;
+          const clientsIndustryList: ClientIndustryTypeFE[] =
+            handleClientsIndustryListData(clientsIndustryListData);
 
-        const clientsIndustryList: ClientIndustryTypeFE[] =
-          handleClientsIndustryListData(clientsIndustryListData);
-
-        clientsIndustryList && setClientsIndustryListList(clientsIndustryList);
+          if (clientsIndustryList) setClientsIndustryListList(clientsIndustryList);
+        }
 
         setFetched(true);
-        setLanguage(i18n.language);
+        setLanguage(locale);
       } catch (error) {
         console.log(error);
         displayNotification(

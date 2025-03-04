@@ -27,6 +27,6 @@
   "inputMessagesPlaceholder": "Write your messages in here",
   "messageEmptyErrorMessage": "Please enter your message.",
   "formBtnLabel": "Send Message",
-  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s {{Privacy Policy}}.",
+  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s <link>Privacy Policy</link>.",
   "noConsentError": "Consent box is not checked."
 }

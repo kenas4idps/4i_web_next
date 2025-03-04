@@ -4,7 +4,7 @@ import { ClientFE } from '../../SharedType';
 
 import PageWrapper from '@/components/common/pageWrapper';
 
-import variables from 'styles/_other.module.scss';
+import variables from '@/styles/_other.module.scss';
 import './ClientsCarousel.scss';
 
 interface Props {
@@ -45,7 +45,7 @@ const ClientsCarousel = ({ clients }: Props) => {
   };
 
   useEffect(() => {
-    const phoneSize = parseInt(variables.mediaQueryPhone.slice(0, -2));
+    const phoneSize = parseInt(variables?.mediaQueryPhone?.slice(0, -2));
     const handleResize = () => {
       if (window.innerWidth <= phoneSize) {
         setIsMobile(true);

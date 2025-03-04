@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet-async';
+import { useLocale } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
 import './LanguageSelector.scss';
-import { useLocation } from 'react-router-dom';
 
 interface langType {
   label: string;
@@ -39,19 +38,17 @@ const listLanguages = [
 ];
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation();
-  const currentLanguage = i18n.language;
-  const location = useLocation();
-  const currentPath = location.pathname;
+  const locale = useLocale();
+  const router = useRouter();
 
   /* We want to redirect to different domain for some language and change the language for the other */
   const handleChangeLanguage = (newLanguage: langType) => {
-    document.location.href = newLanguage.url;
+    router.push(newLanguage.url);
   };
 
   /* We want to print the language without url only on the english domain */
   const shouldPrintLang = (lang: langType) => {
-    if (currentLanguage === lang.value) {
+    if (locale === lang.value) {
       return false;
     }
 
@@ -59,38 +56,19 @@ const LanguageSelector = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        {listLanguages.map(item => {
+    <div className="list-languages">
+      {listLanguages.map((item, key) => {
+        if (shouldPrintLang(item)) {
           return (
-            <link
-              key={item.value}
-              rel="alternate"
-              href={item.url + currentPath}
-              hrefLang={item.value}
-            />
+            <button key={key} className="language-item" onClick={() => handleChangeLanguage(item)}>
+              {item.label}
+            </button>
           );
-        })}
-      </Helmet>
+        }
 
-      <div className="list-languages">
-        {listLanguages.map((item, key) => {
-          if (shouldPrintLang(item)) {
-            return (
-              <button
-                key={key}
-                className="language-item"
-                onClick={() => handleChangeLanguage(item)}
-              >
-                {item.label}
-              </button>
-            );
-          }
-
-          return null;
-        })}
-      </div>
-    </>
+        return null;
+      })}
+    </div>
   );
 };
 

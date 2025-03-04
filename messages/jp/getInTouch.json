@@ -27,6 +27,6 @@
   "inputMessagesPlaceholder": "ここにメッセージを書き込んでください",
   "messageEmptyErrorMessage": "メッセージを入力してください。",
   "formBtnLabel": "メッセージを送信",
-  "consentStatement": "このフォームを送信すると、4i Tech の {{プライバシー ポリシー}} に従って個人データが処理されることに同意したことになります。",
+  "consentStatement": "このフォームを送信すると、4i Tech の <link>プライバシー ポリシー</link> に従って個人データが処理されることに同意したことになります。",
   "noConsentError": "最高の同意が必要です。"
 }

@@ -16,7 +16,7 @@
   "allRightReserved": "© 2010-2024 4i Tech. All rights reserved. +886 2 2792 8451",
   "privacyPolicy": "Privacy Policy",
   "thermsAndConditions": "Terms and conditions",
-  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s {{Privacy Policy}}",
+  "consentStatement": "By submitting this form you agree to the processing of your personal data according to 4i Tech’s <link>Privacy Policy</link>",
   "noConsentError": "Consent box is not checked.",
   "subscribed": "You have already been subscribed !",
   "subscriptionMessage": "Please check your inbox for a confirmation email.",

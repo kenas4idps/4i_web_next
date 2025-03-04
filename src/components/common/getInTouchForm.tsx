@@ -1,13 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { Helmet } from 'react-helmet-async';
-
-import GetInTouchFormApi from '@/api/collections/getInTouchFormApi';
 
 import { validateEmail, validateName, validatePhoneNumber } from '@/utils/validate';
-import { transformCurlyFromLangStrToLink } from '@/utils/langTransform';
 
 import CustomInputText from '@/components/common/customInputText';
 import CustomDropDown from '@/components/common/customDropDown';
@@ -17,6 +12,10 @@ import InlineErrorMessage from '@/components/common/inlineErrorMessage';
 import CustomCheckBox from '@/components/common/customCheckBox';
 import CustomInputPhone from '@/components/common/customInputPhone';
 import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { api } from '@/api';
+import Script from 'next/script';
+import Link from 'next/link';
 
 export interface GetInTouchPayloadType {
   full_name: string;
@@ -29,10 +28,9 @@ export interface GetInTouchPayloadType {
 }
 
 const GetInTouchForm = () => {
-  const { t, i18n } = useTranslation('getInTouch');
+  const t = useTranslations('getInTouch');
+  const locale = useLocale();
   const router = useRouter();
-
-  const getInTouchFormApi = GetInTouchFormApi();
 
   const listTopic = [
     {
@@ -150,9 +148,9 @@ const GetInTouchForm = () => {
     return isNoError;
   };
 
-  const gtag_report_conversion = (url: any) => {
+  const gtag_report_conversion = (url: string) => {
     const callback = function () {
-      if (typeof url != 'undefined') {
+      if (typeof url !== 'undefined') {
         // window.location = url;
       }
     };
@@ -187,20 +185,21 @@ const GetInTouchForm = () => {
         company: company,
         topic: topic,
         message: message,
-        locale: i18n.language,
+        locale: locale,
       };
 
       try {
-        const response = await getInTouchFormApi.submitGetInTouchForm(formData);
-        if (response?.status === 200) {
-          if (i18n.language === 'en' || i18n.language === 'de') {
+        const response = await api.getInTouchForm.collection.submitGetInTouchForm(formData);
+        if ('content' in response && response.content === 200) {
+          if (locale === 'en' || locale === 'de') {
             gtag_report_conversion(window.location.href);
           }
-
           router.push('/contact-us/inquiry');
+        } else {
+          console.error('Failed to submit form');
         }
       } catch (error) {
-        console.log(error);
+        console.error('Error submitting form:', error);
       }
     }
   };
@@ -252,52 +251,50 @@ const GetInTouchForm = () => {
 
   return (
     <>
-      <Helmet>
-        <script>
-          {`// Define dataLayer and the gtag function.
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+      <Script id="google-analytics-dataLayer">
+        {`// Define dataLayer and the gtag function.
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
 
-            // Set default consent to 'denied' as a placeholder
-            // Determine actual values based on your own requirements
-            gtag('consent', 'default', {
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied',
-            'analytics_storage': 'denied'
+          // Set default consent to 'denied' as a placeholder
+          // Determine actual values based on your own requirements
+          gtag('consent', 'default', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+          });`}
+      </Script>
+
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}`}
+        strategy="afterInteractive"
+      />
+
+      <Script id="google-analytics-config">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}');
+        `}
+      </Script>
+
+      <Script id="google-analytics-conversion">
+        {`function gtag_report_conversion(url) {
+            var callback = function () {
+              if (typeof(url) != 'undefined') {
+                window.location = url;
+              }
+            };
+            gtag('event', 'conversion', {
+                'send_to': '${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}/${process.env.REACT_APP_GOOGLE_FORM_TRACK_SUB_ID}',
+                'event_callback': callback
             });
-          `}
-        </script>
+            return false;
+          }`}
+      </Script>
 
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}`}
-        ></script>
-
-        <script>
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}');
-          `}
-        </script>
-
-        <script>
-          {`function gtag_report_conversion(url) {
-              var callback = function () {
-                if (typeof(url) != 'undefined') {
-                  window.location = url;
-                }
-              };
-              gtag('event', 'conversion', {
-                  'send_to': '${process.env.REACT_APP_GOOGLE_FORM_TRACK_ID}/${process.env.REACT_APP_GOOGLE_FORM_TRACK_SUB_ID}',
-                  'event_callback': callback
-              });
-              return false;
-            }`}
-        </script>
-      </Helmet>
       <div className="get-in-touch-form-container">
         <div>
           <CustomInputText
@@ -358,7 +355,13 @@ const GetInTouchForm = () => {
           />
 
           <CustomCheckBox identifier="getInTouch-consent" onChange={setIsConsentChecked}>
-            *{transformCurlyFromLangStrToLink(t('consentStatement'), '/privacy-policy', true)}
+            {t.rich('consentStatement', {
+              link: chunks => (
+                <Link href="/privacy-policy" target="_blank">
+                  {chunks}
+                </Link>
+              ),
+            })}
           </CustomCheckBox>
 
           <InlineErrorMessage

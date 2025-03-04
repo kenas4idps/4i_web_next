@@ -1,11 +1,11 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations, useLocale } from 'next-intl';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
 
-import CustomInputText from './customInputText';
+import CustomInputText, { InputTextStyles } from './customInputText';
 
 interface OptionType {
   label: string;
@@ -65,7 +65,8 @@ const CustomDropDown = ({
   handleInputChange,
   value = null,
 }: Props) => {
-  const { t, i18n } = useTranslation('whitePaper');
+  const t = useTranslations('whitePaper');
+  const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
 
   const findOption = (optionValue: string | null) => {
@@ -123,7 +124,7 @@ const CustomDropDown = ({
 
   useEffect(() => {
     setSelectedOption(null);
-  }, [i18n.language]);
+  }, [locale]);
 
   return (
     <div
@@ -153,10 +154,10 @@ const CustomDropDown = ({
           <ul className="absolute right-0 left-0 z-10 mt-2 max-h-48 overflow-auto rounded-lg border border-gray-300 bg-white shadow-lg">
             {inputEnabled && (
               <CustomInputText
-                styleInpt={`${dropDownStyle} embedded`}
+                styleInpt={`${dropDownStyle} embedded` as InputTextStyles}
                 placeholder={`${t('countrySearachPlaceHolder')}`}
                 onChange={handleInputChange}
-                forwardedRef={inputRef}
+                forwardedRef={inputRef as React.RefObject<HTMLInputElement>}
               />
             )}
             {options?.map(option => (

@@ -2,7 +2,7 @@ import { ChangeEvent, RefObject, useEffect, useState } from 'react';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
 
-import SendIcon from 'assets/icons/send.svg';
+import SendIcon from '@/public/assets/icons/send.svg';
 
 interface Props {
   label?: string;

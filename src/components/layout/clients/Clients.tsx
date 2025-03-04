@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 import CustomButton from '@/components/common/customButton';
 
@@ -10,7 +11,7 @@ import { NotificationContext } from '@/providers/notificationProvider';
 
 import { ClientBE, ClientFE } from './SharedType';
 
-import SharedApi from 'api/SharedApi';
+import { api } from '@/api';
 
 interface ClientListBE {
   data: ClientBE[];
@@ -46,10 +47,9 @@ interface Props {
 }
 
 const Clients = ({ filter = 'All', isCarousel = false, onFetch }: Props) => {
-  const { t, i18n } = useTranslation('ourClients');
+  const t = useTranslations('ourClients');
+  const locale = useLocale();
   const { displayNotification } = useContext(NotificationContext);
-
-  const sharedAPI = SharedApi();
 
   const [clients, setClients] = useState<ClientFE[]>([]);
   const [canLoadMore, setCanLoadMore] = useState<boolean>(false);
@@ -66,36 +66,39 @@ const Clients = ({ filter = 'All', isCarousel = false, onFetch }: Props) => {
     try {
       const encodedFilter = encodeURIComponent(filter);
 
-      const clientsData: ClientListBE = await sharedAPI.getClients(
+      const response = await api.shared.collection.getClients(
         encodedFilter,
         currentPage.current,
-        i18n.language,
+        locale,
       );
 
-      const newClients: ClientFE[] = handleClientsData(clientsData?.data);
+      if ('content' in response) {
+        const clientsData = response.content as ClientListBE;
+        const newClients: ClientFE[] = handleClientsData(clientsData?.data);
 
-      const expectedNumOfClients = (currentPage.current + 1) * 8;
+        const expectedNumOfClients = (currentPage.current + 1) * 8;
 
-      const totalNumOfClients = clientsData?.meta?.pagination?.total;
+        const totalNumOfClients = clientsData?.meta?.pagination?.total;
 
-      if (expectedNumOfClients < totalNumOfClients) {
-        setCanLoadMore(true);
-      } else {
-        setCanLoadMore(false);
-      }
-
-      if (newClients) {
-        if (newClients?.length < 1) {
-          if (onFetch) onFetch(true);
+        if (expectedNumOfClients < totalNumOfClients) {
+          setCanLoadMore(true);
         } else {
-          if (onFetch) {
-            onFetch(false);
-          }
+          setCanLoadMore(false);
         }
-        if (page === 0) {
-          setClients(newClients);
-        } else {
-          setClients(prevClients => [...prevClients, ...newClients]);
+
+        if (newClients) {
+          if (newClients?.length < 1) {
+            if (onFetch) onFetch(true);
+          } else {
+            if (onFetch) {
+              onFetch(false);
+            }
+          }
+          if (page === 0) {
+            setClients(newClients);
+          } else {
+            setClients(prevClients => [...prevClients, ...newClients]);
+          }
         }
       }
     } catch (error) {
@@ -111,7 +114,7 @@ const Clients = ({ filter = 'All', isCarousel = false, onFetch }: Props) => {
     currentPage.current = 0;
     fetchClientsData(0);
     // eslint-disable-next-line
-  }, [i18n.language, filter]);
+  }, [locale, filter]);
 
   return (
     <div className="clients">

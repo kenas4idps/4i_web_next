@@ -1,18 +1,21 @@
+'use client';
+
 import { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
-import { SolutionsListContext } from 'providers/solutionsListProvider/SolutionsListProvider';
+import { SolutionsListContext } from '@/providers/solutionsListProvider/SolutionsListProvider';
 
-import { SolutionsListFE } from 'types/SharedType';
+import { SolutionsListFE } from '@/api/models/shared';
 
-import CustomButton from 'components/common/customButton';
-import PageWrapper from 'components/common/pageWrapper';
-import { BtnStyles } from 'components/common/customButton/SharedTypes';
+import CustomButton from '@/components/common/customButton';
+import PageWrapper from '@/components/common/pageWrapper';
+import { BtnStyles } from '@/components/common/customButton';
 
 import LanguageSelector from './languageSelector';
 
-import Logo from 'assets/icons/logoFull.svg';
+import Logo from '@/public/assets/icons/logoFull.svg';
 
 import './Nav.scss';
 
@@ -26,9 +29,9 @@ interface Props {
 }
 
 const Nav = ({ isBgWhite = false }: Props) => {
-  const { t, i18n } = useTranslation('nav');
-  const location = useLocation();
-  const navigate = useNavigate();
+  const t = useTranslations('nav');
+  const locale = useLocale();
+  const router = useRouter();
 
   const { getSolutionsList, solutionsList } = useContext(SolutionsListContext);
 
@@ -37,7 +40,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
   const [solutionsMenuList, setSolutionsMenuList] = useState<Menu[]>([]);
 
   const transformSolutinosListToMenu = (solutionsList: SolutionsListFE[]) => {
-    let menuList: Menu[] = [];
+    const menuList: Menu[] = [];
 
     menuList?.push({
       label: t('solutions'),
@@ -69,7 +72,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
 
     if (solutionsList) {
       const solutionsMenuList = transformSolutinosListToMenu(solutionsList);
-      solutionsMenuList && setSolutionsMenuList(solutionsMenuList);
+      if (solutionsMenuList) setSolutionsMenuList(solutionsMenuList);
     }
 
     window.addEventListener('scroll', handleScroll);
@@ -77,7 +80,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
       window.removeEventListener('scroll', handleScroll);
     };
     // eslint-disable-next-line
-  }, [solutionsList, i18n.language]);
+  }, [solutionsList, locale]);
 
   useEffect(() => {
     if (isOpen) {
@@ -154,7 +157,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
       }
     } else {
       setIsOpen(false);
-      navigate(newUrl);
+      router.push(newUrl);
     }
   };
 
@@ -164,7 +167,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
     >
       <PageWrapper className="main-nav-container">
         <div className="top-container">
-          <div onClick={() => navigate('/')} className="logo">
+          <div onClick={() => router.push('/')} className="logo">
             <img src={Logo} alt="compagny logo" />
           </div>
 
@@ -222,14 +225,17 @@ const Nav = ({ isBgWhite = false }: Props) => {
                 isCurrentPage('contact-us') && 'current-page'
               }`}
             >
-              <span className="main-page-link" onClick={() => navigate('/contact-us')}>
+              <span className="main-page-link" onClick={() => router.push('/contact-us')}>
                 {t('contactUs')}
               </span>
             </div>
           </div>
 
           <div className="contact-us-btn">
-            <CustomButton onClickBtn={() => navigate('/contact-us')} btnStyle={BtnStyles.TERTIARY}>
+            <CustomButton
+              onClickBtn={() => router.push('/contact-us')}
+              btnStyle={BtnStyles.TERTIARY}
+            >
               {t('contactUs')}
             </CustomButton>
           </div>

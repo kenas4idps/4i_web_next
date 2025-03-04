@@ -1,13 +1,14 @@
+'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 
 import { Image, SeoBE, SeoFE, Video } from '@/api/models/shared';
-import { AwardFE } from 'components/pages/homepage/components/allAwards/SharedType';
+import { AwardFE } from '@/components/pages/homepage/components/allAwards/SharedType';
 
-import HomePageApi from 'api/HomePageApi';
 import SeoDataHandler from '@/utils/SeoDataHandler';
+import { useLocale } from 'next-intl';
+import { api } from '@/api';
 
 interface AwardBE {
   id: number;
@@ -158,7 +159,7 @@ const HomeDataContext = createContext<HomeDataContextType>({
 
 const HomeDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
-  const { i18n } = useTranslation('homepage');
+  const locale = useLocale();
 
   const [language, setLanguage] = useState<string>('');
   const [seo, setSeo] = useState<SeoFE>();
@@ -166,24 +167,26 @@ const HomeDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const [detail, setDetail] = useState<HomePageDetailFE>();
   const [awards, setAwards] = useState<AwardFE[]>();
 
-  const homeAPI = HomePageApi();
   const seoDataHandler = SeoDataHandler();
 
   const init = async () => {
-    if (!fetched || language !== i18n.language) {
+    if (!fetched || language !== locale) {
       try {
-        const homePageData: HomePageDataBE = await homeAPI.getHomeData(i18n.language);
+        const response = await api.homePage.collection.getHomeData(locale);
+        if ('content' in response) {
+          const homePageData: HomePageDataBE = response.content;
 
-        const seo: SeoFE = seoDataHandler.handleSeoData(homePageData?.seo);
-        const awards: AwardFE[] = handleAwardsData(homePageData?.awards);
-        const detail: HomePageDetailFE = handleDetailsData(homePageData?.detail);
+          const seo: SeoFE = seoDataHandler.handleSeoData(homePageData?.seo);
+          const awards: AwardFE[] = handleAwardsData(homePageData?.awards);
+          const detail: HomePageDetailFE = handleDetailsData(homePageData?.detail);
 
-        seo && setSeo(seo);
-        awards && setAwards(awards);
-        detail && setDetail(detail);
+          if (seo) setSeo(seo);
+          if (awards) setAwards(awards);
+          if (detail) setDetail(detail);
 
-        setFetched(true);
-        setLanguage(i18n.language);
+          setFetched(true);
+          setLanguage(locale);
+        }
       } catch (error) {
         console.log(error);
         displayNotification(

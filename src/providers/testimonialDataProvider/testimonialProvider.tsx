@@ -1,5 +1,6 @@
+'use client';
+
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 
@@ -9,7 +10,8 @@ import {
   WrittenTestimonialFE,
   WrittenTestimonialBE,
 } from '@/components/layout/textTestimonies/sharedInterfaces';
-import SharedApi from 'api/SharedApi';
+import { useLocale } from 'next-intl';
+import { api } from '@/api';
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -78,34 +80,36 @@ const hanldeWrittenTestimonialData = (writtenTestimonialsData: WrittenTestimonia
 };
 
 const TestimonialProvider: React.FC<ApiProviderProps> = ({ children }) => {
-  const { i18n } = useTranslation();
+  const locale = useLocale();
   const { displayNotification } = useContext(NotificationContext);
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [videoTestimonials, setVideoTestimonials] = useState<VideoTestimonialFE[]>();
   const [writtenTestimonials, setWrittenTestimonial] = useState<WrittenTestimonialFE[]>();
 
-  const sharedAPI = SharedApi();
-
   const init = async () => {
     setFetched(false);
     if (!fetched) {
       try {
-        const videoTestimonialsData: VideoTestimonialBE[] = await sharedAPI.getVideoTestimonial(
-          i18n.language,
-        );
-        const writtenTestimonialsData: WrittenTestimonialBE[] =
-          await sharedAPI.getWrittenTestimonial(i18n.language);
+        const videoTestimonialsResponse = await api.shared.collection.getVideoTestimonial(locale);
+        const writtenTestimonialsResponse =
+          await api.shared.collection.getWrittenTestimonial(locale);
 
-        const videoTestimonials: VideoTestimonialFE[] =
-          hanldeVideoTestimonialData(videoTestimonialsData);
+        if ('content' in videoTestimonialsResponse && 'content' in writtenTestimonialsResponse) {
+          const videoTestimonialsData: VideoTestimonialBE[] = videoTestimonialsResponse.content;
+          const writtenTestimonialsData: WrittenTestimonialBE[] =
+            writtenTestimonialsResponse.content;
 
-        const writtenTestimonials: WrittenTestimonialFE[] =
-          hanldeWrittenTestimonialData(writtenTestimonialsData);
+          const videoTestimonials: VideoTestimonialFE[] =
+            hanldeVideoTestimonialData(videoTestimonialsData);
 
-        videoTestimonials && setVideoTestimonials(videoTestimonials);
-        writtenTestimonials && setWrittenTestimonial(writtenTestimonials);
-        setFetched(true);
+          const writtenTestimonials: WrittenTestimonialFE[] =
+            hanldeWrittenTestimonialData(writtenTestimonialsData);
+
+          if (videoTestimonials) setVideoTestimonials(videoTestimonials);
+          if (writtenTestimonials) setWrittenTestimonial(writtenTestimonials);
+          setFetched(true);
+        }
       } catch (error) {
         console.log(error);
         displayNotification(

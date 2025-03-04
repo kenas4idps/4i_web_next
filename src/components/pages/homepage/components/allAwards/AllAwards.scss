@@ -1,0 +1,64 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.all-awards {
+  padding-top: 95px;
+  display: flex;
+  .title {
+    @include title-3;
+    padding-right: 20px;
+    word-break: keep-all;
+    align-self: center;
+  }
+
+  .awards-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    .award-item-container {
+      width: 33.333%;
+      padding-bottom: 55px;
+      .award-item {
+        text-align: center;
+        img {
+          height: auto;
+          max-width: 80%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 30px;
+    align-items: flex-start;
+    .title {
+      width: 100%;
+      padding-right: 0;
+      padding-bottom: 38px;
+      margin-top: 0;
+      transform: none;
+    }
+
+    .awards-list {
+      width: 100%;
+      .award-item-container {
+        width: 50%;
+        padding-bottom: 30px;
+        &:nth-last-child(-n + 2) {
+          padding-bottom: 30px;
+        }
+
+        .award-item {
+          text-align: center;
+          img {
+            height: auto;
+            max-width: 80%;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.homepage-testimonies {
+  padding-top: 72px;
+  padding-bottom: 97px;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+  .homepage-video-testimonies {
+    padding-bottom: 83px;
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  .homepage-text-testimonies {
+    display: none;
+
+    &.show {
+      display: block;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 45px;
+    padding-bottom: 50px;
+    .homepage-video-testimonies {
+      padding-bottom: 52px;
+    }
+  }
+}

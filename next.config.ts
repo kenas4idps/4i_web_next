@@ -5,6 +5,9 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig: NextConfig = {
   /* config options here */
+  env: {
+    REACT_APP_STRAPI_API_URL: process.env.REACT_APP_STRAPI_API_URL,
+  },
 };
 
 export default withNextIntl(nextConfig);

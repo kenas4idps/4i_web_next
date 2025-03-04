@@ -1,12 +1,11 @@
+'use client';
 import React, { createContext, ReactNode, useContext, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 
 import { PageDetailBE, SolutionsListFE } from '@/api/models/shared';
-
-import SolutionApi from 'api/SolutionApi';
-
+import { api } from '@/api';
+import { useLocale } from 'next-intl';
 interface ApiProviderProps {
   children: ReactNode;
 }
@@ -72,27 +71,26 @@ const SolutionsListContext = createContext<SolutionsListContextType>({
 });
 const SolutionsListProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
-  const { i18n } = useTranslation();
+  const locale = useLocale();
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [language, setLanguage] = useState<string>('');
   const [solutionsList, setSolutionsList] = useState<SolutionsListFE[]>();
 
-  const solutionApi = SolutionApi();
-
   const getSolutionsList = async () => {
-    if (!fetched || language !== i18n.language) {
+    if (!fetched || language !== locale) {
       try {
-        const solutionsListData: SolutionsListDataBE[] = await solutionApi.getSolutionsListData(
-          i18n.language,
-        );
+        const response = await api.solution.collection.getSolutionsListData(locale);
+        if ('content' in response) {
+          const solutionsListData: SolutionsListDataBE[] = response.content;
 
-        const solutionsList: SolutionsListFE[] = handleSolutionsListData(solutionsListData);
+          const solutionsList: SolutionsListFE[] = handleSolutionsListData(solutionsListData);
 
-        solutionsList && setSolutionsList(solutionsList);
+          if (solutionsList) setSolutionsList(solutionsList);
 
-        setFetched(true);
-        setLanguage(i18n.language);
+          setFetched(true);
+          setLanguage(locale);
+        }
       } catch (error) {
         console.log(error);
         displayNotification(

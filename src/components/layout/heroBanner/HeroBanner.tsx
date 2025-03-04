@@ -1,8 +1,8 @@
 import ReactMarkdown from 'react-markdown';
 
-import { getColoredText } from 'utils/ColoredText';
+import { getColoredText } from '@/utils/ColoredText';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
 import './HeroBanner.scss';
 
@@ -24,7 +24,7 @@ const HeroBanner = ({ picture, title, description }: Props) => {
             <div className="hero-content">
               {title && <h1 className="title">{getColoredText(title)}</h1>}
 
-              {description && <ReactMarkdown className="">{description}</ReactMarkdown>}
+              {description && <ReactMarkdown>{description}</ReactMarkdown>}
             </div>
           </div>
         </PageWrapper>

@@ -1,11 +1,10 @@
+'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 
 import { NumbersTypeBE, NumberTypeFE } from '@/components/layout/numbers/SharedType';
-
-import SharedApi from 'api/SharedApi';
+import { api } from '@/api';
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -21,7 +20,7 @@ const NumbersDataContext = createContext<NumbersDataContextType>({
   numbers: [],
 });
 
-const handleNumberData = (numbersData: NumbersTypeBE, t: any) => {
+const handleNumberData = (numbersData: NumbersTypeBE) => {
   const arr = [];
 
   if (numbersData?.projects_delivered) {
@@ -74,23 +73,23 @@ const handleNumberData = (numbersData: NumbersTypeBE, t: any) => {
 
 const NumbersDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
-  const { t } = useTranslation('homepage');
 
   const [fetched, setFetched] = useState<boolean>(false);
   const [numbers, setNumbers] = useState<NumberTypeFE[]>();
 
-  const sharedAPI = SharedApi();
-
   const init = async () => {
     if (!fetched) {
       try {
-        const numbersData: NumbersTypeBE = await sharedAPI.getNumbers();
+        const response = await api.shared.collection.getNumbers();
+        if ('content' in response) {
+          const numbersData: NumbersTypeBE = response.content;
 
-        const numbers: NumberTypeFE[] = handleNumberData(numbersData, t);
+          const numbers: NumberTypeFE[] = handleNumberData(numbersData);
 
-        numbers && setNumbers(numbers);
+          if (numbers) setNumbers(numbers);
 
-        setFetched(true);
+          setFetched(true);
+        }
       } catch (error) {
         console.log(error);
         displayNotification(

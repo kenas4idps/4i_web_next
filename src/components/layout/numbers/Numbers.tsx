@@ -1,14 +1,14 @@
 import { useContext, useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-// @ts-ignore
+import { useTranslations } from 'next-intl';
+
 import AnimatedNumber from 'animated-number-react';
 
-import { NumbersDataContext } from 'providers/numberDataProvider/NumberDataProvider';
+import { NumbersDataContext } from '@/providers/numberDataProvider/NumberDataProvider';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import LogoFullIcon from 'assets/icons/logoFull.svg';
-import BubblesBg from 'assets/img/bubbles1.webp';
+import LogoFullIcon from '@/public/assets/icons/logoFull.svg';
+import BubblesBg from '@/public/assets/img/bubbles1.webp';
 
 import './Numbers.scss';
 
@@ -20,7 +20,7 @@ const Numbers = ({ withBackgroundColor = false }: Props) => {
   const { numbers, init } = useContext(NumbersDataContext);
   const [isScrooledTo, setIsScrolledTo] = useState(false);
   const numberContainerRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation('homepage');
+  const t = useTranslations('homepage');
 
   useEffect(() => {
     const handleScroll = () => {

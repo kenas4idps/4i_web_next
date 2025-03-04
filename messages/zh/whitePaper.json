@@ -31,7 +31,7 @@
   "anyQuestionTitle": "您有什麼問題嗎？",
   "anyQuestionDescription": "如果您有任何疑問或想討論您的軟體開發需求，我們很樂意聽取您的意見。我們的專家團隊隨時準備提供個人化協助並為您的業務找到最佳解決方案。立即聯繫我們開始對話。",
   "anyQuestionBtn": "我們來談談吧",
-  "consentStatement": "提交此表格，即表示您同意根據4i Tech的隱私政策處理您的個人資料{{請參閱隱私政策頁面}}.",
+  "consentStatement": "提交此表格，即表示您同意根據4i Tech的隱私政策處理您的個人資料<link>請參閱隱私政策頁面</link>.",
   "noConsentError": "未選取同意框。",
   "tankYouTag": "感謝您下載我們的白皮書",
   "thankYouTitle": "您下載白皮書的請求已收到。我們感謝您對我們的內容感興趣。",

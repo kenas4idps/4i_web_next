@@ -16,7 +16,7 @@
   "allRightReserved": "©2010-2024 4i Tech. Alle Rechte vorbehalten.",
   "privacyPolicy": "Datenschutzerklärung",
   "thermsAndConditions": "Allgemeine Geschäftsbedingungen",
-  "consentStatement": "Mit dem Absenden dieses Formulars stimmen Sie der Verarbeitung Ihrer personenbezogenen Daten gemäß der {{Datenschutzrichtlinie}} von 4i Tech zu.",
+  "consentStatement": "Mit dem Absenden dieses Formulars stimmen Sie der Verarbeitung Ihrer personenbezogenen Daten gemäß der <link>Datenschutzrichtlinie</link> von 4i Tech zu.",
   "noConsentError": "Einwilligungsfeld ist nicht aktiviert.",
   "subscribed": "Sie sind bereits abonniert!",
   "subscriptionMessage": "Bitte überprüfen Sie Ihren Posteingang auf eine Bestätigungs-E-Mail.",

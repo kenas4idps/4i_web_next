@@ -27,6 +27,6 @@
   "inputMessagesPlaceholder": "Schreiben Sie hier Ihre Nachrichten",
   "messageEmptyErrorMessage": "Bitte geben Sie Ihre Nachricht ein.",
   "formBtnLabel": "Nachricht senden",
-  "consentStatement": "Durch das Absenden dieses Formulars stimmen Sie der Verarbeitung Ihrer personenbezogenen Daten gemäß der {{Datenschutzerklärung}} von 4i Tech zu.",
+  "consentStatement": "Durch das Absenden dieses Formulars stimmen Sie der Verarbeitung Ihrer personenbezogenen Daten gemäß der <link>Datenschutzerklärung</link> von 4i Tech zu.",
   "noConsentError": "Einwilligungsfeld ist nicht aktiviert."
 }

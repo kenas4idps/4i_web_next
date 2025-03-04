@@ -1,16 +1,16 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import DoubleCircleImg from 'assets/img/doubleCircle.svg';
-import MapImg from 'assets/img/map.webp';
+import DoubleCircleImg from '@/public/assets/img/doubleCircle.svg';
+import MapImg from '@/public/assets/img/map.webp';
 
-import GetInTouchForm from 'components/common/getInTouchForm';
+import GetInTouchForm from '@/components/common/getInTouchForm';
 
 import './GetInTouchCmp.scss';
 
 const GetInTouchCmp = () => {
-  const { t } = useTranslation('getInTouch');
+  const t = useTranslations('getInTouch');
 
   return (
     <div className="get-in-touch">
@@ -34,7 +34,7 @@ const GetInTouchCmp = () => {
 
       <PageWrapper className="content">
         <div className="map">
-          <img src={MapImg} alt="Map of 4i Tech localisation" />
+          <img src={MapImg.src} alt="Map of 4i Tech localisation" />
         </div>
 
         <div className="form-container">

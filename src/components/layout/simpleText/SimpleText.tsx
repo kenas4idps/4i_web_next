@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import BubblesBg from 'assets/img/bubbles2.png';
+import BubblesBg from '@/public/assets/img/bubbles2.png';
 
 import './SimpleText.scss';
 

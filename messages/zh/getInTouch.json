@@ -27,6 +27,6 @@
   "inputMessagesPlaceholder": "在此寫下您的訊息",
   "messageEmptyErrorMessage": "請輸入您的訊息。",
   "formBtnLabel": "送出訊息",
-  "consentStatement": "提交此表格，即表示您同意根據4i Tech的隱私政策處理您的個人資料 {{請參閱隱私政策頁面}}.",
+  "consentStatement": "提交此表格，即表示您同意根據4i Tech的隱私政策處理您的個人資料 <link>請參閱隱私政策頁面</link>.",
   "noConsentError": "未選取同意框。"
 }

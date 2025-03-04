@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLocale } from 'next-intl';
 
-import { TestimonialContext } from 'providers/testimonialDataProvider/testimonialProvider';
+import { TestimonialContext } from '@/providers/testimonialDataProvider/testimonialProvider';
 
 import './TextTestimonies.scss';
 
@@ -10,18 +10,18 @@ interface Props {
   onFetch?: (isEmpty: boolean) => void;
 }
 const TextTestimonies = ({ isDarkBg = false, onFetch }: Props) => {
-  const { i18n } = useTranslation();
+  const locale = useLocale();
   const { writtenTestimonials, init } = useContext(TestimonialContext);
 
   useEffect(() => {
     if (writtenTestimonials && writtenTestimonials?.length < 1) {
-      onFetch && onFetch(true);
+      if (onFetch) onFetch(true);
     } else {
-      onFetch && onFetch(false);
+      if (onFetch) onFetch(false);
     }
     init();
     //eslint-disable-next-line
-  }, [writtenTestimonials, i18n.language]);
+  }, [writtenTestimonials, locale]);
 
   const [index, setIndex] = useState(0);
 
