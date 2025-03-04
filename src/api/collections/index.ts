@@ -1,1 +1,1 @@
-export { userAPI } from './user';
+export { caseStudyApi } from './caseStudy';
