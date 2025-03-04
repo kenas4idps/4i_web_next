@@ -1,0 +1,66 @@
+@import 'styles/other.scss';
+@import 'styles/color.scss';
+
+.notifications-container {
+  position: fixed;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 30;
+  .notification {
+    padding: 15px 62px 15px 50px;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 15px;
+    color: #ffffff;
+    opacity: 1;
+    transition: 0.5s ease-out;
+    &.inactive {
+      opacity: 0;
+    }
+    &.notification-success {
+      background-color: $color-sucess;
+    }
+
+    &.notification-info {
+      background-color: $color-info;
+    }
+
+    &.notification-warning {
+      background-color: $color-warning;
+    }
+
+    &.notification-error {
+      background-color: $color-error;
+    }
+
+    .notification-btn {
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      &:after,
+      &:before {
+        content: '';
+        background-color: #ffffff;
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        transform: translate(50%, -50%) rotate(45deg);
+        display: block;
+        height: 1px;
+        width: 8px;
+      }
+
+      &:before {
+        transform: translate(50%, -50%) rotate(-45deg);
+      }
+    }
+
+    @media (max-width: $media-query-phone) {
+      padding: 20px;
+    }
+  }
+}

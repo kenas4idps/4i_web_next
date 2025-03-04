@@ -3,10 +3,10 @@
 import { Button } from '@/components/ui/Button';
 import { useLocale, useTranslations } from 'next-intl';
 import Image from 'next/image';
-import { setUserLocale } from '../services/locale';
+import { setUserLocale } from '../../services/locale';
 
 export default function Home() {
-  const t = useTranslations('HomePage');
+  const t = useTranslations('homepage');
   const locale = useLocale();
 
   return (
@@ -29,7 +29,7 @@ export default function Home() {
             .
           </li>
           <li>Save and see your changes instantly.</li>
-          <li>HomePage translation: {t('title')}</li>
+          <li>HomePage translation: {t('bannerBtnTalkWithUs')}</li>
         </ol>
 
         <Button

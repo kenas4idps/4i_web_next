@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { cva } from 'class-variance-authority';
 
 import { ImageFE } from '@/api/models/shared';
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 import { cn } from '@/lib/cn';
 
 interface CarouselItemType {
@@ -130,8 +130,11 @@ const CarouselCmp = ({
         >
           {listItem?.map((item, key) => (
             <div
-              className={`flex-none w-[${getItemSize()}%] p-2 ${index === key ? 'shadow-lg' : 'grayscale'}`}
+              className={`flex-none p-2 ${index === key ? 'shadow-lg' : 'grayscale'}`}
               key={key}
+              style={{
+                width: `${getItemSize()}%`,
+              }}
               onClick={() => onClickFunc && item?.id && onClickFunc(item?.id)}
             >
               <div

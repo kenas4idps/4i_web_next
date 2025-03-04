@@ -1,12 +1,12 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import CustomButton from 'components/common/customButton';
+import CustomButton from '@/components/common/customButton';
 
 import ClientsCarousel from './components/clientsCarousel';
 import ClientsList from './components/clientsList';
 
-import { NotificationContext } from 'providers/notificationProvider';
+import { NotificationContext } from '@/providers/notificationProvider';
 
 import { ClientBE, ClientFE } from './SharedType';
 
@@ -86,9 +86,11 @@ const Clients = ({ filter = 'All', isCarousel = false, onFetch }: Props) => {
 
       if (newClients) {
         if (newClients?.length < 1) {
-          onFetch && onFetch(true);
+          if (onFetch) onFetch(true);
         } else {
-          onFetch && onFetch(false);
+          if (onFetch) {
+            onFetch(false);
+          }
         }
         if (page === 0) {
           setClients(newClients);

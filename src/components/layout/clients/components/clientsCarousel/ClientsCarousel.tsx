@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { ClientFE } from '../../SharedType';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
 import variables from 'styles/_other.module.scss';
 import './ClientsCarousel.scss';

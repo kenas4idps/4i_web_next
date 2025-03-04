@@ -7,7 +7,7 @@ interface Props {
   canLoadMore?: boolean;
 }
 
-const ClientsList = ({ clients, canLoadMore = false }: Props) => {
+const ClientsList = ({ clients }: Props) => {
   return (
     <div className="clients-list">
       <div className="content">
