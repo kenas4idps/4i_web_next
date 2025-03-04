@@ -1,9 +1,11 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
 
-import CustomInputText from '../customInputText';
+import CustomInputText from './customInputText';
 
 interface OptionType {
   label: string;
