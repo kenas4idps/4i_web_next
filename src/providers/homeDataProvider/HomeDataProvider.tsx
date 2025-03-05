@@ -157,6 +157,11 @@ const HomeDataContext = createContext<HomeDataContextType>({
   language: '',
 });
 
+/**
+ * This function is DEPRECATED
+ * @param param0
+ * @returns
+ */
 const HomeDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
   const locale = useLocale();

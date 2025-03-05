@@ -8,11 +8,9 @@ import './globals.css';
 import '@/styles/main.scss';
 
 import { NotificationProvider } from '@/providers/notificationProvider/NotificationProvider';
-import { HomeDataProvider } from '@/providers/homeDataProvider/HomeDataProvider';
 import { NumbersDataProvider } from '@/providers/numberDataProvider/NumberDataProvider';
 import { ClientIndustryListProvider } from '@/providers/clientsTypeProvider/ClientsTypeProvider';
 import { TestimonialProvider } from '@/providers/testimonialDataProvider/testimonialProvider';
-import { SolutionsListProvider } from '@/providers/solutionsListProvider/SolutionsListProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -88,15 +86,11 @@ export default async function RootLayout({
       >
         <NextIntlClientProvider messages={messages}>
           <NotificationProvider>
-            <HomeDataProvider>
-              <NumbersDataProvider>
-                <ClientIndustryListProvider>
-                  <TestimonialProvider>
-                    <SolutionsListProvider>{children}</SolutionsListProvider>
-                  </TestimonialProvider>
-                </ClientIndustryListProvider>
-              </NumbersDataProvider>
-            </HomeDataProvider>
+            <NumbersDataProvider>
+              <ClientIndustryListProvider>
+                <TestimonialProvider>{children}</TestimonialProvider>
+              </ClientIndustryListProvider>
+            </NumbersDataProvider>
           </NotificationProvider>
         </NextIntlClientProvider>
       </body>

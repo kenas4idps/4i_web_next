@@ -69,6 +69,12 @@ const SolutionsListContext = createContext<SolutionsListContextType>({
     },
   ],
 });
+
+/**
+ * This function is DEPRECATED
+ * @param param0
+ * @returns
+ */
 const SolutionsListProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
   const locale = useLocale();

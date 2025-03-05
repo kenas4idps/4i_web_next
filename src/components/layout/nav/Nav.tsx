@@ -1,14 +1,9 @@
 'use client';
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { useLocale } from 'next-intl';
 import Image from 'next/image';
-
-import { SolutionsListContext } from '@/providers/solutionsListProvider/SolutionsListProvider';
-
-import { SolutionsListFE } from '@/api/models/shared';
 
 import CustomButton from '@/components/common/customButton';
 import PageWrapper from '@/components/common/pageWrapper';
@@ -19,44 +14,19 @@ import LanguageSelector from './languageSelector';
 const Logo = '/assets/icons/logoFull.svg';
 
 import './Nav.scss';
-
-interface Menu {
-  label: string;
-  url: string;
-}
+import { NavMenu } from '@/app/[locale]/_util/getNavList';
 
 interface Props {
   isBgWhite?: boolean;
+  navList: NavMenu[];
 }
 
-const Nav = ({ isBgWhite = false }: Props) => {
+const Nav = ({ isBgWhite = false, navList }: Props) => {
   const t = useTranslations('nav');
-  const locale = useLocale();
   const router = useRouter();
-
-  const { getSolutionsList, solutionsList } = useContext(SolutionsListContext);
 
   const [isAtTop, setIsAtTop] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const [solutionsMenuList, setSolutionsMenuList] = useState<Menu[]>([]);
-
-  const transformSolutinosListToMenu = (solutionsList: SolutionsListFE[]) => {
-    const menuList: Menu[] = [];
-
-    menuList?.push({
-      label: t('solutions'),
-      url: '/solutions',
-    });
-
-    solutionsList?.forEach(solution => {
-      menuList?.push({
-        url: solution?.url,
-        label: solution?.label,
-      });
-    });
-
-    return menuList;
-  };
 
   const isCurrentPage = (pageLink: string) => {
     const pageTree = pageLink.split('/');
@@ -69,19 +39,11 @@ const Nav = ({ isBgWhite = false }: Props) => {
   };
 
   useEffect(() => {
-    getSolutionsList();
-
-    if (solutionsList) {
-      const solutionsMenuList = transformSolutinosListToMenu(solutionsList);
-      if (solutionsMenuList) setSolutionsMenuList(solutionsMenuList);
-    }
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-    // eslint-disable-next-line
-  }, [solutionsList, locale]);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -95,52 +57,6 @@ const Nav = ({ isBgWhite = false }: Props) => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     setIsAtTop(scrollTop === 0);
   };
-
-  const pageList = [
-    {
-      label: t('home'),
-      url: '/',
-    },
-    {
-      label: t('aboutUs'),
-      url: '/about-us',
-      subPages: [
-        {
-          label: t('aboutUs'),
-          url: '/about-us',
-        },
-        {
-          label: t('projectManagement'),
-          url: '/project-management',
-        },
-        {
-          label: t('cyberSecurity'),
-          url: '/cyber-security',
-        },
-      ],
-    },
-    {
-      label: t('solutions'),
-      url: '/solutions',
-      subPages: solutionsMenuList,
-    },
-    {
-      label: t('caseStudies'),
-      url: '/case-studies',
-    },
-    {
-      label: t('insights'),
-      url: '/insights',
-    },
-    {
-      label: t('ourClients'),
-      url: '/our-clients',
-    },
-    {
-      label: t('events'),
-      url: '/events',
-    },
-  ];
 
   const changePage = (
     newUrl: string,
@@ -184,7 +100,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
           </div>
 
           <div className="main-pages-list">
-            {pageList.map((page, pageKey) => {
+            {navList.map((page, pageKey) => {
               return (
                 <div
                   key={pageKey}

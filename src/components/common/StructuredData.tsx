@@ -1,12 +1,10 @@
-'use client';
-
 import Script from 'next/script';
-import { SeoFE } from '@/api/models/shared';
+import { SeoFE, SolutionsListFE } from '@/api/models/shared';
 import { generateStructuredData } from '@/utils/metadata';
 
 interface StructuredDataProps {
-  seo: SeoFE;
-  solutionsList: any[];
+  seo?: SeoFE;
+  solutionsList?: SolutionsListFE[];
   locale: string;
   mainEntityOfPage?: string;
 }
@@ -17,6 +15,8 @@ export default function StructuredData({
   locale,
   mainEntityOfPage,
 }: StructuredDataProps) {
+  if (!seo || !solutionsList) return null;
+
   const structuredData = generateStructuredData(seo, solutionsList, locale, mainEntityOfPage);
 
   return (
