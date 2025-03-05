@@ -82,7 +82,7 @@ const SolutionsListProvider: React.FC<ApiProviderProps> = ({ children }) => {
       try {
         const response = await api.solution.collection.getSolutionsListData(locale);
         if ('content' in response) {
-          const solutionsListData: SolutionsListDataBE[] = response.content;
+          const solutionsListData: SolutionsListDataBE[] = response.content.data;
 
           const solutionsList: SolutionsListFE[] = handleSolutionsListData(solutionsListData);
 

@@ -95,10 +95,13 @@ const TestimonialProvider: React.FC<ApiProviderProps> = ({ children }) => {
         const writtenTestimonialsResponse =
           await api.shared.collection.getWrittenTestimonial(locale);
 
+        console.log({ videoTestimonialsResponse, writtenTestimonialsResponse });
+
         if ('content' in videoTestimonialsResponse && 'content' in writtenTestimonialsResponse) {
-          const videoTestimonialsData: VideoTestimonialBE[] = videoTestimonialsResponse.content;
+          const videoTestimonialsData: VideoTestimonialBE[] =
+            videoTestimonialsResponse.content.data;
           const writtenTestimonialsData: WrittenTestimonialBE[] =
-            writtenTestimonialsResponse.content;
+            writtenTestimonialsResponse.content.data;
 
           const videoTestimonials: VideoTestimonialFE[] =
             hanldeVideoTestimonialData(videoTestimonialsData);

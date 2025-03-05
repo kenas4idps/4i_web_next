@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
 
 import { SolutionsListContext } from '@/providers/solutionsListProvider/SolutionsListProvider';
 
@@ -15,7 +16,7 @@ import { BtnStyles } from '@/components/common/customButton';
 
 import LanguageSelector from './languageSelector';
 
-import Logo from '@/public/assets/icons/logoFull.svg';
+const Logo = '/assets/icons/logoFull.svg';
 
 import './Nav.scss';
 
@@ -168,7 +169,7 @@ const Nav = ({ isBgWhite = false }: Props) => {
       <PageWrapper className="main-nav-container">
         <div className="top-container">
           <div onClick={() => router.push('/')} className="logo">
-            <img src={Logo} alt="compagny logo" />
+            <Image src={Logo} alt="company logo" width={150} height={40} priority />
           </div>
 
           <div className="languages">

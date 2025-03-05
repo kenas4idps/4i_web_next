@@ -1,11 +1,27 @@
 @import 'tailwindcss';
 
-@plugin 'tailwindcss-animate';
+@layer base {
+  img,
+  vdideo {
+    max-width: unset;
+    height: auto;
+  }
 
-@custom-variant dark (&:is(.dark *));
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    box-sizing: unset;
+  }
+}
+
+/* @plugin 'tailwindcss-animate';
+
+@custom-variant dark (&:is(.dark *)); */
 
 /* extending to tailwind theme */
-@theme {
+/* @theme {
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -72,7 +88,7 @@
       height: 0;
     }
   }
-}
+} */
 
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
@@ -82,7 +98,7 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
-@layer base {
+/* @layer base {
   *,
   ::after,
   ::before,
@@ -177,10 +193,10 @@
   body {
     @apply bg-background text-foreground;
   }
-}
+} */
 
 /* Animation keyframes can be added here if needed */
-@layer utilities {
+/* @layer utilities {
   .animate-accordion-down {
     animation: accordion-down 0.2s ease-out;
   }
@@ -205,4 +221,4 @@
   to {
     height: 0;
   }
-}
+} */

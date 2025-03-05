@@ -14,9 +14,10 @@ import CustomCheckBox from '@/components/common/customCheckBox';
 
 import { InputTextStyles } from '@/components/common/customInputText';
 
-import Logo from '@/public/assets/icons/logoWhite.svg';
 import MapPositionIcon from '@/public/assets/icons/mapPosition.svg';
 import PhoneIcon from '@/public/assets/icons/phone.svg';
+
+const Logo = '/assets/icons/logoWhite.svg';
 
 import './Footer.scss';
 import Link from 'next/link';

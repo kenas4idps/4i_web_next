@@ -173,8 +173,10 @@ const HomeDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
     if (!fetched || language !== locale) {
       try {
         const response = await api.homePage.collection.getHomeData(locale);
+
+        console.log({ homeresponse: response });
         if ('content' in response) {
-          const homePageData: HomePageDataBE = response.content;
+          const homePageData: HomePageDataBE = response.content.data.attributes;
 
           const seo: SeoFE = seoDataHandler.handleSeoData(homePageData?.seo);
           const awards: AwardFE[] = handleAwardsData(homePageData?.awards);
