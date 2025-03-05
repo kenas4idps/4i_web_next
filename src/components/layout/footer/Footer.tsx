@@ -137,7 +137,7 @@ const Footer = () => {
 
   const createSubscriber = async () => {
     try {
-      const url = window.location.origin;
+      const url = process.env.NEXT_PUBLIC_SITE_URL || '';
 
       const formData: NewsletterSubscriberType = {
         user_email: email,
