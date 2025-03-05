@@ -10,14 +10,25 @@ export default getRequestConfig(async () => {
 
   const messages: { [key: string]: any } = {};
 
-  const __dirname = `messages/${locale}`;
-  const filenames = fs.readdirSync(__dirname);
+  // Use path.join to create the correct path for both development and production
+  const messagesDir = path.join(process.cwd(), 'messages', locale);
 
-  filenames.forEach((file: any) => {
-    const name = file.split('.')[0];
-    const fullPath = path.join(process.cwd(), __dirname, file);
-    messages[name] = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
-  });
+  try {
+    const filenames = fs.readdirSync(messagesDir);
+
+    filenames.forEach((file: string) => {
+      const name = file.split('.')[0];
+      const fullPath = path.join(messagesDir, file);
+      messages[name] = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+    });
+  } catch (error) {
+    console.error(`Error reading messages for locale ${locale}:`, error);
+    // Return empty messages object if directory doesn't exist
+    return {
+      locale,
+      messages: {},
+    };
+  }
 
   return {
     locale,

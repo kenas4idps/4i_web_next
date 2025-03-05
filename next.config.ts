@@ -17,6 +17,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  output: 'standalone',
+  outputFileTracingIncludes: {
+    '/**/*': ['./messages/**/*'],
+  },
 };
 
 export default withNextIntl(nextConfig);
