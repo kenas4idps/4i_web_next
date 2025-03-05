@@ -1,8 +1,8 @@
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import DoubleCircleOverlay from 'components/common/doubleCircleOverlay';
+import DoubleCircleOverlay from '@/components/common/doubleCircleOverlay';
 
-import { DevelopmentStepTypeFE } from 'types/SharedType';
+import { DevelopmentStepTypeFE } from '@/api/models/shared';
 
 import './HistoricListCmp.scss';
 

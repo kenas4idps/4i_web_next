@@ -1,32 +1,34 @@
 import { useContext } from 'react';
-import { NotificationContext } from 'providers/notificationProvider';
+import { NotificationContext } from '@/providers/notificationProvider';
 
 import SeoDataHandler from './SeoDataHandler';
 import DetailDataHandler from './DetailDataHandler';
 
-import CommonPageApi from 'api/CommonPageApi';
-
 import { PageDetailFE, SeoFE } from '@/api/models/shared';
+import { api } from '@/api';
 
 const PageDataHandler = () => {
   const { displayNotification } = useContext(NotificationContext);
 
-  const commonPageApi = CommonPageApi();
   const seoDataHandler = SeoDataHandler();
   const detailDataHandler = DetailDataHandler();
 
   const getPageInfo = async (pageName: string, locale: string) => {
     try {
-      const pageData = await commonPageApi.getPageData(pageName, locale);
+      const response = await api.commonPage.collection.getPageData({ pageName, locale });
 
-      const seo: SeoFE = seoDataHandler.handleSeoData(pageData?.seo);
-      const detail: PageDetailFE = detailDataHandler.handleDetailData(pageData?.detail);
+      if ('content' in response) {
+        const pageData: any = response.content;
 
-      return {
-        seo,
-        detail,
-        pageData,
-      };
+        const seo: SeoFE = seoDataHandler.handleSeoData(pageData?.seo as any);
+        const detail: PageDetailFE = detailDataHandler.handleDetailData(pageData?.detail as any);
+
+        return {
+          seo,
+          detail,
+          pageData,
+        };
+      }
     } catch (error) {
       displayNotification(
         `Something Went Wrong Fetching ${pageName} Data, Please Try Again !`,

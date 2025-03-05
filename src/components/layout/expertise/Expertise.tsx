@@ -1,11 +1,12 @@
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
-import PageWrapper from 'components/common/pageWrapper';
-import CustomButton from 'components/common/customButton';
+import PageWrapper from '@/components/common/pageWrapper';
+import CustomButton from '@/components/common/customButton';
 
-import Img from 'assets/img/teamAndExpertise.jpg';
+const Img = 'assets/img/teamAndExpertise.jpg';
 
 import './Expertise.scss';
+import Image from 'next/image';
 
 interface Props {
   tag: string;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const Expertise = ({ tag, title, description, buttonText }: Props) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="expertise">
@@ -29,7 +30,7 @@ const Expertise = ({ tag, title, description, buttonText }: Props) => {
 
           <CustomButton
             onClickBtn={() => {
-              navigate('/about-us');
+              router.push('/about-us');
             }}
           >
             {buttonText}
@@ -38,7 +39,7 @@ const Expertise = ({ tag, title, description, buttonText }: Props) => {
       </PageWrapper>
 
       <div className="picture-container">
-        <img src={Img} alt="code on computer screen" />
+        <Image layout="fill" src={Img} alt="code on computer screen" />
       </div>
     </div>
   );

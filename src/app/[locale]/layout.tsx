@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, ResolvingMetadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
@@ -45,11 +45,18 @@ const listLanguages = [
   },
 ];
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+type Params = Promise<{ locale: string }>;
+
+interface LayoutProps {
+  children: React.ReactNode;
+  params: Params;
+}
+
+export async function generateMetadata(
+  { params }: { params: Params },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { locale } = await params;
   const alternates: Record<string, string> = {};
 
   for (const lang of listLanguages) {
@@ -66,10 +73,7 @@ export async function generateMetadata({
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}>) {
+}: LayoutProps): Promise<React.ReactElement> {
   // Ensure that the incoming `locale` is valid
   const { locale } = await params;
   if (!routing.locales.includes(locale as any)) {

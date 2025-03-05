@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
+import Image from 'next/image';
 
 import ShareCmp from '@/components/common/shareCmp';
 import ShareIcon from 'assets/icons/share.svg';
@@ -39,8 +40,8 @@ const insightItemStyles = cva('p-8', {
 });
 
 const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('insights');
+  const router = useRouter();
+  const t = useTranslations('insights');
   const [isShareOpen, setIsOpen] = useState(false);
   const shareRef = useRef<null | HTMLDivElement>(null);
 
@@ -69,14 +70,14 @@ const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
       <div className="flex justify-between font-medium text-gray-600">
         <div
           className="relative cursor-pointer hover:after:absolute hover:after:bottom-[-2px] hover:after:left-0 hover:after:h-1 hover:after:w-full hover:after:bg-gray-600 hover:after:content-['']"
-          onClick={() => navigate('/insight/' + item?.urlPath)}
+          onClick={() => router.push('/insight/' + item?.urlPath)}
         >
           {t('readMoreLink')}
         </div>
 
         <div className="relative cursor-pointer" ref={shareRef}>
           <div className="flex items-center" onClick={() => onClickShareIcon()}>
-            <img className="h-6 w-6" src={ShareIcon} alt="share icon" />
+            <Image width={24} height={24} className="h-6 w-6" src={ShareIcon} alt="share icon" />
           </div>
 
           <div

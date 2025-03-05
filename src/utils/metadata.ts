@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { SeoFE } from '@/api/models/shared';
 import CompanyLogo from '@/public/assets/img/logo192.png';
 
-export function generateMetadata(seo?: SeoFE, locale: string): Metadata {
+export function generateMetadata(locale: string, seo?: SeoFE): Metadata {
   const metadata: Metadata = {
     title: seo?.metaTitle,
     description: seo?.metaDescription,

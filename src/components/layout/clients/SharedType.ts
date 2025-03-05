@@ -1,4 +1,4 @@
-import { Image } from 'types/SharedType';
+import { Image } from '@/api/models/shared';
 
 export interface ClientFE {
   name: string;

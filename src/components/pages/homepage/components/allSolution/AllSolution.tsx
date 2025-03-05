@@ -5,6 +5,7 @@ import PageWrapper from '@/components/common/pageWrapper';
 import CustomButton from '@/components/common/customButton';
 import BlurCircle from '@/components/common/blurCircle';
 import RichTextTransformCmp from '@/components/common/richTextTransformCmp';
+import Image from 'next/image';
 
 import ComputerIcon from '@/public/assets/icons/computer.svg';
 import BlockchainIcon from '@/public/assets/icons/blockchain.svg';
@@ -69,8 +70,13 @@ const AllSolution = () => {
             return (
               <div onClick={() => router.push(solution.url)} className="solution" key={key}>
                 <div className="solution-container">
-                  <div className="solution-icon">
-                    <img src={solution.icon} alt={`icon ${solution.title}`} />
+                  <div className="icon-container relative h-16 w-16">
+                    <Image
+                      fill
+                      className="object-contain"
+                      src={solution.icon}
+                      alt={`icon ${solution.title}`}
+                    />
                   </div>
 
                   <div className="solution-title">{solution.title}</div>

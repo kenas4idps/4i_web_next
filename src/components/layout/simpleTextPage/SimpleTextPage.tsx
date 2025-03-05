@@ -1,11 +1,11 @@
 import { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
-import PageWrapper from 'components/common/pageWrapper';
-import RichTextStylingCmp from 'components/common/richTextStylingCmp';
+import PageWrapper from '@/components/common/pageWrapper';
+import RichTextStylingCmp from '@/components/common/richTextStylingCmp';
 
 import './SimpleTextPage.scss';
-import BlurCircle from 'components/common/blurCircle';
+import BlurCircle from '@/components/common/blurCircle';
 
 interface Props {
   children: ReactNode;
@@ -13,14 +13,14 @@ interface Props {
 }
 
 const SimpleTextPage = ({ children, linkLabel }: Props) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="simple-text-page">
       <PageWrapper className="simple-text-page-container small">
         <BlurCircle size="524px" className="blur-circle-container" />
 
-        <div className="go-back-link" onClick={() => navigate(-1)}>
+        <div className="go-back-link" onClick={() => router.back()}>
           <span className="arrow"></span>
           {linkLabel}
         </div>

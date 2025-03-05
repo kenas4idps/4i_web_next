@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
-import PageWrapper from 'components/common/pageWrapper';
-import CustomButton from 'components/common/customButton';
+import PageWrapper from '@/components/common/pageWrapper';
+import CustomButton from '@/components/common/customButton';
 
 import './GetStarted.scss';
 
@@ -12,8 +12,8 @@ interface Props {
 }
 
 const GetStarted = ({ style, className }: Props) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('contactUs');
+  const router = useRouter();
+  const t = useTranslations('contactUs');
 
   return (
     <PageWrapper style={style} className={`get-started ${className}`}>
@@ -22,7 +22,7 @@ const GetStarted = ({ style, className }: Props) => {
 
         <div className="content">{t('getStartedCmpContent')}</div>
 
-        <CustomButton onClickBtn={() => navigate('/contact-us')}>
+        <CustomButton onClickBtn={() => router.push('/contact-us')}>
           {t('getStartedCmpBtn')}
         </CustomButton>
       </div>

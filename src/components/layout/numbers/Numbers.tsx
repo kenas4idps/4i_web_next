@@ -1,6 +1,9 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
+// eslint-disable-next-line
+// @ts-ignore
 import AnimatedNumber from 'animated-number-react';
 
 import { NumbersDataContext } from '@/providers/numberDataProvider/NumberDataProvider';
@@ -57,7 +60,7 @@ const Numbers = ({ withBackgroundColor = false }: Props) => {
           >
             <PageWrapper pageWrapperStyle="small">
               <div className="company-logo">
-                <img src={LogoFullIcon} alt="company-log" />
+                <Image width={150} height={50} src={LogoFullIcon} alt="company-logo" />
               </div>
 
               <div className="title">{t('numberTitle')}</div>

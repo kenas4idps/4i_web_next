@@ -1,9 +1,10 @@
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-import PageWrapper from 'components/common/pageWrapper';
-import CustomButton from 'components/common/customButton';
-import Accordion from 'components/common/accordion';
-import BlurCircle from 'components/common/blurCircle';
+import PageWrapper from '@/components/common/pageWrapper';
+import CustomButton from '@/components/common/customButton';
+import Accordion from '@/components/common/accordion';
+import BlurCircle from '@/components/common/blurCircle';
 
 import './ImageAccordian.scss';
 
@@ -29,7 +30,7 @@ const ImageAccordian = ({
   imageCaption,
   buttonText,
 }: Props) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <PageWrapper className="image-accordian">
@@ -46,12 +47,12 @@ const ImageAccordian = ({
       <div className="image-accordian-container">
         <div className="left-column">
           <div className="picture-container">
-            <img src={image} alt="graph of 4i" />
+            <Image fill className="object-cover" src={image} alt="graph of 4i" />
           </div>
 
           <div className="picture-caption">{imageCaption}</div>
 
-          <CustomButton onClickBtn={() => navigate('/solutions')}>{buttonText}</CustomButton>
+          <CustomButton onClickBtn={() => router.push('/solutions')}>{buttonText}</CustomButton>
         </div>
 
         {accordianList && accordianList?.length > 0 && (

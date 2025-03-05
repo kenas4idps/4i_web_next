@@ -14,6 +14,7 @@ import {
   whitePaperFormApi,
 } from './collections';
 import { CommonClient } from './clients';
+import CommonPageApi from '@/api/collections/commonPage';
 
 export interface APIProps {
   userClient: AxiosInstance;
@@ -21,6 +22,7 @@ export interface APIProps {
 
 export class API {
   caseStudy: CaseStudyAPI;
+  commonPage: CommonPageAPI;
   companyHistory: CompanyHistoryAPI;
   contactUs: ContactUsAPI;
   event: EventAPI;
@@ -35,6 +37,7 @@ export class API {
 
   constructor({ userClient }: APIProps) {
     this.caseStudy = new CaseStudyAPI(userClient);
+    this.commonPage = new CommonPageAPI(userClient);
     this.companyHistory = new CompanyHistoryAPI(userClient);
     this.contactUs = new ContactUsAPI(userClient);
     this.event = new EventAPI(userClient);
@@ -49,6 +52,15 @@ export class API {
   }
 }
 
+class CommonPageAPI {
+  client: AxiosInstance;
+  collection: ReturnType<typeof CommonPageApi>;
+
+  constructor(axios: AxiosInstance) {
+    this.client = axios;
+    this.collection = CommonPageApi({ axios: this.client });
+  }
+}
 class CaseStudyAPI {
   client: AxiosInstance;
   collection: ReturnType<typeof caseStudyApi>;

@@ -1,5 +1,6 @@
-import PageWrapper from 'components/common/pageWrapper';
-import { ToolsListFE } from 'types/SharedType';
+import PageWrapper from '@/components/common/pageWrapper';
+import { ToolsListFE } from '@/api/models/shared';
+import Image from 'next/image';
 
 import './ToolsListCmp.scss';
 
@@ -22,11 +23,16 @@ const ToolsListCmp = ({ title, tag, description, list }: Props) => {
       </div>
 
       <div className="tools-list-container">
-        {list?.map((tool, key) => {
+        {list?.map((tool: ToolsListFE[number], key: number) => {
           return (
             <div className="tool" key={key}>
-              <div className="img-container">
-                <img src={tool?.logo?.url} alt={tool?.logo?.alternativeText} />
+              <div className="img-container relative h-16 w-16">
+                <Image
+                  fill
+                  className="object-contain"
+                  src={tool?.logo?.url}
+                  alt={tool?.logo?.alternativeText || 'Tool logo'}
+                />
               </div>
             </div>
           );

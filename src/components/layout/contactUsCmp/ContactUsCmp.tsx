@@ -1,14 +1,14 @@
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/navigation';
 
-import FullWidth from 'components/common/fullWidth';
-import CustomButton from 'components/common/customButton';
+import FullWidth from '@/components/common/fullWidth';
+import CustomButton from '@/components/common/customButton';
 
 import './ContactUsCmp.scss';
 
 const ContactUsCmp = () => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('contactUs');
+  const router = useRouter();
+  const t = useTranslations('contactUs');
 
   return (
     <FullWidth className="contact-us-cmp">
@@ -23,7 +23,7 @@ const ContactUsCmp = () => {
           <div className="right-column-container">
             <div className="description">{t('contactUsCmpContent')}</div>
 
-            <CustomButton onClickBtn={() => navigate('/contact-us')}>
+            <CustomButton onClickBtn={() => router.push('/contact-us')}>
               {t('contactUsCmpBtn')}
             </CustomButton>
           </div>

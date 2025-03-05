@@ -1,9 +1,10 @@
-import PageWrapper from 'components/common/pageWrapper';
-import DoubleCircleOverlay from 'components/common/doubleCircleOverlay';
-import BlurCircle from 'components/common/blurCircle';
+import PageWrapper from '@/components/common/pageWrapper';
+import DoubleCircleOverlay from '@/components/common/doubleCircleOverlay';
+import BlurCircle from '@/components/common/blurCircle';
+import Image from 'next/image';
 
-import Img1 from 'assets/img/projectManagement1.png';
-import Img2 from 'assets/img/projectManagement2.png';
+const Img1 = '/assets/img/projectManagement1.png';
+const Img2 = '/assets/img/projectManagement2.png';
 
 import './MainPoints.scss';
 
@@ -24,12 +25,17 @@ const MainPoints = ({ pointList }: Props) => {
           <BlurCircle size="922px" className="blur-circle-container" />
 
           <div className="left-column">
-            <div className="img-container">
-              <img src={Img1} alt="computer on a office desk with code on it" />
+            <div className="img-container relative">
+              <Image
+                fill
+                className="object-cover"
+                src={Img1}
+                alt="computer on a office desk with code on it"
+              />
             </div>
 
-            <div className="img-container">
-              <img src={Img2} alt="bionic eyes" />
+            <div className="img-container relative">
+              <Image fill className="object-cover" src={Img2} alt="bionic eyes" />
             </div>
           </div>
 
@@ -37,7 +43,6 @@ const MainPoints = ({ pointList }: Props) => {
             {pointList.map((point, index) => (
               <div key={index} className="main-point">
                 <div className="title">{point.title}</div>
-
                 <div className="description">{point.description}</div>
               </div>
             ))}

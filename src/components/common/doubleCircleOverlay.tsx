@@ -2,6 +2,7 @@ import DoubleCircleImg from 'assets/img/doubleCircle2.svg';
 import DoubleCircleGreyImg from 'assets/img/doubleCircleGrey.svg';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
+import Image from 'next/image';
 
 interface Props {
   size?: string;
@@ -52,7 +53,12 @@ const DoubleCircleOverlay = ({
         transform: 'translateZ(0)',
       }}
     >
-      <img className="block h-full w-full" alt="double circle background" src={getCircleImg()} />
+      <Image
+        fill
+        className="block h-full w-full"
+        alt="double circle background"
+        src={getCircleImg()}
+      />
     </div>
   );
 };

@@ -1,12 +1,13 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 import LeftPicture from 'assets/img/welcome-1.webp';
 import RightPicture from 'assets/img/welcome-2.webp';
 
 import './WelcomePopUp.scss';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const WelcomePopUp = () => {
-  const { t } = useTranslation('welcome');
+  const t = useTranslations('welcome');
 
   const [isOpen, setIsOpen] = useState(true);
 
@@ -31,9 +32,9 @@ const WelcomePopUp = () => {
             </div>
 
             <div className="picture-list">
-              <img alt="swiss keyboard" className="picture" src={LeftPicture} />
+              <Image layout="fill" alt="swiss keyboard" className="picture" src={LeftPicture} />
 
-              <img alt="swiss chip" className="picture" src={RightPicture} />
+              <Image layout="fill" alt="swiss chip" className="picture" src={RightPicture} />
             </div>
           </div>
         </>

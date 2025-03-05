@@ -1,5 +1,6 @@
 import FacebookIcon from 'assets/icons/facebook.svg';
 import LinkedIn from 'assets/icons/linkedIn.svg';
+import Image from 'next/image';
 
 import './ShareCmp.scss';
 
@@ -35,7 +36,7 @@ const ShareCmp = ({ url, isVertical = false }: Props) => {
         {shareOption?.map((option, i) => {
           return (
             <div key={i} onClick={() => option?.onClick(option?.url)} className="share-option">
-              <img src={option?.icon} alt={option?.label} />
+              <Image width={24} height={24} src={option?.icon} alt={option?.label} />
             </div>
           );
         })}

@@ -1,9 +1,9 @@
-import axios from 'axios';
+import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
 import { CommonPageDataType } from '../models/CommonPage';
 
 interface userAPIProps {
-  axios: typeof axios;
+  axios: AxiosInstance;
 }
 
 export function CommonPageApi({ axios }: userAPIProps) {

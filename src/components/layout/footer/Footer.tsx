@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
+import Image from 'next/image';
 
 import { validateEmail } from '@/utils/validate';
 import { api } from '@/api';
@@ -183,7 +184,7 @@ const Footer = () => {
       <PageWrapper>
         <div className="content">
           <div className="info column">
-            <img src={Logo} alt="company logo" className="logo" />
+            <Image width={120} height={40} src={Logo} alt="company logo" className="logo" />
 
             <div className="description">{t('description')}</div>
 

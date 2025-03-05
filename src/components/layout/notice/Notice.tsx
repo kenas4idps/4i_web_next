@@ -1,8 +1,8 @@
-import { Helmet } from 'react-helmet-async';
+import Head from 'next/head';
 
-import BlurCircle from 'components/common/blurCircle';
-import PageWrapper from 'components/common/pageWrapper';
-import PixelarCheck from 'components/common/pixelarCheck/PixelarCheck';
+import BlurCircle from '@/components/common/blurCircle';
+import PageWrapper from '@/components/common/pageWrapper';
+import PixelarCheck from '@/components/common/pixelarCheck';
 
 import './Notice.scss';
 
@@ -16,9 +16,9 @@ interface Props {
 const Notice = ({ tag, title, subtitle, success = false }: Props) => {
   return (
     <>
-      <Helmet>
+      <Head>
         <meta name="robots" content="noindex" />
-      </Helmet>
+      </Head>
 
       <PageWrapper className="notice-container">
         <BlurCircle size="922px" className="blur-circle-container" />

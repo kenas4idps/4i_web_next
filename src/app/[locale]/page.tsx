@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import { generateMetadata as generateSeoMetadata } from '@/utils/metadata';
 import { api } from '@/api';
 import Homepage from '@/components/pages/homepage/Homepage';
@@ -10,21 +10,24 @@ import Nav from '@/components/layout/nav/Nav';
 import { getTranslations } from 'next-intl/server';
 import { getNavList } from '@/app/[locale]/_util/getNavList';
 
-export async function generateMetadata({
-  params: { locale },
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
+type Params = Promise<{ locale: string }>;
+
+export async function generateMetadata(
+  { params }: { params: Params },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { locale } = await params;
   const response = await api.homePage.collection.getHomeData(locale);
   if ('content' in response) {
     const seo: SeoFE = response.content?.data.attributes.seo;
     console.log({ seo });
-    return generateSeoMetadata(seo, locale);
+    return generateSeoMetadata(locale, seo);
   }
   return {};
 }
 
-export default async function HomePage({ params: { locale } }: { params: { locale: string } }) {
+export default async function HomePage({ params }: { params: Params }) {
+  const { locale } = await params;
   const data = await getHomeData(locale);
   const solutionsList = await getSolutionsList(locale);
   const t = await getTranslations('nav');

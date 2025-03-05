@@ -1,4 +1,4 @@
-import { Image, Video } from 'types/SharedType';
+import { Image, Video } from '@/api/models/shared';
 
 export interface WrittenTestimonialFE {
   client_Image: {

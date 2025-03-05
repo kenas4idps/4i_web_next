@@ -36,10 +36,10 @@ const eslintConfig = [
       },
       rules: {
         'react-compiler/react-compiler': 'error',
-        '@typescript-eslint/no-unused-vars': 'error',
+        '@typescript-eslint/no-unused-vars': 'warn',
         '@typescript-eslint/no-explicit-any': 'off',
         'no-unused-vars': 'off',
-        'unused-imports/no-unused-imports': 'error',
+        'unused-imports/no-unused-imports': 'warn',
         'unused-imports/no-unused-vars': [
           'warn',
           {

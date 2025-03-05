@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown';
+import Image from 'next/image';
 
 interface Props {
   children: string;
@@ -17,7 +18,7 @@ const RichTextTransformCmp = ({ children }: Props) => {
     try {
       new URL(url);
       return true;
-    } catch (error) {
+    } catch {
       return false;
     }
   };
@@ -28,7 +29,17 @@ const RichTextTransformCmp = ({ children }: Props) => {
       imgUrl = props.src;
     }
 
-    return <img src={imgUrl} title={props.title} alt={props.alt} />;
+    return (
+      <div className="relative h-[300px] w-full">
+        <Image
+          fill
+          className="object-contain"
+          src={imgUrl}
+          title={props.title}
+          alt={props.alt || 'Rich text image'}
+        />
+      </div>
+    );
   };
 
   return (

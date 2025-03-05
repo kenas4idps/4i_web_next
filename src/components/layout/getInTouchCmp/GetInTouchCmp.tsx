@@ -1,4 +1,5 @@
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 
 import PageWrapper from '@/components/common/pageWrapper';
 
@@ -34,7 +35,7 @@ const GetInTouchCmp = () => {
 
       <PageWrapper className="content">
         <div className="map">
-          <img src={MapImg.src} alt="Map of 4i Tech localisation" />
+          <Image fill className="object-cover" src={MapImg.src} alt="Map of 4i Tech localisation" />
         </div>
 
         <div className="form-container">
