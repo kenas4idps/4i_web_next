@@ -1,0 +1,8 @@
+{
+  "name": "4i",
+  "short_name": "4i",
+  "description": "4i - 您的数字化转型伙伴",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#101E33"
+}

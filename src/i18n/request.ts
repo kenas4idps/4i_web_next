@@ -10,12 +10,13 @@ export default getRequestConfig(async () => {
 
   const messages: { [key: string]: any } = {};
 
-  const __dirname = path.join(process.cwd(), `messages/${locale}/`);
+  const __dirname = `messages/${locale}`;
   const filenames = fs.readdirSync(__dirname);
 
   filenames.forEach((file: any) => {
     const name = file.split('.')[0];
-    messages[name] = JSON.parse(fs.readFileSync(path.join(__dirname, file), 'utf8'));
+    const fullPath = path.join(process.cwd(), __dirname, file);
+    messages[name] = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
   });
 
   return {
