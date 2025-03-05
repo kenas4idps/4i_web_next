@@ -9,6 +9,14 @@ const nextConfig: NextConfig = {
     REACT_APP_STRAPI_API_URL: process.env.REACT_APP_STRAPI_API_URL,
     REACT_APP_STRAPI_URL: process.env.REACT_APP_STRAPI_URL,
   },
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'localhost',
+        pathname: '/**',
+      },
+    ],
+  },
 };
 
 export default withNextIntl(nextConfig);
