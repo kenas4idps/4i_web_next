@@ -7,15 +7,14 @@ import Nav from '@/components/layout/nav/Nav';
 import { getTranslations } from 'next-intl/server';
 import { getNavList } from '@/app/[locale]/_util/getNavList';
 import { getSolutionsList } from '@/app/[locale]/_util/getSolutionsList';
-import AboutUs from '@/components/pages/aboutUs/AboutUs';
-import GetInTouchCmp from '@/components/layout/getInTouchCmp/GetInTouchCmp';
+import CaseStudies from '@/components/pages/caseStudies';
 
 type Params = Promise<{ locale: string }>;
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale } = await params;
   const response = await api.commonPage.collection.getPageData({
-    pageName: 'about-us-page',
+    pageName: 'case-studies-page',
     locale,
   });
   if ('content' in response) {
@@ -25,10 +24,10 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {};
 }
 
-const getAboutUsData = async (locale: string) => {
+const getCaseStudiesData = async (locale: string) => {
   try {
     const response = await api.commonPage.collection.getPageData({
-      pageName: 'about-us-page',
+      pageName: 'case-studies-page',
       locale,
     });
     if ('content' in response) {
@@ -47,26 +46,26 @@ const getAboutUsData = async (locale: string) => {
   }
 };
 
-export default async function AboutUsPage({ params }: { params: Params }) {
+export default async function CaseStudiesPage({ params }: { params: Params }) {
   const { locale } = await params;
-  const pageInfo = await getAboutUsData(locale);
+  const pageInfo = await getCaseStudiesData(locale);
   const solutionsList = await getSolutionsList(locale);
   const t = await getTranslations('nav');
   const navList = await getNavList(t, solutionsList);
 
-  const aboutUsSchema = `{
-		"@type": "WebPage",
-		"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/about-us",
-		"url": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/about-us",
-		"name": "${pageInfo?.seo?.metaTitle}",
-		"description": "${pageInfo?.seo?.metaDescription}",
-		"inLanguage": "${locale}",
-		"isPartOf":{
-			"@type":"WebSite",
-			"name":"4i Tech",
-			"url":"${process.env.NEXT_PUBLIC_APP_URL}"         
-		}
-	}`;
+  const caseStudiesSchema = `{
+    "@type": "WebPage",
+    "@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies",
+    "url": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies",
+    "name": "${pageInfo?.seo?.metaTitle}",
+    "description": "${pageInfo?.seo?.metaDescription}",
+    "inLanguage": "${locale}",
+    "isPartOf":{
+      "@type":"WebSite",
+      "name":"4i Tech",
+      "url":"${process.env.NEXT_PUBLIC_APP_URL}"         
+    }
+  }`;
 
   return (
     <>
@@ -74,11 +73,10 @@ export default async function AboutUsPage({ params }: { params: Params }) {
         seo={pageInfo?.seo}
         solutionsList={solutionsList}
         locale={locale}
-        mainEntityOfPage={aboutUsSchema}
+        mainEntityOfPage={caseStudiesSchema}
       />
       <Nav navList={navList} />
-      <AboutUs data={pageInfo} />
-      <GetInTouchCmp />
+      <CaseStudies data={pageInfo} />
     </>
   );
 }

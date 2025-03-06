@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
 import { ClientIndustryTypeBE } from '../models/ClientIndustry';
+import { CaseStudyTypeBE, Meta } from '@/api/models/shared';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -91,7 +92,9 @@ export function sharedApi({ axios }: userAPIProps) {
       }
     },
 
-    async getCaseStudyTypesData(locale: string): Promise<ApiResponse<any>> {
+    async getCaseStudyTypesData(
+      locale: string,
+    ): Promise<ApiResponse<{ data: CaseStudyTypeBE[]; meta: Meta }>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/case-study-types?locale=${locale}&sort=name`,
@@ -102,7 +105,9 @@ export function sharedApi({ axios }: userAPIProps) {
       }
     },
 
-    async getClientIndustries(locale: string): Promise<ApiResponse<ClientIndustryTypeBE[]>> {
+    async getClientIndustries(
+      locale: string,
+    ): Promise<ApiResponse<{ data: ClientIndustryTypeBE[]; meta: Meta }>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/industries?locale=${locale}&populate=*&pagination[limit]=-1&sort=name`,

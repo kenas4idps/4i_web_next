@@ -1,0 +1,50 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.case-studies-testimonials {
+  padding-bottom: 130px;
+  display: none;
+  .introduction {
+    text-align: center;
+    .tag {
+      @include text-3(700);
+      padding-bottom: 24px;
+    }
+
+    .title {
+      @include title-8;
+      padding-bottom: 24px;
+    }
+
+    .description {
+      @include text-2;
+      color: #999;
+    }
+  }
+
+  .case-studies-testmonies-container {
+    padding-top: 40px;
+  }
+
+  &.show {
+    display: block;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 100px;
+    .introduction {
+      .tag {
+        padding-bottom: 8px;
+      }
+
+      .title {
+        padding-bottom: 8px;
+      }
+    }
+
+    .case-studies-testmonies-container {
+      padding-top: 40px;
+    }
+  }
+}

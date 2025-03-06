@@ -4,7 +4,7 @@ import { cn } from '@/lib/cn';
 
 interface Props {
   children: ReactNode;
-  onClickBtn: () => void;
+  onClickBtn?: () => void;
   btnStyle?: BtnStyles;
   className?: string;
   icon?: string;
@@ -45,7 +45,7 @@ const CustomButton = ({
   return (
     <button
       className={cn(buttonStyles({ btnStyle, withIcon: !!icon }), className)}
-      onClick={() => onClickBtn()}
+      onClick={() => onClickBtn && onClickBtn()}
       style={{ backgroundImage: icon ? `url(${icon})` : undefined }}
     >
       {children}

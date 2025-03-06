@@ -324,6 +324,16 @@ export interface CaseStudyTypeBE {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    locale: string;
+  };
+}
+
+export interface Meta {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
   };
 }
 

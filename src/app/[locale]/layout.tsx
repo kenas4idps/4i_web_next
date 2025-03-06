@@ -12,7 +12,6 @@ import { ClientIndustryListProvider } from '@/providers/clientsTypeProvider/Clie
 import { TestimonialProvider } from '@/providers/testimonialDataProvider/testimonialProvider';
 import Footer from '@/components/layout/footer';
 import QueryClientProvider from '@/app/QueryClientProvider';
-import GetInTouchCmp from '@/components/layout/getInTouchCmp';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -96,7 +95,6 @@ export default async function RootLayout({
               <ClientIndustryListProvider>
                 <TestimonialProvider>
                   {children}
-                  <GetInTouchCmp />
                   <Footer />
                 </TestimonialProvider>
               </ClientIndustryListProvider>
