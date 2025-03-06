@@ -11,6 +11,9 @@ import { ClientIndustryListProvider } from '@/providers/clientsTypeProvider/Clie
 import { TestimonialProvider } from '@/providers/testimonialDataProvider/testimonialProvider';
 import Footer from '@/components/layout/footer';
 import QueryClientProvider from '@/app/QueryClientProvider';
+import CookiePopUp from '@/components/layout/cookiePopUp';
+import ScrollToTopButton from '@/components/layout/ScrollToTopButton/ScrollToTopButton';
+import ScrollToTop from '@/app/ScrollToTop';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -84,6 +87,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale}>
+      <meta name="seobility" content="5dff6958ae299379e46340a042cd0999" />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
@@ -93,8 +97,13 @@ export default async function RootLayout({
             <NotificationProvider>
               <ClientIndustryListProvider>
                 <TestimonialProvider>
-                  {children}
-                  <Footer />
+                  <div className="App">
+                    <CookiePopUp />
+                    <ScrollToTop />
+                    {children}
+                    <Footer />
+                    <ScrollToTopButton />
+                  </div>
                 </TestimonialProvider>
               </ClientIndustryListProvider>
             </NotificationProvider>

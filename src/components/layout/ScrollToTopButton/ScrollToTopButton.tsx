@@ -1,41 +1,39 @@
-import { useEffect, useRef } from 'react';
+'use client';
+
+import PageWrapper from '@/components/common/pageWrapper';
+import React, { useEffect } from 'react';
 import './ScrollToTopButton.scss';
 
-const ScrollToTopButton = () => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
+export default function ScrollToTopButton() {
+  const scrollBtnRef = React.useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (buttonRef.current) {
-        if (window.scrollY > 300) {
-          buttonRef.current.style.display = 'flex';
-        } else {
-          buttonRef.current.style.display = 'none';
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+  const onClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <button
-      ref={buttonRef}
-      className="scroll-to-top-button"
-      onClick={scrollToTop}
-      style={{ display: 'none' }}
-    >
-      ↑
-    </button>
-  );
-};
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
 
-export default ScrollToTopButton;
+      if (scrollY >= 1000) {
+        if (scrollBtnRef.current !== null) {
+          scrollBtnRef.current.classList.add('show');
+        }
+      } else {
+        if (scrollBtnRef.current !== null) {
+          scrollBtnRef.current.classList.remove('show');
+        }
+      }
+    });
+  }, []);
+
+  return (
+    <PageWrapper>
+      <div ref={scrollBtnRef} onClick={() => onClick()} className="scroll-to-top-btn">
+        <div className="arrow"></div>
+      </div>
+    </PageWrapper>
+  );
+}
+
+export {};

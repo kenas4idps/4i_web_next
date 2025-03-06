@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Script from 'next/script';
