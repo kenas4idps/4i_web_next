@@ -1,14 +1,16 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 import PageWrapper from '@/components/common/pageWrapper';
 
-import DoubleCircleImg from '@/public/assets/img/doubleCircle.svg';
-import MapImg from '@/public/assets/img/map.webp';
-
 import GetInTouchForm from '@/components/common/getInTouchForm';
 
 import './GetInTouchCmp.scss';
+
+const DoubleCircleImg = '/assets/img/doubleCircle.svg';
+const MapImg = '/assets/img/map.webp';
 
 const GetInTouchCmp = () => {
   const t = useTranslations('getInTouch');
@@ -35,7 +37,7 @@ const GetInTouchCmp = () => {
 
       <PageWrapper className="content">
         <div className="map">
-          <Image fill className="object-cover" src={MapImg.src} alt="Map of 4i Tech localisation" />
+          <Image width={775} height={449} src={MapImg} alt="Map of 4i Tech localization" />
         </div>
 
         <div className="form-container">

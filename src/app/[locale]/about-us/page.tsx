@@ -31,7 +31,6 @@ const getAboutUsData = async (locale: string) => {
       locale,
     });
     if ('content' in response) {
-      console.log({ response });
       return {
         seo: response.content?.seo,
         description: response.content?.description,
@@ -67,8 +66,6 @@ export default async function AboutUsPage({ params }: { params: Params }) {
 			"url":"${process.env.NEXT_PUBLIC_APP_URL}"         
 		}
 	}`;
-
-  console.log({ pageInfo });
 
   return (
     <>

@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -6,24 +8,102 @@ import Image from 'next/image';
 // @ts-ignore
 import AnimatedNumber from 'animated-number-react';
 
-import { NumbersDataContext } from '@/providers/numberDataProvider/NumberDataProvider';
-
 import PageWrapper from '@/components/common/pageWrapper';
 
-import LogoFullIcon from '@/public/assets/icons/logoFull.svg';
-import BubblesBg from '@/public/assets/img/bubbles1.webp';
+const LogoFullIcon = '/assets/icons/logoFull.svg';
+const BubblesBg = '/assets/img/bubbles1.webp';
 
 import './Numbers.scss';
+import { useQuery } from '@tanstack/react-query';
+import { NumbersTypeBE } from '@/components/layout/numbers/SharedType';
+import { api } from '@/api';
+import { NumberTypeFE } from '@/components/layout/numbers/SharedType';
+import { NotificationContext } from '@/providers/notificationProvider';
 
 interface Props {
   withBackgroundColor?: boolean;
 }
 
+const handleNumberData = (numbersData: NumbersTypeBE) => {
+  const arr = [];
+
+  if (numbersData?.projects_delivered) {
+    arr.push({
+      labelKey: 'projectsDelivered',
+      number: numbersData?.projects_delivered,
+      extraContent: numbersData?.projects_delivered_extra_content,
+    });
+  }
+
+  if (numbersData?.industries_we_served) {
+    arr.push({
+      labelKey: 'industriesWeServed',
+      number: numbersData?.industries_we_served,
+      extraContent: numbersData?.industries_we_served_extra_content,
+    });
+  }
+
+  if (numbersData?.office_locations) {
+    arr.push({
+      labelKey: 'officeLocations',
+      number: numbersData?.office_locations,
+      extraContent: numbersData?.office_locations_extra_content,
+    });
+  }
+
+  if (numbersData?.number_of_professionals) {
+    arr.push({
+      labelKey: 'team',
+      number: numbersData?.number_of_professionals,
+      extraContent: numbersData?.number_of_professionals_extra_content,
+    });
+  }
+  if (numbersData?.years_of_experience) {
+    arr.push({
+      labelKey: 'yearExperience',
+      number: numbersData?.years_of_experience,
+      extraContent: numbersData?.years_of_experience_extra_content,
+    });
+  }
+  if (numbersData?.countries_served) {
+    arr.push({
+      labelKey: 'countriesServed',
+      number: numbersData?.countries_served,
+      extraContent: numbersData?.countries_served_extra_content,
+    });
+  }
+  return arr;
+};
+
 const Numbers = ({ withBackgroundColor = false }: Props) => {
-  const { numbers, init } = useContext(NumbersDataContext);
+  const { displayNotification } = useContext(NotificationContext);
   const [isScrooledTo, setIsScrolledTo] = useState(false);
   const numberContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations('homepage');
+
+  const { data: numbers } = useQuery({
+    queryKey: ['numbers'],
+    queryFn: async () => {
+      try {
+        const response = await api.shared.collection.getNumbers();
+        if ('content' in response) {
+          const numbersData: NumbersTypeBE = response.content;
+
+          const numbers: NumberTypeFE[] = handleNumberData(numbersData);
+
+          console.log({ numbers });
+
+          return numbers;
+        }
+      } catch (error) {
+        console.log(error);
+        displayNotification(
+          'Something Went Wrong When Handling Numbers Data, Please Try Again !',
+          'error',
+        );
+      }
+    },
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,14 +118,11 @@ const Numbers = ({ withBackgroundColor = false }: Props) => {
       }
     };
 
-    init();
-
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-    // eslint-disable-next-line
-  }, [numbers]);
+  }, []);
 
   return (
     <>

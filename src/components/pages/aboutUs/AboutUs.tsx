@@ -5,7 +5,6 @@ import { useTranslations } from 'next-intl';
 import HeroBanner from '@/components/layout/heroBanner';
 import SimpleText from '@/components/layout/simpleText';
 import Numbers from '@/components/layout/numbers';
-import GetInTouchCmp from '@/components/layout/getInTouchCmp';
 import TextTestimonies from '@/components/layout/textTestimonies';
 
 import Ceo from './components/ceo';
@@ -62,8 +61,6 @@ const AboutUs = ({ data }: AboutUsProps) => {
       <div className="about-us-testimonies-container">
         <TextTestimonies />
       </div>
-
-      <GetInTouchCmp />
     </>
   );
 };
