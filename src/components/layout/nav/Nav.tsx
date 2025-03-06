@@ -74,7 +74,12 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
             <LanguageSelector />
           </div>
 
-          <div className="hamburger-menu" onClick={() => setIsOpen(current => !current)}></div>
+          <div
+            className="relative flex h-10 w-8 cursor-pointer items-center justify-center"
+            onClick={() => setIsOpen(current => !current)}
+          >
+            <div className="hamburger-menu"></div>
+          </div>
         </div>
         <div className="bottom-container">
           <div className="languages-mobile">
