@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useTranslations } from 'next-intl';
+import { useRouter } from '@/i18n/navigation';
 
 // import RichTextTransformCmp from "components/common/richTextTransformCmp";
 // import RichTextStylingCmp from "components/common/richTextStylingCmp";
-import ShareCmp from 'components/common/shareCmp';
+import ShareCmp from '@/components/common/shareCmp';
 
 import ShareIcon from 'assets/icons/share.svg';
 
@@ -19,8 +19,8 @@ interface Props {
 }
 
 const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('insights');
+  const router = useRouter();
+  const t = useTranslations('insights');
   const [isShareOpen, setIsOpen] = useState(false);
   const shareRef = useRef<null | HTMLDivElement>(null);
 
@@ -71,7 +71,7 @@ const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
 			)} */}
 
       <div className="actions">
-        <div className="link" onClick={() => navigate('/insight/' + item?.urlPath)}>
+        <div className="link" onClick={() => router.push('/insight/' + item?.urlPath)}>
           {t('readMoreLink')}
         </div>
 

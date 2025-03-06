@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import ReactMarkdown from 'react-markdown';
 
-import CustomButton, { BtnStyles } from '@/components/common/customButton';
+import CustomButton from '@/components/common/customButton';
 import PageWrapper from '@/components/common/pageWrapper';
 
 import { getColoredText } from '@/utils/ColoredText';
@@ -63,11 +63,7 @@ const HeroVideoBanner = ({
           <div className="btn-container">
             {btnList.map((item, key) => {
               return (
-                <CustomButton
-                  onClick={item.onClick}
-                  btnStyle={item.btnStyle as BtnStyles}
-                  key={key}
-                >
+                <CustomButton onClick={item.onClick} btnStyle={item.btnStyle} key={key}>
                   {item.btnTxt}
                 </CustomButton>
               );

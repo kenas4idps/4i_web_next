@@ -5,7 +5,7 @@ import { useLocale } from 'next-intl';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 import { api } from '@/api';
-import { ClientIndustryTypeBE } from '@/api/models/ClientIndustry';
+import { ClientIndustryType } from '@/api/models/ClientIndustry';
 
 interface ApiProviderProps {
   children: ReactNode;
@@ -29,12 +29,12 @@ const ClientIndustryListContext = createContext<ClientDataContextType>({
   ],
 });
 
-const handleClientsIndustryListData = (caseStudyTypeData: ClientIndustryTypeBE[]) => {
+const handleClientsIndustryListData = (caseStudyTypeData: ClientIndustryType[]) => {
   const clientsIndustryList = [];
 
   caseStudyTypeData?.forEach(industry => {
-    if (industry?.attributes?.clients?.data?.length > 0) {
-      clientsIndustryList?.push({ name: industry?.attributes?.name });
+    if (industry?.clients?.data?.length > 0) {
+      clientsIndustryList?.push({ name: industry?.name });
     }
   });
 
@@ -60,8 +60,9 @@ const ClientIndustryListProvider: React.FC<ApiProviderProps> = ({ children }) =>
         const response = await api.shared.collection.getClientIndustries(locale);
         if ('content' in response) {
           const clientsIndustryListData = response.content;
-          const clientsIndustryList: ClientIndustryTypeFE[] =
-            handleClientsIndustryListData(clientsIndustryListData);
+          const clientsIndustryList: ClientIndustryTypeFE[] = handleClientsIndustryListData(
+            clientsIndustryListData.data,
+          );
 
           if (clientsIndustryList) setClientsIndustryListList(clientsIndustryList);
         }
