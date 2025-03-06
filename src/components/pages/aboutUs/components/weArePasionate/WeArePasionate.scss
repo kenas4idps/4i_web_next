@@ -1,0 +1,15 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.we-are-passionate {
+  margin: 0 0 53px 0;
+  .title {
+    @include title-8;
+    padding-bottom: 64px;
+  }
+
+  .description {
+    @include text-15(700);
+  }
+}

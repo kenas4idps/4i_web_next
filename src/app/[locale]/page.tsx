@@ -52,7 +52,7 @@ export default async function HomePage({ params }: { params: Params }) {
         mainEntityOfPage={homeSchema}
       />
       <Nav navList={navList} />
-      <Homepage data={data} />;
+      <Homepage data={data} />
     </>
   );
 }

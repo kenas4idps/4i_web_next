@@ -3,7 +3,8 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
 
 import PageWrapper from '@/components/common/pageWrapper';
-import TeamImg from 'assets/img/team.png';
+
+const TeamImg = '/assets/img/team.png';
 
 interface Props {
   children: ReactNode;

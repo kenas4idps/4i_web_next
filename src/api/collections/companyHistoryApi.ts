@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
-import { CompanyHistory } from '../models/CompanyHistory';
+import { CompanyHistoryApi } from '@/api/models/CompanyHistory';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -8,12 +8,12 @@ interface userAPIProps {
 
 export function companyHistoryApi({ axios }: userAPIProps) {
   return {
-    async getCompanyMileStonesData(locale: string): Promise<ApiResponse<any>> {
+    async getCompanyMileStonesData(locale: string): Promise<ApiResponse<CompanyHistoryApi>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/company-histories?locale=${locale}&sort=rank`,
         );
-        return new SuccessfulApiResponse(response.data, data => new CompanyHistory(data));
+        return new SuccessfulApiResponse(response.data);
       } catch (error) {
         return new FailedApiResponse(error);
       }

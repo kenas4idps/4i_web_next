@@ -11,6 +11,8 @@ import { NotificationProvider } from '@/providers/notificationProvider/Notificat
 import { NumbersDataProvider } from '@/providers/numberDataProvider/NumberDataProvider';
 import { ClientIndustryListProvider } from '@/providers/clientsTypeProvider/ClientsTypeProvider';
 import { TestimonialProvider } from '@/providers/testimonialDataProvider/testimonialProvider';
+import Footer from '@/components/layout/footer';
+import QueryClientProvider from '@/app/QueryClientProvider';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -88,15 +90,20 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <NextIntlClientProvider messages={messages}>
-          <NotificationProvider>
-            <NumbersDataProvider>
-              <ClientIndustryListProvider>
-                <TestimonialProvider>{children}</TestimonialProvider>
-              </ClientIndustryListProvider>
-            </NumbersDataProvider>
-          </NotificationProvider>
-        </NextIntlClientProvider>
+        <QueryClientProvider>
+          <NextIntlClientProvider messages={messages}>
+            <NotificationProvider>
+              <NumbersDataProvider>
+                <ClientIndustryListProvider>
+                  <TestimonialProvider>
+                    {children}
+                    <Footer />
+                  </TestimonialProvider>
+                </ClientIndustryListProvider>
+              </NumbersDataProvider>
+            </NotificationProvider>
+          </NextIntlClientProvider>
+        </QueryClientProvider>
       </body>
     </html>
   );

@@ -1,0 +1,65 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.about-us-description {
+  padding: 0 0 160px 0;
+  .picture-container {
+    position: absolute;
+    left: 0;
+    max-width: calc(50% - 50px);
+    max-height: 687px;
+    border-radius: 8px;
+    overflow: hidden;
+    img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  .about-us-description-container {
+    min-height: 687px;
+    .content-container {
+      max-width: 50%;
+      margin-left: auto;
+      .tag {
+        @include text-16(700);
+        padding-bottom: 32px;
+        color: $color-2;
+      }
+
+      .title {
+        @include title-15;
+        padding-bottom: 64px;
+      }
+
+      .description {
+        @include text-17;
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding: 0 0 134px 0;
+    .picture-container {
+      position: static;
+      max-width: $max-width-main;
+      padding: 0 $padding-page-wrapper;
+    }
+
+    .about-us-description-container {
+      min-height: auto;
+      .content-container {
+        max-width: none;
+        padding-top: 16px;
+        .tag {
+          color: $color-1;
+          padding-bottom: 8px;
+        }
+
+        .title {
+          padding-bottom: 16px;
+        }
+      }
+    }
+  }
+}

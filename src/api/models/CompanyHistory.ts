@@ -1,22 +1,31 @@
-interface CompanyHistoryBE {
-  attributes: {
-    date: string;
-    title: string;
-    description: string;
-  };
-  id: number;
+export interface CompanyHistoryApi {
+  data: CompanyHistoryBE[];
+  meta: Meta;
 }
 
-export class CompanyHistory {
-  date: string;
-  title: string;
-  description: string;
+interface CompanyHistoryBE {
   id: number;
+  attributes: Attributes;
+}
 
-  constructor(data: CompanyHistoryBE) {
-    this.date = data.attributes.date;
-    this.title = data.attributes.title;
-    this.description = data.attributes.description;
-    this.id = data.id;
-  }
+interface Attributes {
+  title: string;
+  date: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  rank: number;
+}
+
+interface Meta {
+  pagination: Pagination;
+}
+
+interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
 }

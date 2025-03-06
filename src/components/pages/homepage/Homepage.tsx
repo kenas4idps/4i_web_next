@@ -6,7 +6,6 @@ import { useRouter } from '@/i18n/navigation';
 import HeroVideoBanner from '@/components/layout/heroVideoBanner';
 import SimpleText from '@/components/layout/simpleText';
 import GetInTouchCmp from '@/components/layout/getInTouchCmp';
-import Footer from '@/components/layout/footer';
 import Numbers from '@/components/layout/numbers';
 import HeroBanner from '@/components/layout/heroBanner';
 
@@ -108,8 +107,6 @@ const Homepage = ({ data }: HomepageProps) => {
       <MainClients />
 
       <GetInTouchCmp />
-
-      <Footer />
     </>
   );
 };

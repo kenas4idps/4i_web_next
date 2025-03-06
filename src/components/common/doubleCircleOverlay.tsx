@@ -1,8 +1,9 @@
-import DoubleCircleImg from 'assets/img/doubleCircle2.svg';
-import DoubleCircleGreyImg from 'assets/img/doubleCircleGrey.svg';
 import { cva } from 'class-variance-authority';
 import { cn } from '@/lib/cn';
 import Image from 'next/image';
+
+const DoubleCircleImg = '/assets/img/doubleCircle2.svg';
+const DoubleCircleGreyImg = '/assets/img/doubleCircleGrey.svg';
 
 interface Props {
   size?: string;
