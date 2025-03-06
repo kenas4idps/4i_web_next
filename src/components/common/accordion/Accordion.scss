@@ -1,0 +1,66 @@
+@import '@/styles/color.scss';
+@import '@/tyles/font.scss';
+
+.accordion {
+  background: $color-3;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0px 25px 55px 0px rgba(126, 126, 126, 0.15);
+  .accordion-container {
+    position: relative;
+    overflow: hidden;
+    .accordion-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: 0.5s;
+      height: 15px;
+      width: 15px;
+      cursor: pointer;
+      &:before {
+        content: '';
+        width: 15px;
+        height: 2px;
+        background-color: $color-2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      &:after {
+        content: '';
+        width: 2px;
+        height: 15px;
+        background-color: $color-2;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .accordion-title {
+      @include text-2(500);
+      cursor: pointer;
+    }
+
+    .accordion-content {
+      height: 0;
+      transition: 0.5s;
+    }
+  }
+
+  &.open {
+    .accordion-container {
+      .accordion-btn {
+        transform: rotate(134deg);
+      }
+
+      .accordion-content {
+        padding-top: 24px;
+        height: auto;
+      }
+    }
+  }
+}

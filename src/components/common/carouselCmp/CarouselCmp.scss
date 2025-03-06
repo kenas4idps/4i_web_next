@@ -1,0 +1,271 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.carousel-cmp {
+  overflow: hidden;
+  .carousel-cmp-container {
+    .top-container {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 50px;
+      .introduction {
+        width: 75%;
+        .title {
+          @include title-8;
+        }
+
+        .description {
+          padding-top: 20px;
+          @include text-16;
+        }
+      }
+
+      .controls {
+        display: flex;
+        .arrow-container {
+          width: 56px;
+          height: 56px;
+          border-radius: 8px;
+          background-color: $color-7;
+          position: relative;
+          cursor: pointer;
+          &:nth-child(1) {
+            margin-right: 24px;
+          }
+
+          .arrow {
+            position: absolute;
+            top: -2px;
+            left: 50%;
+            display: block;
+            margin: 30px auto;
+            width: 5px;
+            height: 5px;
+            border-top: 2px solid $color-3;
+            border-left: 2px solid $color-3;
+            &:after {
+              content: '';
+              display: block;
+              width: 2px;
+              height: 10px;
+              background-color: $color-3;
+              transform: rotate(-45deg) translate(3px, 1px);
+              left: 0;
+              top: 0;
+            }
+
+            &.left-arrow {
+              transform: translate(-50%, -50%) rotate(-45deg);
+              left: calc(50% - 2px);
+            }
+
+            &.right-arrow {
+              transform: translate(-50%, -50%) rotate(135deg);
+              left: calc(50% + 2px);
+            }
+          }
+
+          &.innactive {
+            cursor: default;
+            background-color: transparent;
+            .arrow {
+              border-color: $color-2;
+              &:after {
+                background-color: $color-2;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .carousel {
+      display: flex;
+      transition: 0.3s;
+      margin-left: -8px;
+      margin-right: -8px;
+      color: $color-3;
+      .item-super-container {
+        .item-container {
+          display: flex;
+          justify-content: space-between;
+          padding: 40px;
+          background-size: cover;
+          position: relative;
+          border-radius: 8px;
+          height: 440px;
+          margin: 0 8px 0 8px;
+          overflow: hidden;
+          filter: grayscale(100%);
+          &:before {
+            content: '';
+            z-index: 2;
+            background: linear-gradient(
+              0deg,
+              rgba(51, 51, 51, 0.75) 0%,
+              rgba(51, 51, 51, 0.75) 100%
+            );
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+          }
+
+          .item-content {
+            z-index: 5;
+            position: relative;
+            max-width: 50%;
+            max-height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            .title {
+              @include title-5;
+              padding-bottom: 20px;
+            }
+
+            .description {
+              display: flex;
+              overflow: hidden;
+
+              h1 {
+                @include title-5;
+                padding-bottom: 13px;
+                padding-top: 13px;
+                &:first-child {
+                  padding-top: 0;
+                }
+              }
+
+              p {
+                @include text-2;
+                padding-bottom: 7px;
+                overflow: hidden;
+              }
+            }
+          }
+
+          .other-info {
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            z-index: 5;
+
+            .event-info {
+              white-space: nowrap;
+            }
+          }
+        }
+
+        &:hover {
+          .item-container {
+            filter: drop-shadow(0px 25px 55px rgba(0, 0, 0, 0.25));
+            &:before {
+              content: '';
+              background: linear-gradient(
+                0deg,
+                rgba(130, 71, 95, 0.8) 0%,
+                rgba(130, 71, 95, 0.8) 100%
+              );
+            }
+          }
+        }
+      }
+    }
+
+    .extra-content {
+      padding-top: 64px;
+    }
+  }
+
+  &.dark-bg {
+    .carousel-cmp-container {
+      color: $color-3;
+      .top-container {
+        .controls {
+          .arrow-container {
+            &.innactive {
+              .arrow {
+                border-color: $color-3;
+                &:after {
+                  background-color: $color-3;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    overflow: hidden;
+    .carousel-cmp-container {
+      .top-container {
+        flex-direction: column;
+        padding-bottom: 64px;
+        .introduction {
+          width: 100%;
+          .description {
+            padding-top: 40px;
+            padding-bottom: 32px;
+          }
+        }
+
+        .controls {
+          padding-top: 32px;
+          display: flex;
+          .arrow-container {
+            width: 36px;
+            height: 36px;
+            &:nth-child(1) {
+              margin-right: 16px;
+            }
+
+            .arrow {
+              top: -12px;
+            }
+          }
+        }
+      }
+
+      .carousel {
+        .item-super-container {
+          .item-container {
+            flex-direction: column;
+            height: 306px;
+            .item-content {
+              max-width: 75%;
+              height: calc(100% - 120px);
+              .title {
+                padding-bottom: 30px;
+              }
+            }
+
+            .other-info {
+              justify-content: flex-start;
+              bottom: 40px;
+              right: auto;
+              left: 40px;
+              z-index: 5;
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    &.big {
+      .carousel {
+        .item-super-container {
+          .item-container {
+            height: 595px;
+          }
+        }
+      }
+    }
+  }
+}

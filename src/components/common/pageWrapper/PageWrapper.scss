@@ -1,0 +1,10 @@
+@import '@/styles/other.scss';
+
+.page-wrapper {
+  max-width: $max-width-main;
+  padding: 0 $padding-page-wrapper;
+  margin: auto;
+  &.small {
+    max-width: $max-width-small;
+  }
+}

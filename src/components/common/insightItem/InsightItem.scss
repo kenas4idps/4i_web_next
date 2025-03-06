@@ -1,0 +1,117 @@
+@import 'styles/color.scss';
+@import 'styles/font.scss';
+@import 'styles/other.scss';
+
+.insight-item {
+  padding: 32px;
+  &.with-bg {
+    background-color: $color-11;
+    border-radius: 8px;
+    box-shadow: 0px 25px 55px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  .tag {
+    padding-bottom: 16px;
+    display: flex;
+    .types-container {
+      padding-right: 15px;
+      @include text-8(700);
+      .type {
+        white-space: nowrap;
+        display: inline-block;
+        &:after {
+          content: ',';
+          padding-right: 5px;
+        }
+        &:last-child {
+          &:after {
+            content: '';
+            padding-right: 0px;
+          }
+        }
+      }
+    }
+
+    .date {
+      white-space: nowrap;
+      @include text-8(500);
+    }
+  }
+
+  .title {
+    @include title-10;
+    padding-bottom: 16px;
+  }
+
+  .description {
+    @include text-2;
+    margin-bottom: 16px;
+    height: 200px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    color: $color-6;
+    @include text-2(500);
+    .link {
+      cursor: pointer;
+      position: relative;
+      &:hover {
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          height: 4px;
+          width: 100%;
+          background-color: $color-6;
+        }
+      }
+    }
+
+    .share-container {
+      cursor: pointer;
+      position: relative;
+      .share-options-container {
+        display: none;
+        background-color: #cccccc;
+        border-radius: 8px;
+        padding: 10px 15px;
+        position: absolute;
+        top: 100;
+        margin-top: 10px;
+        right: 0px;
+        &.open {
+          display: block;
+        }
+      }
+    }
+  }
+
+  &.main {
+    padding: 64px 32px;
+    .title {
+      @include title-8;
+    }
+
+    .description {
+      @include text-7;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding: 16px 0;
+    &.with-bg {
+      border-radius: 0px;
+      position: relative;
+      left: -$padding-page-wrapper;
+      padding: 16px $padding-page-wrapper;
+      width: 100%;
+    }
+  }
+}

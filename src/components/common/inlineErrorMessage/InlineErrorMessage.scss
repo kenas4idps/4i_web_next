@@ -1,0 +1,18 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.inline-error-message {
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: 1px solid $color-warning;
+  margin-top: 15px;
+  background-color: $color-error;
+  @include text-8(700);
+  ul {
+    padding-left: 10px;
+  }
+
+  @media (max-width: $media-query-phone) {
+    @include text-8(400);
+  }
+}

@@ -1,0 +1,58 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.btn {
+  padding: 16px 24px;
+  border-radius: 40px;
+  border: none;
+  cursor: pointer;
+  @include text-4(500);
+  &.with-icon {
+    padding: 16px 55px 16px 24px;
+    background-position: right 24px center;
+    background-repeat: no-repeat;
+    background-size: 20px;
+  }
+
+  &.primary {
+    color: $color-3;
+    background-color: $color-7;
+    &:hover {
+      background-color: $color-1;
+    }
+  }
+
+  &.secondary {
+    background-color: transparent;
+    border: 1px solid $color-3;
+    color: $color-3;
+    &:hover {
+      background-color: $color-7;
+      color: $color-3;
+      border: 1px solid $color-7;
+    }
+  }
+
+  &.tertiary {
+    color: $color-3;
+    padding: 10px 16px;
+    border-radius: 25px;
+    background-color: #da578d;
+  }
+
+  @media (max-width: $media-query-phone) {
+    &.primary {
+      &:hover {
+        background-color: $color-7;
+      }
+    }
+
+    &.secondary {
+      &:hover {
+        background-color: transparent;
+        border: 1px solid $color-3;
+        color: $color-3;
+      }
+    }
+  }
+}

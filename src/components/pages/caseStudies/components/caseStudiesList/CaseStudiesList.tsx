@@ -11,7 +11,6 @@ import BlurCircle from '@/components/common/blurCircle';
 import RichTextStylingCmp from '@/components/common/richTextStylingCmp';
 import RichTextTransformCmp from '@/components/common/richTextTransformCmp';
 
-import { DropDownStyles } from '@/components/common/customDropDown';
 import { CaseStudyBannerFE } from '@/api/models/shared';
 
 import { NotificationContext } from '@/providers/notificationProvider';
@@ -21,6 +20,7 @@ import { api } from '@/api';
 import { Link } from '@/i18n/navigation';
 import { CaseStudiesType } from '@/api/models/CaseStudies';
 import { useQuery } from '@tanstack/react-query';
+import { DropDownStyles } from '@/components/common/customDropDown/SharedTypes';
 
 const handleCaseStudiesData = (caseStudiesData: CaseStudiesType[]) => {
   const caseStudiesList: CaseStudyBannerFE[] = caseStudiesData?.map(caseStudy => {

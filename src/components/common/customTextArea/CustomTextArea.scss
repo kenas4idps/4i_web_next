@@ -1,0 +1,45 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.custom-textarea {
+  padding-bottom: 30px;
+  &.error {
+    label {
+      .error-symbol {
+        display: inline-block;
+      }
+    }
+
+    textarea {
+      border: 2px solid $color-error;
+      padding: 15px;
+    }
+  }
+
+  label {
+    display: block;
+    padding-bottom: 18px;
+    .error-symbol {
+      display: none;
+      margin-left: 10px;
+      color: $color-error;
+      @include text-1(700);
+    }
+  }
+
+  textarea {
+    color: $color-1;
+    @include text-1;
+    padding: 17px;
+    background-color: $color-12;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: calc(100% - 17px - 17px);
+    resize: none;
+    height: 230px;
+    &::placeholder {
+      color: $color-1;
+    }
+  }
+}

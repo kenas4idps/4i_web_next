@@ -1,0 +1,111 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.custom-input-text {
+  padding-bottom: 30px;
+
+  label {
+    display: block;
+    padding-bottom: 18px;
+    .error-symbol {
+      display: none;
+      margin-left: 10px;
+      color: $color-error;
+      @include text-1(700);
+    }
+  }
+
+  .input-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    input {
+      color: $color-1;
+      @include text-1;
+      padding: 17px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      width: calc(100% - 17px - 17px);
+      &::placeholder {
+        color: $color-1;
+      }
+    }
+
+    .inpt-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 56px;
+      height: 100%;
+      .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 24px;
+        height: 24px;
+        background-size: contain;
+      }
+    }
+  }
+
+  &.primary {
+    .input-container {
+      input {
+        background-color: $color-12;
+      }
+    }
+  }
+
+  &.secondary {
+    .input-container {
+      input {
+        background-color: $color-3;
+        border: 1px solid $color-7;
+        padding: 16px;
+      }
+
+      .inpt-btn {
+        background-color: $color-7;
+      }
+    }
+  }
+
+  &.quaternary {
+    .input-container {
+      input {
+        background-color: $color-3;
+        color: $color-4;
+        &::placeholder {
+          color: $color-4;
+        }
+      }
+    }
+  }
+
+  &.quinary {
+    &.embedded {
+      position: sticky;
+      top: 0;
+      padding-bottom: 0;
+      z-index: 10;
+      box-shadow: 1px 1px 20px 1px $color-10;
+    }
+  }
+
+  &.error {
+    label {
+      .error-symbol {
+        display: inline-block;
+      }
+    }
+
+    .input-container {
+      input {
+        border: 2px solid $color-error;
+        padding: 15px;
+      }
+    }
+  }
+}

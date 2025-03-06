@@ -1,0 +1,130 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.custom-input-phone {
+  padding-bottom: 30px;
+
+  label {
+    display: block;
+    padding-bottom: 18px;
+    .error-symbol {
+      display: none;
+      margin-left: 10px;
+      color: $color-error;
+      @include text-1(700);
+    }
+  }
+
+  .input-container {
+    position: relative;
+    // overflow: hidden;
+    border-radius: 8px;
+    .form-control {
+      color: $color-1;
+      @include text-1;
+      padding: 17px 17px 17px 55px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      width: 100%;
+      height: auto;
+      &::placeholder {
+        color: $color-1;
+      }
+    }
+
+    .flag-dropdown {
+      border-right: 1px solid $color-10;
+      .country-list {
+        .country {
+          color: $color-1;
+        }
+      }
+
+      &.open {
+        .selected-flag {
+          border-radius: none;
+        }
+      }
+    }
+  }
+
+  &.primary {
+    .input-container {
+      input {
+        background-color: $color-12;
+      }
+
+      .flag-dropdown {
+        .selected-flag {
+          background-color: $color-12;
+        }
+
+        .country-list {
+          background-color: $color-12;
+        }
+      }
+    }
+  }
+
+  &.secondary {
+    .input-container {
+      input {
+        border: 1px solid $color-7;
+        padding: 16px 16px 16px 54px;
+      }
+
+      .flag-dropdown {
+        .selected-flag {
+          background-color: $color-3;
+        }
+
+        .country-list {
+          background-color: $color-3;
+        }
+      }
+    }
+  }
+
+  &.quaternary {
+    .input-container {
+      input {
+        background-color: $color-3;
+        color: $color-4;
+        &::placeholder {
+          color: $color-4;
+        }
+      }
+
+      .flag-dropdown {
+        .selected-flag {
+          background-color: $color-3;
+        }
+
+        .country-list {
+          background-color: $color-3;
+        }
+      }
+    }
+  }
+
+  &.error {
+    label {
+      .error-symbol {
+        display: inline-block;
+      }
+    }
+
+    .input-container {
+      input {
+        border: 2px solid $color-error;
+        padding: 15px 15px 15px 53px;
+      }
+
+      .flag-dropdown {
+        border: 2px solid $color-error;
+        border-right: 1px solid $color-10;
+      }
+    }
+  }
+}

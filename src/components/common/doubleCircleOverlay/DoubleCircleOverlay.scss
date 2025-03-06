@@ -1,0 +1,12 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.double-circle-overlay {
+  position: absolute;
+  z-index: -1;
+  .double-circle-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
