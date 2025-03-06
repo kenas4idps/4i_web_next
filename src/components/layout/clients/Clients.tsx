@@ -124,7 +124,7 @@ const Clients = ({ filter = 'All', isCarousel = false, onFetch }: Props) => {
         <>
           <ClientsList clients={clients} />
           {canLoadMore && (
-            <CustomButton onClickBtn={() => loadMore()}>{t('loadMoreBtn')}</CustomButton>
+            <CustomButton onClick={() => loadMore()}>{t('loadMoreBtn')}</CustomButton>
           )}
         </>
       )}

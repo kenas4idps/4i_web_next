@@ -23,7 +23,7 @@ const ContactUsCmp = () => {
           <div className="right-column-container">
             <div className="description">{t('contactUsCmpContent')}</div>
 
-            <CustomButton onClickBtn={() => router.push('/contact-us')}>
+            <CustomButton onClick={() => router.push('/contact-us')}>
               {t('contactUsCmpBtn')}
             </CustomButton>
           </div>

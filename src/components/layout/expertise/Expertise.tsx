@@ -29,7 +29,7 @@ const Expertise = ({ tag, title, description, buttonText }: Props) => {
           <div className="description">{description}</div>
 
           <CustomButton
-            onClickBtn={() => {
+            onClick={() => {
               router.push('/about-us');
             }}
           >

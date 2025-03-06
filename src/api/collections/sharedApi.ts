@@ -1,7 +1,8 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
-import { ClientIndustryTypeBE } from '../models/ClientIndustry';
+import { ClientIndustryType } from '../models/ClientIndustry';
 import { CaseStudyTypeBE, Meta, NumbersTypeBE } from '@/api/models/shared';
+import { CaseStudiesMeta, CaseStudiesType } from '@/api/models/CaseStudies';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -67,7 +68,7 @@ export function sharedApi({ axios }: userAPIProps) {
       industryFilter?: string,
       pageNum = 0,
       notInclude?: string,
-    ): Promise<ApiResponse<any>> {
+    ): Promise<ApiResponse<{ data: CaseStudiesType[]; meta: CaseStudiesMeta }>> {
       try {
         let params = `&pagination[start]=${pageNum * 6}`;
         if (typeFilterList && typeFilterList.length > 0) {
@@ -107,14 +108,12 @@ export function sharedApi({ axios }: userAPIProps) {
 
     async getClientIndustries(
       locale: string,
-    ): Promise<ApiResponse<{ data: ClientIndustryTypeBE[]; meta: Meta }>> {
+    ): Promise<ApiResponse<{ data: ClientIndustryType[]; meta: Meta }>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/industries?locale=${locale}&populate=*&pagination[limit]=-1&sort=name`,
         );
-        return new SuccessfulApiResponse(response.data.data, (data: any[]) =>
-          data.map(item => new ClientIndustryTypeBE(item)),
-        );
+        return new SuccessfulApiResponse(response.data);
       } catch (error) {
         return new FailedApiResponse(error);
       }

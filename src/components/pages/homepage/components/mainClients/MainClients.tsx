@@ -26,10 +26,7 @@ const MainClients = () => {
         <div className="title">{t('clientsTitle')}</div>
 
         <div className="link-clients-btn">
-          <CustomButton
-            onClickBtn={() => router.push('/our-clients')}
-            btnStyle={BtnStyles.TERTIARY}
-          >
+          <CustomButton onClick={() => router.push('/our-clients')} btnStyle={BtnStyles.TERTIARY}>
             {t('clientBtnLabel')}
           </CustomButton>
         </div>

@@ -129,10 +129,7 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
           </div>
 
           <div className="contact-us-btn">
-            <CustomButton
-              onClickBtn={() => router.push('/contact-us')}
-              btnStyle={BtnStyles.TERTIARY}
-            >
+            <CustomButton onClick={() => router.push('/contact-us')} btnStyle={BtnStyles.TERTIARY}>
               {t('contactUs')}
             </CustomButton>
           </div>

@@ -22,7 +22,7 @@ const GetStarted = ({ style, className }: Props) => {
 
         <div className="content">{t('getStartedCmpContent')}</div>
 
-        <CustomButton onClickBtn={() => router.push('/contact-us')}>
+        <CustomButton onClick={() => router.push('/contact-us')}>
           {t('getStartedCmpBtn')}
         </CustomButton>
       </div>

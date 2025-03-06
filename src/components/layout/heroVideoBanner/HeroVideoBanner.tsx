@@ -14,7 +14,7 @@ import './HeroVideoBanner.scss';
 
 interface BtnItem {
   btnTxt: string;
-  onClickBtn: () => void;
+  onClick: () => void;
   btnStyle?: string;
 }
 
@@ -64,7 +64,7 @@ const HeroVideoBanner = ({
             {btnList.map((item, key) => {
               return (
                 <CustomButton
-                  onClickBtn={item.onClickBtn}
+                  onClick={item.onClick}
                   btnStyle={item.btnStyle as BtnStyles}
                   key={key}
                 >

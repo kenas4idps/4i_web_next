@@ -12,38 +12,46 @@ import RichTextStylingCmp from '@/components/common/richTextStylingCmp';
 import RichTextTransformCmp from '@/components/common/richTextTransformCmp';
 
 import { DropDownStyles } from '@/components/common/customDropDown';
-import { CaseStudyBannerFE, CaseStudyListBE } from '@/api/models/shared';
+import { CaseStudyBannerFE } from '@/api/models/shared';
 
 import { NotificationContext } from '@/providers/notificationProvider';
-import { ClientIndustryListContext } from '@/providers/clientsTypeProvider/ClientsTypeProvider';
-
-import CaseStudiesDataHandler from '@/utils/CaseStudiesDataHandler';
 
 import './CaseStudiesList.scss';
 import { api } from '@/api';
 import { Link } from '@/i18n/navigation';
-import { ClientIndustryTypeBE } from '@/api/models/ClientIndustry';
+import { CaseStudiesType } from '@/api/models/CaseStudies';
+import { useQuery } from '@tanstack/react-query';
 
-interface OptionType {
-  label: string;
-  value: string;
-}
+const handleCaseStudiesData = (caseStudiesData: CaseStudiesType[]) => {
+  const caseStudiesList: CaseStudyBannerFE[] = caseStudiesData?.map(caseStudy => {
+    const caseStudyTypes = caseStudy?.attributes?.case_study_types?.data?.map(
+      type => type?.attributes?.name,
+    );
+
+    return {
+      id: caseStudy?.attributes?.url_path,
+      title: caseStudy?.attributes?.title,
+      description: caseStudy?.attributes?.description,
+      tags: caseStudyTypes,
+      bannerImage: {
+        url: `${process.env.REACT_APP_STRAPI_URL}${caseStudy?.attributes?.banner_image?.data?.attributes?.url}`,
+        caption: caseStudy?.attributes?.banner_image?.data?.attributes?.caption,
+        alternativeText: caseStudy?.attributes?.banner_image?.data?.attributes?.alternativeText,
+      },
+    };
+  });
+  return caseStudiesList;
+};
 
 const CaseStudiesList = () => {
   const { displayNotification } = useContext(NotificationContext);
   const t = useTranslations('casesStudies');
   const locale = useLocale();
 
-  const caseStudiesDataHandler = CaseStudiesDataHandler();
-
   const [caseStudiesList, setCaseStudiesList] = useState<CaseStudyBannerFE[]>([]);
-  const [industries, setIndustries] = useState<OptionType[]>([{ label: '', value: '' }]);
-  const [types, setTypes] = useState<OptionType[]>([{ label: '', value: '' }]);
   const [industryFilter, setIndustryFilter] = useState<string>('All');
   const [typeFilter, setTypeFilter] = useState<string>('All');
   const [canLoadMore, setCanLoadMore] = useState<boolean>(false);
-
-  const { clientsIndustryList, getClientsIndustryList } = useContext(ClientIndustryListContext);
 
   const currentPage = useRef(0);
 
@@ -51,57 +59,6 @@ const CaseStudiesList = () => {
     currentPage.current = currentPage.current + 1;
 
     getCaseStudies(currentPage.current);
-  };
-
-  const handleClientIndustriesData = (clientsIndustryList?: ClientIndustryTypeBE[]) => {
-    const clientIndustryList = clientsIndustryList?.map(industry => {
-      return {
-        label:
-          industry?.attributes?.name === 'All'
-            ? t('filterAllIndustry')
-            : industry?.attributes?.name?.charAt(0).toUpperCase() +
-              industry?.attributes?.name?.slice(1),
-        value: industry?.attributes?.name,
-      };
-    });
-    return clientIndustryList;
-  };
-
-  const handleCaseStudyTypeData = (caseStudyTypeData: ClientIndustryTypeBE[]) => {
-    const clientTypeList = caseStudyTypeData?.map(type => {
-      return {
-        label: type?.attributes?.name,
-        value: type?.attributes?.name,
-      };
-    });
-
-    const all = {
-      label: t('filterAllType'),
-      value: 'All',
-    };
-
-    clientTypeList?.unshift(all);
-    return clientTypeList;
-  };
-
-  const setFilterValues = async () => {
-    try {
-      const response = await api.shared.collection.getClientIndustries(locale);
-
-      if ('content' in response) {
-        const industryList = handleClientIndustriesData(response.content.data);
-        const typeList = handleCaseStudyTypeData(response.content.data);
-
-        if (industryList) setIndustries(industryList);
-        if (typeList) setTypes(typeList);
-      }
-    } catch (error) {
-      console.log(error);
-      displayNotification(
-        'Something Went Wrong Whilst Handling Filters List, Please Try Again !',
-        'error',
-      );
-    }
   };
 
   const getCaseStudies = async (page: number) => {
@@ -117,14 +74,12 @@ const CaseStudiesList = () => {
       );
 
       if ('content' in response) {
-        const caseStudiesData: CaseStudyListBE = response.content;
-        const caseStudiesList: CaseStudyBannerFE[] = caseStudiesDataHandler.handleCaseStudiesData(
-          caseStudiesData?.data,
-        );
+        console.log({ response });
+        const caseStudiesList = handleCaseStudiesData(response.content.data);
 
         const expectedNumOfCaseStudies = (currentPage.current + 1) * 6;
 
-        const totalNumOfCaseStudies = caseStudiesData?.meta?.pagination?.total;
+        const totalNumOfCaseStudies = response?.content?.meta?.pagination?.total;
 
         if (expectedNumOfCaseStudies < totalNumOfCaseStudies) {
           setCanLoadMore(true);
@@ -149,13 +104,58 @@ const CaseStudiesList = () => {
     }
   };
 
+  const { data: filterValues } = useQuery({
+    queryKey: ['caseStudies.filterValues', locale],
+    queryFn: async () => {
+      try {
+        const response = await api.shared.collection.getCaseStudyTypesData(locale);
+
+        if ('content' in response) {
+          console.log({ response });
+          const industryList = response.content.data.map(industry => ({
+            label:
+              industry?.attributes?.name === 'All'
+                ? t('filterAllIndustry')
+                : industry?.attributes?.name?.charAt(0).toUpperCase() +
+                  industry?.attributes?.name?.slice(1),
+            value: industry?.attributes?.name,
+          }));
+
+          const typeList = response.content.data.map(type => ({
+            label: type?.attributes?.name,
+            value: type?.attributes?.name,
+          }));
+
+          const all = {
+            label: t('filterAllType'),
+            value: 'All',
+          };
+
+          typeList?.unshift(all);
+
+          console.log({ industryList, typeList });
+
+          return {
+            industryList,
+            typeList,
+          };
+        }
+      } catch (error) {
+        console.log(error);
+        displayNotification(
+          'Something Went Wrong Whilst Handling Filters List, Please Try Again !',
+          'error',
+        );
+      }
+
+      return null;
+    },
+  });
+
   useEffect(() => {
-    getClientsIndustryList();
-    setFilterValues();
     setTypeFilter('All');
     setIndustryFilter('All');
-    // eslint-disable-next-line
-  }, [clientsIndustryList, locale]);
+  }, [locale]);
 
   useEffect(() => {
     currentPage.current = 0;
@@ -173,7 +173,7 @@ const CaseStudiesList = () => {
             <div className="filter">
               <CustomDropDown
                 onSelect={setIndustryFilter}
-                options={industries}
+                options={filterValues?.industryList ?? []}
                 dropDownStyle={DropDownStyles.SECONDARY}
                 placeholder={t('industryPlaceHolder') as string}
               />
@@ -182,7 +182,7 @@ const CaseStudiesList = () => {
             <div className="filter">
               <CustomDropDown
                 onSelect={setTypeFilter}
-                options={types}
+                options={filterValues?.typeList ?? []}
                 dropDownStyle={DropDownStyles.SECONDARY}
                 placeholder={t('typePlaceholder') as string}
               />
@@ -234,7 +234,7 @@ const CaseStudiesList = () => {
 
           {canLoadMore && (
             <div className="load-more-btn">
-              <CustomButton onClickBtn={() => loadMore()}>{t('loadMoreBtn')}</CustomButton>
+              <CustomButton onClick={() => loadMore()}>{t('loadMoreBtn')}</CustomButton>
             </div>
           )}
         </PageWrapper>

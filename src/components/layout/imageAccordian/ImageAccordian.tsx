@@ -52,7 +52,7 @@ const ImageAccordian = ({
 
           <div className="picture-caption">{imageCaption}</div>
 
-          <CustomButton onClickBtn={() => router.push('/solutions')}>{buttonText}</CustomButton>
+          <CustomButton onClick={() => router.push('/solutions')}>{buttonText}</CustomButton>
         </div>
 
         {accordianList && accordianList?.length > 0 && (

@@ -16,6 +16,35 @@
   }
 }
 
+/* extending to tailwind theme */
+@theme {
+  --color-1: #333333;
+  --color-2: #4c5251;
+  --color-3: #ffffff;
+  --color-4: #961f50;
+  --color-5: #d02e71;
+  --color-6: #1f6256;
+  --color-7: #00be8e;
+  --color-8: #eeb4cc;
+  --color-9: #6cd0b7;
+  --color-10: #cccccc;
+  --color-11: #fcf2f6;
+  --color-12: #f6d5e3;
+  --color-13: #3d3d3d;
+  --color-14: #d8f3ee;
+  --color-15: #da578d;
+  --color-16: #8d0c41;
+  --color-17: #737373;
+  --color-18: #85d5c1;
+  --color-19: #f2eded;
+
+  /* Warning colors */
+  --color-success: #28a745;
+  --color-info: #007bff;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+}
+
 /* @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:is(.dark *)); */

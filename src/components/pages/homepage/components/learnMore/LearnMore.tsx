@@ -58,9 +58,7 @@ const LearnMore = () => {
 
           <div className="content">{t('learMoreContent')}</div>
 
-          <CustomButton onClickBtn={() => router.push('/about-us')}>
-            {t('learnMoreBtn')}
-          </CustomButton>
+          <CustomButton onClick={() => router.push('/about-us')}>{t('learnMoreBtn')}</CustomButton>
         </div>
       </PageWrapper>
     </div>

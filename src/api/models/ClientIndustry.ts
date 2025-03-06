@@ -1,31 +1,45 @@
-import { ClientBE } from '@/components/layout/clients/SharedType';
-
-export interface ClientIndustryTypeBEProps {
-  id: number;
-  attributes: {
-    name: string;
-    clients: {
-      data: ClientBE[];
-    };
-  };
+export interface ClientIndustryType {
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  clients: Clients;
+  localizations: Localizations;
 }
 
-export class ClientIndustryTypeBE {
-  id: number = 0;
-  attributes: {
-    name: string;
-    clients: {
-      data: ClientBE[];
-    };
-  } = {
-    name: '',
-    clients: {
-      data: [],
-    },
-  };
+export interface Clients {
+  data: Client[];
+}
 
-  constructor(data: ClientIndustryTypeBEProps) {
-    this.id = data.id || this.id;
-    this.attributes = data.attributes || this.attributes;
-  }
+export interface Client {
+  id: number;
+  attributes: ClientAttributes;
+}
+
+export interface ClientAttributes {
+  name: string;
+  country: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  rank: number;
+}
+
+export interface Localizations {
+  data: ClientLocalization[];
+}
+
+export interface ClientLocalization {
+  id: number;
+  attributes: ClientLocalizationAttributes;
+}
+
+export interface ClientLocalizationAttributes {
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
 }

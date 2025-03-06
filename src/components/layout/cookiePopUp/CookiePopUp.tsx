@@ -126,7 +126,7 @@ const CookiePopUp = () => {
             <div className="buttons-container">
               <div>
                 <CustomButton
-                  onClickBtn={() => handleCookie('Accept')}
+                  onClick={() => handleCookie('Accept')}
                   className="consent-popup-button accept"
                 >
                   {t('accept')}
@@ -134,7 +134,7 @@ const CookiePopUp = () => {
               </div>
               <div>
                 <CustomButton
-                  onClickBtn={() => handleCookie('Deny')}
+                  onClick={() => handleCookie('Deny')}
                   className="consent-popup-button deny"
                 >
                   {t('deny')}

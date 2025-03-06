@@ -61,11 +61,11 @@ const Homepage = ({ data }: HomepageProps) => {
   const bannerBtnList = [
     {
       btnTxt: t('bannerBtnTalkWithUs'),
-      onClickBtn: () => router.push('/contact-us'),
+      onClick: () => router.push('/contact-us'),
     },
     {
       btnTxt: t('bannerBtnSolutions'),
-      onClickBtn: () => router.push('/solutions'),
+      onClick: () => router.push('/solutions'),
       btnStyle: BtnStyles.SECONDARY,
     },
   ];

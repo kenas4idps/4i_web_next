@@ -58,7 +58,7 @@ const AllSolution = () => {
         </div>
 
         <div className="btn-container">
-          <CustomButton onClickBtn={() => router.push('/solutions')}>
+          <CustomButton onClick={() => router.push('/solutions')}>
             {t('allSolutionBtn')}
           </CustomButton>
         </div>

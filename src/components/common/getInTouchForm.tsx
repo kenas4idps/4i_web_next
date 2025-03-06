@@ -376,7 +376,7 @@ const GetInTouchForm = () => {
             ]}
           />
 
-          <CustomButton onClickBtn={onSend} className="validation-btn">
+          <CustomButton onClick={onSend} className="validation-btn">
             {t('formBtnLabel')}
           </CustomButton>
         </div>
