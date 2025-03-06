@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
 import { ClientIndustryTypeBE } from '../models/ClientIndustry';
-import { CaseStudyTypeBE, Meta } from '@/api/models/shared';
+import { CaseStudyTypeBE, Meta, NumbersTypeBE } from '@/api/models/shared';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -9,7 +9,7 @@ interface userAPIProps {
 
 export function sharedApi({ axios }: userAPIProps) {
   return {
-    async getNumbers(): Promise<ApiResponse<any>> {
+    async getNumbers(): Promise<ApiResponse<{ data: NumbersTypeBE; meta: Meta }>> {
       try {
         const response = await axios.get(`${process.env.REACT_APP_STRAPI_API_URL}/by-the-number`);
         return new SuccessfulApiResponse(response.data);

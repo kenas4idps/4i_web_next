@@ -364,3 +364,24 @@ export interface NewsletterSubscriberType {
   user_email: string;
   locale: string;
 }
+
+export interface NumbersTypeBE {
+  id: number;
+  attributes: {
+    years_of_experience: number;
+    years_of_experience_extra_content: any;
+    projects_delivered: number;
+    projects_delivered_extra_content: any;
+    industries_we_served: number;
+    industries_we_served_extra_content: any;
+    office_locations: number;
+    office_locations_extra_content: any;
+    number_of_professionals: number;
+    number_of_professionals_extra_content: any;
+    countries_served: number;
+    countries_served_extra_content: any;
+    createdAt: string;
+    updatedAt: string;
+    publishedAt: string;
+  };
+}

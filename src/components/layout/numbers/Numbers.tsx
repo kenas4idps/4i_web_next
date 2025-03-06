@@ -15,9 +15,8 @@ const BubblesBg = '/assets/img/bubbles1.webp';
 
 import './Numbers.scss';
 import { useQuery } from '@tanstack/react-query';
-import { NumbersTypeBE } from '@/components/layout/numbers/SharedType';
+import { NumbersTypeBE } from '@/api/models/shared';
 import { api } from '@/api';
-import { NumberTypeFE } from '@/components/layout/numbers/SharedType';
 import { NotificationContext } from '@/providers/notificationProvider';
 
 interface Props {
@@ -27,49 +26,49 @@ interface Props {
 const handleNumberData = (numbersData: NumbersTypeBE) => {
   const arr = [];
 
-  if (numbersData?.projects_delivered) {
+  if (numbersData?.attributes?.projects_delivered) {
     arr.push({
       labelKey: 'projectsDelivered',
-      number: numbersData?.projects_delivered,
-      extraContent: numbersData?.projects_delivered_extra_content,
+      number: numbersData?.attributes?.projects_delivered,
+      extraContent: numbersData?.attributes?.projects_delivered_extra_content,
     });
   }
 
-  if (numbersData?.industries_we_served) {
+  if (numbersData?.attributes?.industries_we_served) {
     arr.push({
       labelKey: 'industriesWeServed',
-      number: numbersData?.industries_we_served,
-      extraContent: numbersData?.industries_we_served_extra_content,
+      number: numbersData?.attributes?.industries_we_served,
+      extraContent: numbersData?.attributes?.industries_we_served_extra_content,
     });
   }
 
-  if (numbersData?.office_locations) {
+  if (numbersData?.attributes?.office_locations) {
     arr.push({
       labelKey: 'officeLocations',
-      number: numbersData?.office_locations,
-      extraContent: numbersData?.office_locations_extra_content,
+      number: numbersData?.attributes?.office_locations,
+      extraContent: numbersData?.attributes?.office_locations_extra_content,
     });
   }
 
-  if (numbersData?.number_of_professionals) {
+  if (numbersData?.attributes?.number_of_professionals) {
     arr.push({
       labelKey: 'team',
-      number: numbersData?.number_of_professionals,
-      extraContent: numbersData?.number_of_professionals_extra_content,
+      number: numbersData?.attributes?.number_of_professionals,
+      extraContent: numbersData?.attributes?.number_of_professionals_extra_content,
     });
   }
-  if (numbersData?.years_of_experience) {
+  if (numbersData?.attributes?.years_of_experience) {
     arr.push({
       labelKey: 'yearExperience',
-      number: numbersData?.years_of_experience,
-      extraContent: numbersData?.years_of_experience_extra_content,
+      number: numbersData?.attributes?.years_of_experience,
+      extraContent: numbersData?.attributes?.years_of_experience_extra_content,
     });
   }
-  if (numbersData?.countries_served) {
+  if (numbersData?.attributes?.countries_served) {
     arr.push({
       labelKey: 'countriesServed',
-      number: numbersData?.countries_served,
-      extraContent: numbersData?.countries_served_extra_content,
+      number: numbersData?.attributes?.countries_served,
+      extraContent: numbersData?.attributes?.countries_served_extra_content,
     });
   }
   return arr;
@@ -87,11 +86,9 @@ const Numbers = ({ withBackgroundColor = false }: Props) => {
       try {
         const response = await api.shared.collection.getNumbers();
         if ('content' in response) {
-          const numbersData: NumbersTypeBE = response.content;
+          const numbersData = response.content.data;
 
-          const numbers: NumberTypeFE[] = handleNumberData(numbersData);
-
-          console.log({ numbers });
+          const numbers = handleNumberData(numbersData);
 
           return numbers;
         }
@@ -102,6 +99,8 @@ const Numbers = ({ withBackgroundColor = false }: Props) => {
           'error',
         );
       }
+
+      return null;
     },
   });
 
