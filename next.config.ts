@@ -21,6 +21,13 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     '/**/*': ['./messages/**/*'],
   },
+
+  // TODO: fix sass deprecation warnings when have time
+  // silence sass deprecation warnings
+  sassOptions: {
+    silenceDeprecations: ['legacy-js-api', 'import', 'mixed-decls'],
+    quietDeps: true,
+  },
 };
 
 export default withNextIntl(nextConfig);

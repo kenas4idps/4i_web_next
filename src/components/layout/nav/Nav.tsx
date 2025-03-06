@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 import CustomButton from '@/components/common/customButton';
@@ -24,6 +24,7 @@ interface Props {
 const Nav = ({ isBgWhite = false, navList }: Props) => {
   const t = useTranslations('nav');
   const router = useRouter();
+  const pathname = usePathname();
 
   const [isAtTop, setIsAtTop] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
     const pageTree = pageLink.split('/');
     const pageParent = '/' + pageTree[1];
 
-    const currentPageTree = location.pathname.split('/');
+    const currentPageTree = pathname.split('/');
     const currentPageTreeParent = '/' + currentPageTree[1];
 
     return currentPageTreeParent === pageParent;

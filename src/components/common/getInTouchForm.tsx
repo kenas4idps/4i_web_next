@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { validateEmail, validateName, validatePhoneNumber } from '@/utils/validate';
 
@@ -11,8 +13,6 @@ import CustomButton from '@/components/common/customButton';
 import InlineErrorMessage from '@/components/common/inlineErrorMessage';
 import CustomCheckBox from '@/components/common/customCheckBox';
 import CustomInputPhone from '@/components/common/customInputPhone';
-import { useRouter } from 'next/navigation';
-import { useLocale, useTranslations } from 'next-intl';
 import { api } from '@/api';
 import Script from 'next/script';
 import Link from 'next/link';
@@ -31,6 +31,7 @@ const GetInTouchForm = () => {
   const t = useTranslations('getInTouch');
   const locale = useLocale();
   const router = useRouter();
+  const pathname = usePathname();
 
   const listTopic = [
     {
@@ -151,7 +152,7 @@ const GetInTouchForm = () => {
   const gtag_report_conversion = (url: string) => {
     const callback = function () {
       if (typeof url !== 'undefined') {
-        // window.location = url;
+        router.push(url);
       }
     };
     window.gtag('event', 'conversion', {
@@ -192,7 +193,7 @@ const GetInTouchForm = () => {
         const response = await api.getInTouchForm.collection.submitGetInTouchForm(formData);
         if ('content' in response && response.content === 200) {
           if (locale === 'en' || locale === 'de') {
-            gtag_report_conversion(window.location.href);
+            gtag_report_conversion(pathname);
           }
           router.push('/contact-us/inquiry');
         } else {

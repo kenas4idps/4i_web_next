@@ -83,7 +83,7 @@ const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
           <div
             className={`absolute right-0 mt-2 rounded-lg bg-gray-300 p-2 ${isShareOpen ? 'block' : 'hidden'}`}
           >
-            <ShareCmp url={`${window.location.origin}/insight/${item?.urlPath}`} />
+            <ShareCmp url={`${process.env.NEXT_PUBLIC_APP_URL}/insight/${item?.urlPath}`} />
           </div>
         </div>
       </div>
