@@ -4,7 +4,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getMessages } from 'next-intl/server';
-import './globals.css';
 import '@/styles/main.scss';
 
 import { NotificationProvider } from '@/providers/notificationProvider/NotificationProvider';

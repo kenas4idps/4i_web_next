@@ -3,7 +3,6 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 
 import { NotificationContext } from '@/providers/notificationProvider';
 
-import { NumbersTypeBE, NumberTypeFE } from '@/components/layout/numbers/SharedType';
 import { api } from '@/api';
 
 interface ApiProviderProps {
@@ -12,7 +11,7 @@ interface ApiProviderProps {
 
 interface NumbersDataContextType {
   init: () => void;
-  numbers?: NumberTypeFE[];
+  numbers?: any[];
 }
 
 const NumbersDataContext = createContext<NumbersDataContextType>({
@@ -20,7 +19,7 @@ const NumbersDataContext = createContext<NumbersDataContextType>({
   numbers: [],
 });
 
-const handleNumberData = (numbersData: NumbersTypeBE) => {
+const handleNumberData = (numbersData: any) => {
   const arr = [];
 
   if (numbersData?.projects_delivered) {
@@ -75,16 +74,16 @@ const NumbersDataProvider: React.FC<ApiProviderProps> = ({ children }) => {
   const { displayNotification } = useContext(NotificationContext);
 
   const [fetched, setFetched] = useState<boolean>(false);
-  const [numbers, setNumbers] = useState<NumberTypeFE[]>();
+  const [numbers, setNumbers] = useState<any[]>();
 
   const init = async () => {
     if (!fetched) {
       try {
         const response = await api.shared.collection.getNumbers();
         if ('content' in response) {
-          const numbersData: NumbersTypeBE = response.content;
+          const numbersData: any = response.content;
 
-          const numbers: NumberTypeFE[] = handleNumberData(numbersData);
+          const numbers: any[] = handleNumberData(numbersData);
 
           if (numbers) setNumbers(numbers);
 
