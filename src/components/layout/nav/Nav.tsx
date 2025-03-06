@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 
 import CustomButton from '@/components/common/customButton';
@@ -15,7 +14,7 @@ const Logo = '/assets/icons/logoFull.svg';
 
 import './Nav.scss';
 import { NavMenu } from '@/app/[locale]/_util/getNavList';
-import { Link, useRouter } from '@/i18n/navigation';
+import { useRouter, usePathname } from '@/i18n/navigation';
 
 interface Props {
   isBgWhite?: boolean;
@@ -55,6 +54,26 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
     }
   }, [isOpen]);
 
+  const changePage = (
+    newUrl: string,
+    hasSubpages: boolean,
+    event: React.MouseEvent<HTMLElement>,
+  ) => {
+    if (isOpen && hasSubpages) {
+      const parent = event.currentTarget.parentElement;
+      if (parent) {
+        if (parent.classList.contains('open')) {
+          parent.classList.remove('open');
+        } else {
+          parent.classList.add('open');
+        }
+      }
+    } else {
+      setIsOpen(false);
+      router.push(newUrl);
+    }
+  };
+
   const handleScroll = () => {
     const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     setIsAtTop(scrollTop === 0);
@@ -90,10 +109,13 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
                   key={pageKey}
                   className={`main-page ${isCurrentPage(page.url) && 'current-page'}`}
                 >
-                  <Link className="main-page-link" href={page.url}>
+                  <div
+                    className="main-page-link"
+                    onClick={event => changePage(page.url, page.hasOwnProperty('subPages'), event)}
+                  >
                     {page.label}
                     {page.subPages && <div className="arrow"></div>}
-                  </Link>
+                  </div>
 
                   {page.subPages && (
                     <>
@@ -101,9 +123,13 @@ const Nav = ({ isBgWhite = false, navList }: Props) => {
                         <div className="sub-pages-list-container">
                           {page.subPages.map((subpage, subKey) => {
                             return (
-                              <Link key={subKey} className="sub-page" href={subpage.url}>
+                              <div
+                                key={subKey}
+                                className="sub-page"
+                                onClick={event => changePage(subpage.url, false, event)}
+                              >
                                 <span>{subpage.label}</span>
-                              </Link>
+                              </div>
                             );
                           })}
                         </div>
