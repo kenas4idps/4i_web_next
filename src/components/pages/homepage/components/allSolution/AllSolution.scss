@@ -49,6 +49,13 @@
           .solution-container {
             background-color: $color-4;
             color: $color-3;
+
+            .icon-container {
+              position: relative;
+              height: 64px;
+              width: 64px;
+            }
+
             .solution-icon {
               background-color: $color-9;
             }
@@ -72,13 +79,15 @@
           background-color: $color-3;
           box-shadow: 0px 25px 55px 0px rgba(126, 126, 126, 0.15);
           .solution-icon {
+            position: relative;
             background-color: $color-8;
             border-radius: 50%;
             width: 56px;
             height: 56px;
             position: relative;
             margin-bottom: 25px;
-            img {
+
+            .img-container {
               position: absolute;
               top: 50%;
               left: 50%;

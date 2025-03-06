@@ -70,13 +70,10 @@ const AllSolution = () => {
             return (
               <div onClick={() => router.push(solution.url)} className="solution" key={key}>
                 <div className="solution-container">
-                  <div className="icon-container relative h-16 w-16">
-                    <Image
-                      fill
-                      className="object-contain"
-                      src={solution.icon}
-                      alt={`icon ${solution.title}`}
-                    />
+                  <div className="solution-icon">
+                    <div className="img-container">
+                      <Image fill src={solution.icon} alt={`icon ${solution.title}`} />
+                    </div>
                   </div>
 
                   <div className="solution-title">{solution.title}</div>

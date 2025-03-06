@@ -21,6 +21,13 @@
       padding-bottom: 55px;
       .award-item {
         text-align: center;
+
+        .img-container {
+          position: relative;
+          height: 96px;
+          width: 96px;
+        }
+
         img {
           height: auto;
           max-width: 80%;

@@ -24,7 +24,7 @@ const AllAwards = ({ awards }: Props) => {
           return item.link ? (
             <a href={item.link} target="__blank" className="award-item-container" key={key}>
               <div className="award-item">
-                <div className="img-container relative h-24 w-24">
+                <div className="img-container">
                   <Image
                     fill
                     className="object-contain"
@@ -37,7 +37,7 @@ const AllAwards = ({ awards }: Props) => {
           ) : (
             <div className="award-item-container" key={key}>
               <div className="award-item">
-                <div className="img-container relative h-24 w-24">
+                <div className="img-container">
                   <Image
                     fill
                     className="object-contain"

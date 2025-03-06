@@ -46,8 +46,7 @@ const DoubleCircleOverlay = ({
         className="double-circle-img"
         alt="double circle background"
         src={getCircleImg()}
-        width={parseInt(size)}
-        height={parseInt(size)}
+        fill
       />
     </div>
   );
