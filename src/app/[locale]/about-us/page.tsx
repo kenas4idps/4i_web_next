@@ -9,6 +9,8 @@ import { getNavList } from '@/app/[locale]/_util/getNavList';
 import { getSolutionsList } from '@/app/[locale]/_util/getSolutionsList';
 import AboutUs from '@/components/pages/aboutUs/AboutUs';
 import GetInTouchCmp from '@/components/layout/getInTouchCmp/GetInTouchCmp';
+import DetailDataHandler from '@/utils/DetailDataHandler';
+import HeroBanner from '@/components/layout/heroBanner/HeroBanner';
 
 type Params = Promise<{ locale: string }>;
 
@@ -32,11 +34,11 @@ const getAboutUsData = async (locale: string) => {
       locale,
     });
     if ('content' in response) {
+      const detail = DetailDataHandler().handleDetailData(response.content?.detail);
       return {
         seo: response.content?.seo,
-        description: response.content?.description,
-        title: response.content.title,
-        bannerImage: response.content?.bannerImage,
+        detail,
+        pageData: response.content,
       };
     }
 
@@ -77,7 +79,12 @@ export default async function AboutUsPage({ params }: { params: Params }) {
         mainEntityOfPage={aboutUsSchema}
       />
       <Nav navList={navList} />
-      <AboutUs data={pageInfo} />
+      <HeroBanner
+        picture={pageInfo?.detail?.bannerImage?.url}
+        title={pageInfo?.detail?.title}
+        description={pageInfo?.detail?.description}
+      />
+      <AboutUs />
       <GetInTouchCmp />
     </>
   );

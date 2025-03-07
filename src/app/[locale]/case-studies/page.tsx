@@ -8,6 +8,8 @@ import { getTranslations } from 'next-intl/server';
 import { getNavList } from '@/app/[locale]/_util/getNavList';
 import { getSolutionsList } from '@/app/[locale]/_util/getSolutionsList';
 import CaseStudies from '@/components/pages/caseStudies';
+import DetailDataHandler from '@/utils/DetailDataHandler';
+import HeroBanner from '@/components/layout/heroBanner';
 
 type Params = Promise<{ locale: string }>;
 
@@ -31,11 +33,12 @@ const getCaseStudiesData = async (locale: string) => {
       locale,
     });
     if ('content' in response) {
+      const detail = DetailDataHandler().handleDetailData(response.content?.detail);
+
       return {
         seo: response.content?.seo,
-        description: response.content?.description,
-        title: response.content.title,
-        bannerImage: response.content?.bannerImage,
+        detail,
+        pageData: response.content,
       };
     }
 
@@ -76,7 +79,12 @@ export default async function CaseStudiesPage({ params }: { params: Params }) {
         mainEntityOfPage={caseStudiesSchema}
       />
       <Nav navList={navList} />
-      <CaseStudies data={pageInfo} />
+      <HeroBanner
+        picture={pageInfo?.detail?.bannerImage?.url}
+        title={pageInfo?.detail?.title}
+        description={pageInfo?.detail?.description}
+      />
+      <CaseStudies />
     </>
   );
 }

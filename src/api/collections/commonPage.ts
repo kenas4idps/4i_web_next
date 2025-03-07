@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
-import { CommonPageDataType } from '../models/CommonPage';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -14,7 +13,7 @@ export function CommonPageApi({ axios }: userAPIProps) {
     }: {
       pageName: string;
       locale: string;
-    }): Promise<ApiResponse<CommonPageDataType>> {
+    }): Promise<ApiResponse<any>> {
       let params = '';
 
       switch (pageName) {
@@ -46,7 +45,7 @@ export function CommonPageApi({ axios }: userAPIProps) {
             return response?.data?.data?.attributes;
           });
 
-        return new SuccessfulApiResponse(response, (data: any) => new CommonPageDataType(data));
+        return new SuccessfulApiResponse(response);
       } catch (error) {
         // displayNotification(
         //   `Something Went Wrong Fetching ${pageName} Data, Please Try Again !`,
