@@ -1,3 +1,5 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 
 import PageWrapper from '@/components/common/pageWrapper';

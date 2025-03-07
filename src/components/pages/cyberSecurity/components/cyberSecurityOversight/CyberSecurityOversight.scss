@@ -1,0 +1,36 @@
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.cyber-security-oversight {
+  padding-bottom: 88px;
+  .cyber-security-oversight-container {
+    display: flex;
+    align-items: center;
+    .title {
+      width: calc(50% - 87px);
+      margin-right: 87px;
+      @include title-8;
+    }
+
+    .description {
+      width: 50%;
+      @include text-2;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 79px;
+    .cyber-security-oversight-container {
+      flex-direction: column;
+      .title {
+        width: 100%;
+        margin-right: 0;
+        padding-bottom: 42px;
+      }
+
+      .description {
+        width: 100%;
+      }
+    }
+  }
+}

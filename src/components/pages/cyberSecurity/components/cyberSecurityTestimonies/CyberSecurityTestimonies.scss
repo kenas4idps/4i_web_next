@@ -1,0 +1,16 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.cyber-security-testimonies {
+  margin-bottom: 140px;
+  display: none;
+
+  &.show {
+    display: block;
+  }
+
+  @media (max-width: $media-query-phone) {
+    margin-bottom: 121px;
+  }
+}

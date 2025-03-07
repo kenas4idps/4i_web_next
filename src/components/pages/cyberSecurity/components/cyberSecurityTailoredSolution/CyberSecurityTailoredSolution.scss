@@ -1,0 +1,42 @@
+@import '@/styles/font.scss';
+
+.cyber-security-tailored-solutions {
+  .cyber-security-tailored-solution-container {
+    display: flex;
+    .left-column {
+      width: 50%;
+      .title {
+        margin-right: 87px;
+        @include title-8;
+      }
+    }
+
+    .right-column {
+      width: 50%;
+      .description {
+        @include text-2;
+        padding-bottom: 39px;
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .cyber-security-tailored-solution-container {
+      flex-direction: column;
+      .left-column {
+        width: 100%;
+        .title {
+          margin-right: 0px;
+          padding-bottom: 42px;
+        }
+      }
+
+      .right-column {
+        width: 100%;
+        .description {
+          padding-bottom: 42px;
+        }
+      }
+    }
+  }
+}
