@@ -69,6 +69,8 @@ const handleAwardsData = (awardsData: AwardBE[]) => {
         url: `${process.env.REACT_APP_STRAPI_URL}${award?.logo?.data?.attributes?.url}`,
         caption: award?.logo?.data?.attributes?.caption,
         alternativeText: award?.logo?.data?.attributes?.alternativeText,
+        width: award?.logo?.data?.attributes?.width,
+        height: award?.logo?.data?.attributes?.height,
       },
       name: award?.name,
       link: award?.link,
@@ -89,6 +91,7 @@ export async function getHomeData(locale: string) {
     const awards: AwardFE[] = handleAwardsData(homePageData?.awards);
     const detail: HomePageDetailFE = handleDetailsData(homePageData?.detail);
 
+    console.log({ awards, data: homePageData.awards });
     return {
       homePageData,
       seo,

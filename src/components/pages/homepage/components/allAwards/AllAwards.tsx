@@ -21,13 +21,14 @@ const AllAwards = ({ awards }: Props) => {
 
       <div className="awards-list">
         {awards?.map((item, key) => {
+          console.log({ item });
           return item.link ? (
             <a href={item.link} target="__blank" className="award-item-container" key={key}>
               <div className="award-item">
                 <div className="img-container">
                   <Image
-                    fill
-                    className="object-contain"
+                    width={item.logo.width}
+                    height={item.logo.height}
                     src={item?.logo?.url}
                     alt={item?.logo?.alternativeText || 'Award logo'}
                   />
@@ -39,8 +40,8 @@ const AllAwards = ({ awards }: Props) => {
               <div className="award-item">
                 <div className="img-container">
                   <Image
-                    fill
-                    className="object-contain"
+                    width={item.logo.width}
+                    height={item.logo.height}
                     src={item?.logo?.url}
                     alt={item?.logo?.alternativeText || 'Award logo'}
                   />

@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         hostname: 'localhost',
         pathname: '/**',
       },
+      {
+        hostname: 'api.4itech.io',
+        pathname: '/**',
+      },
     ],
   },
   output: 'standalone',

@@ -4,6 +4,8 @@ export interface AwardFE {
     alternativeText?: string;
     caption?: string;
     url: string;
+    width?: number;
+    height?: number;
   };
   name: string;
   link?: string;
