@@ -12,7 +12,7 @@ export function contactUsApi({ axios }: userAPIProps) {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/contact-us-page?populate=seo.metaImage,seo.metaSocial.image&locale=${locale}`,
         );
-        return new SuccessfulApiResponse(response.data);
+        return new SuccessfulApiResponse(response);
       } catch (error) {
         return new FailedApiResponse(error);
       }

@@ -1,0 +1,115 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.contact-us-questions {
+  position: relative;
+  top: -950px;
+  margin-bottom: -950px;
+  padding-top: 950px;
+  padding-bottom: 206px;
+  background-color: $color-13;
+  overflow: hidden;
+
+  .blur-circle-top {
+    top: 25%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    z-index: 1;
+  }
+
+  .blur-circle-bottom {
+    bottom: -10%;
+    left: 0;
+    transform: translate(-50%, 50%);
+    z-index: 1;
+  }
+
+  .double-circle-top {
+    top: 750px;
+    right: -200px;
+    transform: translate(50%, -50%);
+    z-index: 1;
+  }
+
+  .double-circle-bottom {
+    bottom: -200px;
+    left: 400px;
+    transform: translate(-100%, 50%);
+    z-index: 1;
+  }
+
+  .contact-us-questions-container {
+    position: relative;
+    z-index: 10;
+    .introduction {
+      color: $color-3;
+      padding-bottom: 72px;
+      text-align: center;
+      .title {
+        @include title-8;
+        padding-bottom: 24px;
+      }
+
+      .description {
+        @include text-2;
+      }
+    }
+
+    .question-list-container {
+      display: flex;
+      .left-column {
+        width: calc(50% - 8px);
+        padding-right: 8px;
+      }
+
+      .right-column {
+        width: calc(50% - 8px);
+        padding-left: 8px;
+      }
+
+      .question-container {
+        padding: 15px;
+        background-color: $color-3;
+        border-radius: 8px;
+        margin-bottom: 16px;
+
+        .accordion-title {
+          @include text-2(500);
+          box-shadow: unset;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    position: relative;
+    top: 0;
+    margin-bottom: auto;
+    padding-top: 70px;
+    padding-bottom: 68px;
+    background-color: $color-13;
+    .contact-us-questions-container {
+      .introduction {
+        padding-bottom: 48px;
+        text-align: left;
+        .title {
+          padding-bottom: 8px;
+        }
+      }
+
+      .question-list-container {
+        flex-direction: column;
+        .left-column {
+          width: 100%;
+          padding-right: 0px;
+        }
+
+        .right-column {
+          width: 100%;
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+}

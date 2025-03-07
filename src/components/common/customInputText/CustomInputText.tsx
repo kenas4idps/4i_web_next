@@ -1,3 +1,5 @@
+'use client';
+
 import { ChangeEvent, RefObject, useEffect, useState } from 'react';
 
 import { InputTextStyles } from './SharedTypes';
