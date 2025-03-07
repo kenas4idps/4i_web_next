@@ -31,7 +31,7 @@ const handleContactUsSeo = async (locale: string) => {
     const response = await api.contactUs.collection.getContactUsSeoData(locale);
 
     if ('content' in response) {
-      const seo = SeoDataHandler().handleSeoData(response.content.seo);
+      const seo = SeoDataHandler().handleSeoData(response.content.data.attributes.seo);
 
       return {
         seo,
@@ -69,8 +69,6 @@ export default async function ContactUsInquiryPage({ params }: { params: Params 
 		}
 	}`;
 
-  console.log({ pageInfo });
-
   return (
     <>
       <StructuredData
@@ -82,6 +80,7 @@ export default async function ContactUsInquiryPage({ params }: { params: Params 
 
       <Nav isBgWhite={true} navList={navList} />
 
+      {/* contactUs is a server component */}
       <ContactUs />
     </>
   );

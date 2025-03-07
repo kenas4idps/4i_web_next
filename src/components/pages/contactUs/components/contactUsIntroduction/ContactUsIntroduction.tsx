@@ -1,12 +1,11 @@
-import { useTranslations } from 'next-intl';
-
+import { getTranslations } from 'next-intl/server';
 import PageWrapper from '@/components/common/pageWrapper';
 import BlurCircle from '@/components/common/blurCircle';
 
 import './ContactUsIntroduction.scss';
 
-const ContactUsIntroduction = () => {
-  const t = useTranslations('contactUs');
+const ContactUsIntroduction = async () => {
+  const t = await getTranslations('contactUs');
 
   return (
     <>

@@ -7,12 +7,12 @@ interface userAPIProps {
 
 export function contactUsApi({ axios }: userAPIProps) {
   return {
-    async getContactUsSeoData(locale: string): Promise<ApiResponse<any>> {
+    async getContactUsSeoData(locale: string): Promise<ApiResponse<{ data: any; meta: any }>> {
       try {
         const response = await axios.get(
           `${process.env.REACT_APP_STRAPI_API_URL}/contact-us-page?populate=seo.metaImage,seo.metaSocial.image&locale=${locale}`,
         );
-        return new SuccessfulApiResponse(response);
+        return new SuccessfulApiResponse(response.data);
       } catch (error) {
         return new FailedApiResponse(error);
       }

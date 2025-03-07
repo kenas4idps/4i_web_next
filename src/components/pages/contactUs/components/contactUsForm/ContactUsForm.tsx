@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import PageWrapper from '@/components/common/pageWrapper';
 import GetInTouchForm from '@/components/common/getInTouchForm';
@@ -6,10 +6,10 @@ import ContactUsOffice from './components/contactUsOffice';
 
 import './ContactUsForm.scss';
 
-const ContactUsForm = () => {
-  const t = useTranslations('contactUs');
-  const tGetInTouch = useTranslations('getInTouch');
-  const tOffices = useTranslations('offices');
+const ContactUsForm = async () => {
+  const t = await getTranslations('contactUs');
+  const tGetInTouch = await getTranslations('getInTouch');
+  const tOffices = await getTranslations('offices');
 
   return (
     <PageWrapper className="contact-us-form">

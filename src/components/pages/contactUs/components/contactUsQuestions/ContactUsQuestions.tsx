@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 
 import PageWrapper from '@/components/common/pageWrapper';
 import DoubleCircleOverlay from '@/components/common/doubleCircleOverlay';
@@ -10,8 +10,8 @@ import { BlurCircleStyles } from '@/components/common/blurCircle/SharedTypes';
 
 import './ContactUsQuestions.scss';
 
-const ContactUsQuestions = () => {
-  const t = useTranslations('contactUs');
+const ContactUsQuestions = async () => {
+  const t = await getTranslations('contactUs');
 
   return (
     <div className="contact-us-questions small">
