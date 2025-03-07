@@ -67,7 +67,7 @@ const CarouselCmp = ({
   };
 
   useEffect(() => {
-    const phoneSize = parseInt(variables.mediaQueryPhone.slice(0, -2));
+    const phoneSize = parseInt(variables.mediaQueryPhone?.slice(0, -2));
 
     const handleResize = () => {
       if (window.innerWidth <= phoneSize) {

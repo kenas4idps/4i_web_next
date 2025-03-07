@@ -1,0 +1,22 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.case-studies-testimonies {
+  padding-bottom: 124px;
+  display: none;
+
+  .title {
+    @include title-8;
+    color: $color-3;
+    text-align: center;
+    padding-bottom: 42px;
+  }
+
+  &.show {
+    display: block;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 80px;
+  }
+}

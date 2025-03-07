@@ -1,6 +1,5 @@
 import { AxiosInstance } from 'axios';
 import { ApiResponse, FailedApiResponse, SuccessfulApiResponse } from '../models';
-import { CaseStudyDataType } from '../models/CaseStudy';
 
 interface userAPIProps {
   axios: AxiosInstance;
@@ -14,7 +13,7 @@ export function caseStudyApi({ axios }: userAPIProps) {
     }: {
       id: string;
       locale: string;
-    }): Promise<ApiResponse<CaseStudyDataType>> {
+    }): Promise<ApiResponse<any>> {
       try {
         const response = await axios
           .get(
@@ -32,7 +31,7 @@ export function caseStudyApi({ axios }: userAPIProps) {
         //   console.error(`[Error - API] Error calling Case Study data`, error);
         // });
 
-        return new SuccessfulApiResponse(response.data, (data: any) => new CaseStudyDataType(data));
+        return new SuccessfulApiResponse(response);
       } catch (error) {
         return new FailedApiResponse(error);
       }

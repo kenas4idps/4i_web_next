@@ -1,0 +1,40 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.case-study-banner {
+  padding-top: 250px;
+  padding-bottom: 376px;
+
+  &.banner-image-hidden {
+    padding-bottom: 86px;
+  }
+
+  .tag {
+    @include text-1(700);
+    padding-bottom: 32px;
+  }
+
+  .title {
+    @include title-8;
+    padding-bottom: 50px;
+  }
+
+  .description {
+    p,
+    ul {
+      @include text-9(700);
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 130px;
+    padding-bottom: 64px;
+    .tag {
+      padding-bottom: 8px;
+    }
+
+    .title {
+      padding-bottom: 32px;
+    }
+  }
+}

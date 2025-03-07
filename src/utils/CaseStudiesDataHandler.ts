@@ -1,7 +1,8 @@
 import { CaseStudyBannerFE, CaseStudyBE } from '@/api/models/shared';
+import { CaseStudiesType } from '@/api/models/CaseStudies';
 
 const CaseStudiesDataHandler = () => {
-  const handleCaseStudiesData = (caseStudiesData: CaseStudyBE[]) => {
+  const handleCaseStudiesData = (caseStudiesData: CaseStudyBE[] | CaseStudiesType[]) => {
     const caseStudiesList: CaseStudyBannerFE[] = caseStudiesData?.map(caseStudy => {
       const caseStudyTypes = caseStudy?.attributes?.case_study_types?.data?.map(
         type => type?.attributes?.name,

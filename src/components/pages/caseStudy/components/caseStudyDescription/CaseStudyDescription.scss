@@ -1,0 +1,10 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.case-study-description {
+  padding-bottom: 80px;
+  color: $color-3;
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 64px;
+  }
+}
