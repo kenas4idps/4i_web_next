@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import PixelarCheckSvg from '@/assets/icons/pixelarCheck.svg';
+const PixelarCheckSvg = '/assets/icons/pixelarCheck.svg';
 
 const PixelarCheck = () => {
   return (
