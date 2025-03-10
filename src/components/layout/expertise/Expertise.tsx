@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import PageWrapper from '@/components/common/pageWrapper';
 import CustomButton from '@/components/common/customButton';
 
-const Img = 'assets/img/teamAndExpertise.jpg';
+const Img = '/assets/img/teamAndExpertise.jpg';
 
 import './Expertise.scss';
 import Image from 'next/image';

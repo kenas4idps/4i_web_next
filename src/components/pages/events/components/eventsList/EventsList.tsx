@@ -7,7 +7,7 @@ import CustomButton from 'components/common/customButton';
 import DoubleCircleOverlay from 'components/common/doubleCircleOverlay';
 import BlurCircle from 'components/common/blurCircle';
 
-import ShareIcon from 'assets/icons/shareWhite.svg';
+import ShareIcon from '/assets/icons/shareWhite.svg';
 
 import { EventBannerType } from '../../Sharedtype';
 

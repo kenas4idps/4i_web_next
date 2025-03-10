@@ -4,7 +4,7 @@ import { ChangeEvent, RefObject, useEffect, useState } from 'react';
 
 import { InputTextStyles } from './SharedTypes';
 
-const SendIcon = 'assets/icons/send.svg';
+const SendIcon = '/assets/icons/send.svg';
 
 import './CustomInputText.scss';
 

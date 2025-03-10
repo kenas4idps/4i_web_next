@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next';
 
 import PageWrapper from 'components/common/pageWrapper';
 
-import BannerImg from 'assets/img/noEventBanner.png';
-import BigImg from 'assets/img/noEvent1.png';
-import MediumImg from 'assets/img/noEvent2.png';
-import SmallImg from 'assets/img/noEvent3.png';
+import BannerImg from '/assets/img/noEventBanner.png';
+import BigImg from '/assets/img/noEvent1.png';
+import MediumImg from '/assets/img/noEvent2.png';
+import SmallImg from '/assets/img/noEvent3.png';
 
 import './EventsNoEventBanner.scss';
 

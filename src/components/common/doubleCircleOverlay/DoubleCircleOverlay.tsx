@@ -1,8 +1,8 @@
 import { DoubleCircleOverlayStyles } from './SharedTypes';
 import Image from 'next/image';
 
-const DoubleCircleImg = 'assets/img/doubleCircle2.svg';
-const DoubleCircleGreyImg = 'assets/img/doubleCircleGrey.svg';
+const DoubleCircleImg = '/assets/img/doubleCircle2.svg';
+const DoubleCircleGreyImg = '/assets/img/doubleCircleGrey.svg';
 
 import './DoubleCircleOverlay.scss';
 

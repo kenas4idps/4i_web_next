@@ -1,0 +1,47 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.our-clients-testimonies {
+  padding-top: 63px;
+  padding-bottom: 329px;
+  background-repeat: no-repeat;
+  background-position: center top;
+  position: relative;
+  display: none;
+
+  .double-circle-container {
+    right: 25%;
+    top: 50px;
+    transform: translate(50%, 0%);
+  }
+
+  .blur-circle-container {
+    top: 75%;
+    left: 35%;
+    transform: translate(-50%, -50%);
+  }
+
+  .our-clients-testimonies-container {
+    .introduction {
+      text-align: center;
+      padding-bottom: 32px;
+      .tag {
+        @include text-1(700);
+        padding-bottom: 24px;
+      }
+
+      .title {
+        @include title-8;
+      }
+    }
+  }
+
+  &.show {
+    display: block;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 100px;
+  }
+}

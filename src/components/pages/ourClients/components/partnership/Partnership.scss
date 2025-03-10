@@ -1,0 +1,122 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.partnership {
+  padding-bottom: 174px;
+  position: relative;
+
+  .partnership-container {
+    display: flex;
+    z-index: 8;
+    position: relative;
+    .introduction {
+      width: 35%;
+      .introduction-container {
+        padding-right: 90px;
+        .tag {
+          @include text-3(700);
+          padding-bottom: 24px;
+        }
+
+        .title {
+          @include title-8;
+          padding-bottom: 24px;
+        }
+
+        .description {
+          @include text-2;
+          padding-bottom: 24px;
+        }
+      }
+    }
+
+    .picture-container {
+      width: 65%;
+      position: relative;
+      min-height: 792px;
+
+      .front-picture {
+        position: absolute;
+        top: 85px;
+        width: 879px;
+        height: 792px;
+
+        img {
+          box-shadow: 0px 25px 55px 0px rgba(0, 0, 0, 0.25);
+          border-radius: 8px;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .behind-picture {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    right: 0;
+    width: 710px;
+    height: 470px;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 80px;
+    .partnership-container {
+      flex-direction: column-reverse;
+      .introduction {
+        width: 100%;
+        .introduction-container {
+          padding-right: 0px;
+          .tag {
+            padding-bottom: 8px;
+          }
+
+          .title {
+            padding-bottom: 32px;
+          }
+
+          .description {
+            padding-bottom: 32px;
+          }
+        }
+      }
+
+      .picture-container {
+        width: 100%;
+        margin-top: 85px;
+        padding-bottom: 32px;
+        position: relative;
+        left: -$padding-page-wrapper;
+        min-height: 377px;
+
+        .front-picture {
+          top: 0px;
+          min-height: auto;
+          width: 100%;
+          height: 341px;
+          background: transparent;
+
+          img {
+            object-fit: cover;
+            border-radius: 0px;
+          }
+        }
+      }
+    }
+
+    .behind-picture {
+      position: absolute;
+      z-index: 5;
+      top: 0;
+      right: auto;
+      left: $padding-page-wrapper;
+      width: 100%;
+      height: 314px;
+
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+}

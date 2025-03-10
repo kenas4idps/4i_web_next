@@ -1,6 +1,6 @@
 import { useTranslations } from 'next-intl';
-import LeftPicture from 'assets/img/welcome-1.webp';
-import RightPicture from 'assets/img/welcome-2.webp';
+import LeftPicture from '/assets/img/welcome-1.webp';
+import RightPicture from '/assets/img/welcome-2.webp';
 
 import './WelcomePopUp.scss';
 import { useState } from 'react';
