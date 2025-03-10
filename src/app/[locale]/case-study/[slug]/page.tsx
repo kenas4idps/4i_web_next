@@ -89,6 +89,37 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
   const tc = await getTranslations('casesStudies');
   const navList = await getNavList(t, solutionsList);
 
+  const breadCrumb = `{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}",
+						"name": "4i Tech: Home"
+					}
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies",
+						"name": "4i Tech: Case Studies"
+					}
+			},
+			{
+				"@type": "ListItem",
+				"position": 3,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies/${slug}",
+						"name": "4i Tech Case Study: ${slug.replace(/-|_/g, ' ')}"
+					}
+			}
+		]
+	}`;
+
   const caseStudySchema = `{
     "@type": "WebPage",
     "@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies/${slug}",
@@ -112,6 +143,7 @@ export default async function CaseStudyPage({ params }: { params: Params }) {
         solutionsList={solutionsList}
         locale={locale}
         mainEntityOfPage={caseStudySchema}
+        breadCrumb={breadCrumb}
       />
 
       <Nav isBgWhite={true} navList={navList} />

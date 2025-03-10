@@ -135,7 +135,7 @@ export default async function CaseStudiesPage({ params }: { params: Params }) {
         mainEntityOfPage={articleSchema}
         breadCrumb={breadCrumb}
       />
-      <Nav navList={navList} isBgWhite={true} />
+      <Nav navList={navList} />
       <HeroBanner
         picture={pageInfo?.insight?.image?.url}
         title={pageInfo?.insight?.title}

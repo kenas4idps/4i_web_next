@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return {};
 }
 
-export default async function CookiePolicyPage({ params }: { params: Params }) {
+export default async function ConfirmationPage({ params }: { params: Params }) {
   const { locale, id } = await params;
   const solutionsList = await getSolutionsList(locale);
   const t = await getTranslations('nav');

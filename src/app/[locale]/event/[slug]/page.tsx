@@ -58,36 +58,36 @@ export default async function EventPage({ params }: { params: Params }) {
   const t = await getTranslations('nav');
   const navList = await getNavList(t, solutionsList);
 
-  // const breadCrumb = `{
-  // 	"@context": "https://schema.org",
-  // 	"@type": "BreadcrumbList",
-  // 	"itemListElement": [
-  // 		{
-  // 			"@type": "ListItem",
-  // 			"position": 1,
-  // 			"item": {
-  // 					"@id": "${process.env.NEXT_PUBLIC_APP_URL}",
-  // 					"name": "4i Tech: Home"
-  // 				}
-  // 		},
-  // 		{
-  // 			"@type": "ListItem",
-  // 			"position": 2,
-  // 			"item": {
-  // 					"@id": "${process.env.NEXT_PUBLIC_APP_URL}/events",
-  // 					"name": "4i Tech: Events"
-  // 				}
-  // 		},
-  // 		{
-  // 			"@type": "ListItem",
-  // 			"position": 3,
-  // 			"item": {
-  // 					"@id": "${process.env.NEXT_PUBLIC_APP_URL}/events/${slug}",
-  // 					"name": "4i Tech Event: ${pageInfo?.eventDetail?.title.replace(/-|_/g, ' ')}"
-  // 				}
-  // 		}
-  // 	]
-  // }`;
+  const breadCrumb = `{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+            "@id": "${process.env.NEXT_PUBLIC_APP_URL}",
+            "name": "4i Tech: Home"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+            "@id": "${process.env.NEXT_PUBLIC_APP_URL}/events",
+            "name": "4i Tech: Events"
+          }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+            "@id": "${process.env.NEXT_PUBLIC_APP_URL}/events/${slug}",
+            "name": "4i Tech Event: ${slug.replace(/-|_/g, ' ')}"
+          }
+      }
+    ]
+  }`;
 
   const eventSchema = `{
 		"@type": "Event",
@@ -110,6 +110,7 @@ export default async function EventPage({ params }: { params: Params }) {
         solutionsList={solutionsList}
         locale={locale}
         mainEntityOfPage={eventSchema}
+        breadCrumb={breadCrumb}
       />
 
       <Nav navList={navList} />

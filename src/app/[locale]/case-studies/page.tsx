@@ -56,6 +56,29 @@ export default async function CaseStudiesPage({ params }: { params: Params }) {
   const t = await getTranslations('nav');
   const navList = await getNavList(t, solutionsList);
 
+  const breadCrumb = `{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}",
+						"name": "4i Tech: Home"
+					}
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies",
+						"name": "4i Tech: Case Studies"
+					}
+			}
+		]
+	}`;
+
   const caseStudiesSchema = `{
     "@type": "WebPage",
     "@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/case-studies",
@@ -77,6 +100,7 @@ export default async function CaseStudiesPage({ params }: { params: Params }) {
         solutionsList={solutionsList}
         locale={locale}
         mainEntityOfPage={caseStudiesSchema}
+        breadCrumb={breadCrumb}
       />
       <Nav navList={navList} />
       <HeroBanner

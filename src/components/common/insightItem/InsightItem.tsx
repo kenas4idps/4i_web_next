@@ -45,49 +45,54 @@ const InsightItem = ({ item, isMain = false, withBg = false }: Props) => {
   };
 
   return (
-    <div className={`insight-item ${isMain && 'main'} ${withBg && 'with-bg'}`}>
-      {/* <div className='tag'>
-				<div className='types-container'>
-					{item?.type?.map((value, key) => {
-						return (
-							<span className='type' key={key}>
-								{value}
-							</span>
-						)
-					})}
-				</div>
-				
-				<div className='date'>
-					{item?.publishedDate}
-				</div>
-			</div> */}
+    <>
+      <div
+        onClick={() => router.push(`/insight/${item?.urlPath}`)}
+        className={`insight-item ${isMain && 'main'} ${withBg && 'with-bg'}`}
+      >
+        {/* <div className='tag'>
+					<div className='types-container'>
+						{item?.type?.map((value, key) => {
+							return (
+								<span className='type' key={key}>
+									{value}
+								</span>
+							)
+						})}
+					</div>
+					
+					<div className='date'>
+						{item?.publishedDate}
+					</div>
+				</div> */}
 
-      <div className="title">{item?.title}</div>
+        <div className="title">{item?.title}</div>
 
-      {/* {item?.paragraph && (
-				<div className="description">
-					<RichTextStylingCmp>
-						<RichTextTransformCmp>{item?.paragraph}</RichTextTransformCmp>
-					</RichTextStylingCmp>
-				</div>
-			)} */}
+        {/* {item?.paragraph && (
+					<div className="description">
+						<RichTextStylingCmp>
+							<RichTextTransformCmp>{item?.paragraph}</RichTextTransformCmp>
+						</RichTextStylingCmp>
+					</div>
+				)} */}
 
-      <div className="actions">
-        <div className="link" onClick={() => router.push('/insight/' + item?.urlPath)}>
-          {t('readMoreLink')}
-        </div>
-
-        <div className="share-container" ref={shareRef}>
-          <div className="share-icon-container" onClick={() => onClickShareIcon()}>
-            <img className="share-icon" src={ShareIcon} alt="share icon" />
-          </div>
-
-          <div className={`share-options-container ${isShareOpen ? 'open' : ''}`}>
-            <ShareCmp url={`${window.location.origin}/insight/${item?.urlPath}`} />
+        <div className="actions">
+          <div className="link">
+            <p>{item?.publishedDate}</p>
+            {t('readMoreLink')}
           </div>
         </div>
       </div>
-    </div>
+      <div className="share-container" ref={shareRef}>
+        <div className="share-icon-container" onClick={() => onClickShareIcon()}>
+          <img className="share-icon" src={ShareIcon} alt="share icon" />
+        </div>
+
+        <div className={`share-options-container ${isShareOpen ? 'open' : ''}`}>
+          <ShareCmp url={`${window.location.origin}/insight/${item?.urlPath}`} />
+        </div>
+      </div>
+    </>
   );
 };
 

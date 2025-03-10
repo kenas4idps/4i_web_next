@@ -55,6 +55,29 @@ export default async function ContactUsPage({ params }: { params: Params }) {
   const t = await getTranslations('nav');
   const navList = await getNavList(t, solutionsList);
 
+  const breadCrumb = `{
+		"@context": "https://schema.org",
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}",
+						"name": "4i Tech: Home"
+					}
+			},
+			{
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+						"@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/contact-us/inquiry",
+						"name": "4i Tech: Contact Us"
+					}
+			}
+		]
+	}`;
+
   const contactUsSchema = `{
 		"@type": "WebPage",
     "@id": "${process.env.NEXT_PUBLIC_APP_URL}/${locale}/contact-us/inquiry",
@@ -76,6 +99,7 @@ export default async function ContactUsPage({ params }: { params: Params }) {
         solutionsList={solutionsList}
         locale={locale}
         mainEntityOfPage={contactUsSchema}
+        breadCrumb={breadCrumb}
       />
 
       <Nav isBgWhite={true} navList={navList} />

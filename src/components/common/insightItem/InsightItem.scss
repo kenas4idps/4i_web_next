@@ -4,6 +4,29 @@
 
 .insight-item {
   padding: 32px;
+  width: calc(100% - 64px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 8px;
+  &:hover {
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(248, 248, 248, 0.456);
+    }
+    .link {
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        height: 4px;
+        width: 100%;
+        background-color: $color-6;
+      }
+    }
+  }
   &.with-bg {
     background-color: $color-11;
     border-radius: 8px;
@@ -55,7 +78,6 @@
 
   .actions {
     display: flex;
-    justify-content: space-between;
     color: $color-6;
     @include text-2(500);
     .link {
@@ -73,24 +95,6 @@
         }
       }
     }
-
-    .share-container {
-      cursor: pointer;
-      position: relative;
-      .share-options-container {
-        display: none;
-        background-color: #cccccc;
-        border-radius: 8px;
-        padding: 10px 15px;
-        position: absolute;
-        top: 100;
-        margin-top: 10px;
-        right: 0px;
-        &.open {
-          display: block;
-        }
-      }
-    }
   }
 
   &.main {
@@ -105,7 +109,11 @@
   }
 
   @media (max-width: $media-query-phone) {
-    padding: 16px 0;
+    border-radius: 0px;
+    position: relative;
+    left: -$padding-page-wrapper;
+    padding: 16px 30px;
+    width: 100%;
     &.with-bg {
       border-radius: 0px;
       position: relative;
@@ -113,5 +121,30 @@
       padding: 16px $padding-page-wrapper;
       width: 100%;
     }
+  }
+}
+
+.share-container {
+  cursor: pointer;
+  position: absolute;
+  right: 49px;
+  bottom: 44px;
+  .share-options-container {
+    display: none;
+    background-color: #cccccc;
+    border-radius: 8px;
+    padding: 10px 15px;
+    position: absolute;
+    top: 100;
+    margin-top: 10px;
+    right: 0px;
+    &.open {
+      display: block;
+      z-index: 10;
+    }
+  }
+  @media (max-width: $media-query-phone) {
+    right: 20px;
+    bottom: 20px;
   }
 }
