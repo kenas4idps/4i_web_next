@@ -1,0 +1,66 @@
+@import '@/styles/font.scss';
+@import '@/styles/color.scss';
+
+.events-no-event {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  .events-no-event-super-container {
+    position: relative;
+    height: 100%;
+    .events-no-event-container {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 100%;
+      .content-container {
+        display: flex;
+        .introduction {
+          color: $color-3;
+          width: 50%;
+          .tag {
+            @include text-2(700);
+            padding-bottom: 32px;
+          }
+
+          .title {
+            @include title-7;
+            padding-bottom: 22px;
+          }
+
+          .description {
+            @include text-9(700);
+          }
+        }
+
+        .pictures-container {
+          padding-left: 112px;
+          width: calc(50% - 112px);
+          display: flex;
+          .left-column {
+            width: 60%;
+          }
+
+          .right-column {
+            width: calc(40% - 16px);
+            padding-left: 16px;
+          }
+
+          img {
+            width: 100%;
+            display: block;
+            padding-bottom: 16px;
+            border-radius: 8px;
+            &.small-picture {
+              width: 50%;
+            }
+
+            &.big-picture {
+              padding-top: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -45,6 +45,7 @@ export function generateStructuredData(
   solutionsList: any[],
   locale: string,
   mainEntityOfPage?: string,
+  breadCrumb?: string,
 ) {
   const organizationSchema = {
     '@context': 'https://schema.org',
@@ -130,5 +131,9 @@ export function generateStructuredData(
     },
   };
 
-  return [organizationSchema, ...(seo.structuredData ? [JSON.parse(seo.structuredData)] : [])];
+  return [
+    organizationSchema,
+    ...(seo.structuredData ? [JSON.parse(seo.structuredData)] : []),
+    ...(breadCrumb ? [JSON.parse(breadCrumb)] : []),
+  ];
 }

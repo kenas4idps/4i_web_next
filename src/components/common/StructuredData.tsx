@@ -7,6 +7,7 @@ interface StructuredDataProps {
   solutionsList?: SolutionsListFE[];
   locale: string;
   mainEntityOfPage?: string;
+  breadCrumb?: string;
 }
 
 export default function StructuredData({
@@ -14,10 +15,17 @@ export default function StructuredData({
   solutionsList,
   locale,
   mainEntityOfPage,
+  breadCrumb,
 }: StructuredDataProps) {
   if (!seo || !solutionsList) return null;
 
-  const structuredData = generateStructuredData(seo, solutionsList, locale, mainEntityOfPage);
+  const structuredData = generateStructuredData(
+    seo,
+    solutionsList,
+    locale,
+    mainEntityOfPage,
+    breadCrumb,
+  );
 
   return (
     <>
