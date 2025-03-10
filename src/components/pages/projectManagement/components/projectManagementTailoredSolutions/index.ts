@@ -1,0 +1,3 @@
+import ProjectManagementTailoredSolutions from './ProjectManagementTailoredSolutions';
+
+export default ProjectManagementTailoredSolutions;

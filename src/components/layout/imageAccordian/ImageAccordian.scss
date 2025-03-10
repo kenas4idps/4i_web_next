@@ -35,6 +35,10 @@
       width: 50%;
       .picture-container {
         padding-bottom: 19px;
+        position: relative;
+        padding-bottom: 74%;
+        margin-bottom: 16px;
+
         img {
           max-width: 100%;
         }
@@ -84,9 +88,8 @@
         padding-bottom: 90px;
         .picture-container {
           padding-bottom: 19px;
-          img {
-            max-width: 100%;
-          }
+          max-width: 100%;
+          position: relative;
         }
 
         .picture-caption {

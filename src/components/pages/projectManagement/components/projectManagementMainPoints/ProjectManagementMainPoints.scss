@@ -2,7 +2,7 @@
 @import '@/styles/font.scss';
 @import '@/styles/other.scss';
 
-.main-points {
+.project-management-main-points {
   display: flex;
   align-items: center;
   padding-bottom: 172px;
@@ -22,21 +22,20 @@
   .left-column {
     margin-right: 100px;
     width: calc(30% - 100px);
+    position: relative;
+
     .img-container {
       width: 100%;
-      padding-bottom: 100%;
       display: block;
-      position: relative;
-
       margin-bottom: 47px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+      position: relative;
 
       img {
         box-shadow: 0px 25px 55px 0px rgba(0, 0, 0, 0.25);
         border-radius: 8px;
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }

@@ -1,0 +1,66 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.project-management-strengths {
+  padding-bottom: 88px;
+  position: relative;
+  .blur-circle-container {
+    top: 60%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+  }
+
+  .double-circle-container {
+    bottom: -30%;
+    right: 100px;
+    transform: translate(50%, 50%);
+  }
+
+  .strength-container {
+    display: flex;
+    padding-bottom: 95px;
+    .left-column {
+      width: 50%;
+      .title {
+        @include title-8;
+        padding-bottom: 32px;
+      }
+
+      .tag {
+        @include text-2;
+        color: $color-2;
+      }
+    }
+
+    .right-column {
+      width: 50%;
+      .description {
+        padding-left: 87px;
+        @include text-2;
+        color: $color-2;
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 79px;
+    .strength-container {
+      flex-direction: column;
+      padding-bottom: 45px;
+      .left-column {
+        width: 100%;
+        padding-bottom: 32px;
+        .title {
+          padding-bottom: 8px;
+        }
+      }
+
+      .right-column {
+        width: 100%;
+        .description {
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+}

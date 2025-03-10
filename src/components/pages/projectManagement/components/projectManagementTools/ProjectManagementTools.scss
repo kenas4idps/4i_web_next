@@ -1,0 +1,17 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.project-management-tools {
+  padding-bottom: 172px;
+
+  .load-more-btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 100px;
+  }
+}
