@@ -23,7 +23,7 @@ import PhoneIcon from '@/public/assets/icons/phone.svg';
 const Logo = '/assets/icons/logoWhite.svg';
 
 import './Footer.scss';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const Footer = () => {
   const router = useRouter();

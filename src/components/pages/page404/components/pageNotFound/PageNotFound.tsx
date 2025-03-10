@@ -1,7 +1,7 @@
 import PageWrapper from '@/components/common/pageWrapper';
 
 import './PageNotFound.scss';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const PageNotFound = () => {
   return (

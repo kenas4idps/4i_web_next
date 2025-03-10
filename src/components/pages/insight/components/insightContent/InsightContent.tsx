@@ -18,7 +18,7 @@ import { InputTextStyles } from '@/components/common/customInputText/SharedTypes
 import { NewsletterSubscriberType } from '@/api/models/shared';
 
 import './InsightContent.scss';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 import { api } from '@/api';
 
 interface Props {

@@ -8,7 +8,7 @@ import ReactGA from 'react-ga4';
 import CustomButton from '@/components/common/customButton';
 
 import './CookiePopUp.scss';
-import Link from 'next/link';
+import { Link } from '@/i18n/navigation';
 
 const CookiePopUp = () => {
   const t = useTranslations('cookiePolicy');
