@@ -17,7 +17,7 @@ type Params = Promise<{ locale: string; slug: string }>;
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale } = await params;
   const response = await api.commonPage.collection.getPageData({
-    pageName: 'case-studies-page',
+    pageName: 'solutions-page',
     locale,
   });
   if ('content' in response) {
