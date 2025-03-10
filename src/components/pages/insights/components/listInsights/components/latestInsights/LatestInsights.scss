@@ -1,0 +1,42 @@
+@import '@/styles/font.scss';
+@import '@/styles/color.scss';
+
+.latest-insights {
+  padding-bottom: 64px;
+  .title-latest {
+    @include title-8;
+    padding-bottom: 32px;
+  }
+
+  .latest-insights-container {
+    position: relative;
+    display: flex;
+    left: -17px;
+    width: calc(100% + 34px);
+    .item-container {
+      padding: 17px;
+      width: calc(33.333% - 34px);
+      position: relative;
+      display: flex;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .latest-insights-container {
+      flex-direction: column;
+      left: 0px;
+      width: 100%;
+      .item-container {
+        padding: 0;
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid $color-10;
+
+        &:last-child,
+        &:first-child {
+          border: none;
+        }
+      }
+    }
+  }
+}

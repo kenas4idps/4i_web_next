@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from '@/i18n/navigation';
@@ -6,11 +8,11 @@ import { useRouter } from '@/i18n/navigation';
 // import RichTextStylingCmp from "components/common/richTextStylingCmp";
 import ShareCmp from '@/components/common/shareCmp';
 
-import ShareIcon from 'assets/icons/share.svg';
-
 import { InsightFE } from './sharedType';
 
 import './InsightItem.scss';
+
+const ShareIcon = '/assets/icons/share.svg';
 
 interface Props {
   item?: InsightFE;

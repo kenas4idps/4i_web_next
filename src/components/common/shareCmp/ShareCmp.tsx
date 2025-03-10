@@ -1,8 +1,9 @@
-import FacebookIcon from 'assets/icons/facebook.svg';
-import LinkedIn from 'assets/icons/linkedIn.svg';
 import Image from 'next/image';
 
 import './ShareCmp.scss';
+
+const FacebookIcon = '/assets/icons/facebook.svg';
+const LinkedIn = '/assets/icons/linkedIn.svg';
 
 interface Props {
   url: string;

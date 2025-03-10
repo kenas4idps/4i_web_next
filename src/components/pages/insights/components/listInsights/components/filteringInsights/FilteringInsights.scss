@@ -1,0 +1,56 @@
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+@import '@/styles/color.scss';
+
+.filtering-insights {
+  padding-bottom: 130px;
+  .filtering-insights-super-container {
+    padding-top: 80px;
+    border-top: 1px solid rgba(126, 126, 126, 0.5);
+    .filter {
+      padding-bottom: 17px;
+      display: inline-block;
+    }
+
+    .filtering-insights-container {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      left: -17px;
+      width: calc(100% + 34px);
+      padding-bottom: 61px;
+      .item-container {
+        display: flex;
+        position: relative;
+        padding: 17px;
+        width: calc(33.333% - 34px);
+      }
+    }
+
+    .load-more-btn {
+      text-align: center;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 120px;
+    .filtering-insights-super-container {
+      .filtering-insights-container {
+        flex-direction: column;
+        left: 0px;
+        width: 100%;
+        .item-container {
+          width: 100%;
+          padding: 0px;
+          display: block;
+          border-bottom: 1px solid $color-10;
+
+          &:last-child,
+          &:first-child {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+}
