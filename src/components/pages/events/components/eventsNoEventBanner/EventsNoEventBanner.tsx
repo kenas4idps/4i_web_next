@@ -1,16 +1,16 @@
-import { useTranslation } from 'react-i18next';
+import { useTranslations } from 'next-intl';
 
-import PageWrapper from 'components/common/pageWrapper';
+import PageWrapper from '@/components/common/pageWrapper';
 
-import BannerImg from '/assets/img/noEventBanner.png';
-import BigImg from '/assets/img/noEvent1.png';
-import MediumImg from '/assets/img/noEvent2.png';
-import SmallImg from '/assets/img/noEvent3.png';
+const BannerImg = '/assets/img/noEventBanner.png';
+const BigImg = '/assets/img/noEvent1.png';
+const MediumImg = '/assets/img/noEvent2.png';
+const SmallImg = '/assets/img/noEvent3.png';
 
 import './EventsNoEventBanner.scss';
 
 const EventsNoEventBanner = () => {
-  const { t } = useTranslation('events');
+  const t = useTranslations('events');
 
   return (
     <div className="events-no-event" style={{ backgroundImage: `url(${BannerImg})` }}>

@@ -1,18 +1,18 @@
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from '@/i18n/navigation';
+import { useTranslations } from 'next-intl';
 import Moment from 'react-moment';
 
-import PageWrapper from 'components/common/pageWrapper';
-import CustomButton from 'components/common/customButton';
-import DoubleCircleOverlay from 'components/common/doubleCircleOverlay';
-import BlurCircle from 'components/common/blurCircle';
+import PageWrapper from '@/components/common/pageWrapper';
+import CustomButton from '@/components/common/customButton';
+import DoubleCircleOverlay from '@/components/common/doubleCircleOverlay';
+import BlurCircle from '@/components/common/blurCircle';
 
 import ShareIcon from '/assets/icons/shareWhite.svg';
 
 import { EventBannerType } from '../../Sharedtype';
 
-import { DoubleCircleOverlayStyles } from 'components/common/doubleCircleOverlay/SharedTypes';
-import { BlurCircleStyles } from 'components/common/blurCircle/SharedTypes';
+import { DoubleCircleOverlayStyles } from '@/components/common/doubleCircleOverlay/SharedTypes';
+import { BlurCircleStyles } from '@/components/common/blurCircle/SharedTypes';
 
 import './EventsList.scss';
 
@@ -21,8 +21,8 @@ interface Props {
 }
 
 const EventsList = ({ list }: Props) => {
-  const navigate = useNavigate();
-  const { t } = useTranslation('events');
+  const router = useRouter();
+  const t = useTranslations('events');
 
   return (
     <PageWrapper className="events-list">
@@ -57,7 +57,7 @@ const EventsList = ({ list }: Props) => {
                 <div className="description">{event?.description}</div>
 
                 <div className="bottom-container">
-                  <div className="link" onClick={() => navigate('/events/' + event?.id)}>
+                  <div className="link" onClick={() => router.push('/events/' + event?.id)}>
                     {t('exploreLink')}
                   </div>
 
@@ -72,7 +72,7 @@ const EventsList = ({ list }: Props) => {
       </div>
 
       <div className="load-more-btn-container">
-        <CustomButton onClickBtn={() => console.log('TODO')}>{t('loadMoreBtn')}</CustomButton>
+        <CustomButton onClick={() => console.log('TODO')}>{t('loadMoreBtn')}</CustomButton>
       </div>
     </PageWrapper>
   );

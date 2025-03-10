@@ -1,4 +1,4 @@
-import { ImageFE } from 'types/SharedType';
+import { ImageFE } from '@/api/models/shared';
 
 export interface EventBannerType {
   id: string;
