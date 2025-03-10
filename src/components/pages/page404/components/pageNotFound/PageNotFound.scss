@@ -1,0 +1,32 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.page-not-found {
+  padding-top: 250px;
+  .title {
+    @include title-1;
+    color: $color-5;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .sub-title {
+    @include title-2;
+    color: $color-4;
+    text-align: center;
+    padding-bottom: 30px;
+  }
+
+  .content {
+    text-align: center;
+    padding-bottom: 50px;
+    .home-page-link {
+      color: $color-5;
+      &:hover {
+        color: $color-4;
+        text-decoration: underline;
+      }
+    }
+  }
+}
