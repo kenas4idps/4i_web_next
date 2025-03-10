@@ -19,12 +19,12 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
         type: 'image/x-icon',
       },
       {
-        src: 'logo192.png',
+        src: 'icon1.png',
         type: 'image/png',
         sizes: '192x192',
       },
       {
-        src: 'logo512.png',
+        src: 'icon2.png',
         type: 'image/png',
         sizes: '512x512',
       },

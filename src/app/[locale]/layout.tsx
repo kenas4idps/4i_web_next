@@ -1,6 +1,6 @@
 import type { Metadata, ResolvingMetadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { NextIntlClientProvider } from 'next-intl';
+import NextIntlProvider from '@/providers/nextIntlProvider/NextIntlProvider';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { getMessages } from 'next-intl/server';
@@ -93,7 +93,7 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <QueryClientProvider>
-          <NextIntlClientProvider messages={messages}>
+          <NextIntlProvider locale={locale} messages={messages}>
             <NotificationProvider>
               <ClientIndustryListProvider>
                 <TestimonialProvider>
@@ -107,7 +107,7 @@ export default async function RootLayout({
                 </TestimonialProvider>
               </ClientIndustryListProvider>
             </NotificationProvider>
-          </NextIntlClientProvider>
+          </NextIntlProvider>
         </QueryClientProvider>
       </body>
     </html>
