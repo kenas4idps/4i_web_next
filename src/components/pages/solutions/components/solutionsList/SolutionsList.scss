@@ -1,0 +1,122 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.solutions-list {
+  padding-top: 120px;
+  padding-bottom: 74px;
+  .solution-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 88px;
+    position: relative;
+    &:nth-child(2n) {
+      flex-direction: row-reverse;
+      .content-container {
+        .content {
+          padding-left: 0px;
+          padding-right: 120px;
+        }
+      }
+    }
+
+    .blur-circle-container {
+      display: none;
+    }
+
+    &:nth-child(4n + 2) {
+      .blur-circle-container {
+        display: block;
+      }
+    }
+
+    &:nth-child(8n + 2) {
+      .blur-circle-container {
+        right: 0;
+        top: 50%;
+        transform: translate(25%, -50%);
+      }
+    }
+
+    &:nth-child(8n + 6) {
+      .blur-circle-container {
+        left: 0;
+        top: 50%;
+        transform: translate(-25%, -50%);
+      }
+    }
+
+    .picture {
+      width: 50%;
+      height: 550px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 8px;
+    }
+
+    .content-container {
+      width: 50%;
+      .content {
+        padding-left: 120px;
+        .tag {
+          @include title-5;
+          padding-bottom: 23px;
+          color: $color-4;
+          opacity: 0.5;
+        }
+
+        .title {
+          @include title-5;
+          padding-bottom: 23px;
+        }
+
+        .description {
+          @include text-2;
+          padding-bottom: 23px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .solution-container {
+      flex-direction: column;
+      padding-bottom: 88px;
+      position: relative;
+      &:nth-child(2n) {
+        flex-direction: column;
+        .content-container {
+          .content {
+            padding-left: 0px;
+            padding-right: 120px;
+          }
+        }
+      }
+
+      .picture {
+        width: 100%;
+        height: 205px;
+        margin-bottom: 16px;
+      }
+
+      .content-container {
+        width: 100%;
+        .content {
+          padding-left: 0px;
+          .tag {
+            padding-bottom: 16px;
+          }
+
+          .title {
+            padding-bottom: 16px;
+          }
+
+          .description {
+            padding-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}

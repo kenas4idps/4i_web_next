@@ -1,0 +1,118 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.white-paper {
+  padding-bottom: 54px;
+  position: relative;
+  .double-circle-container {
+    top: -150px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .title {
+    @include title-15;
+    padding-bottom: 58px;
+    padding-top: 50px;
+  }
+
+  .white-paper-container {
+    display: flex;
+    .pictures {
+      width: 50%;
+      display: flex;
+      .image {
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      .left-column {
+        width: calc(40% - 8px);
+        padding-right: 8px;
+        .medium-img {
+          width: 100%;
+          margin-bottom: 16px;
+        }
+
+        .small-img-container {
+          margin-left: auto;
+          width: 50%;
+          position: relative;
+          display: flex;
+          .dummy {
+            margin-top: 100%;
+          }
+
+          .small-img {
+            background-color: $color-5;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+
+      .right-column {
+        width: calc(60% - 8px);
+        padding-left: 8px;
+        padding-top: 100px;
+      }
+    }
+
+    .informations {
+      width: 50%;
+      padding-top: 100px;
+      .informations-container {
+        padding-left: 110px;
+
+        .subtitle {
+          @include title-4;
+          padding-bottom: 32px;
+        }
+
+        .content {
+          @include text-16;
+          padding-bottom: 54px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .title {
+      padding-top: 25px;
+      padding-bottom: 58px;
+    }
+
+    .white-paper-container {
+      flex-direction: column;
+      .pictures {
+        width: 100%;
+        display: flex;
+        padding-bottom: 40px;
+        .right-column {
+          width: calc(60% - 8px);
+          padding-left: 8px;
+          padding-top: 50px;
+        }
+      }
+
+      .informations {
+        width: 100%;
+        padding-top: 0;
+        .informations-container {
+          padding-left: 0;
+          .subtitle {
+            padding-bottom: 30px;
+          }
+
+          .content {
+            padding-bottom: 30px;
+          }
+        }
+      }
+    }
+  }
+}

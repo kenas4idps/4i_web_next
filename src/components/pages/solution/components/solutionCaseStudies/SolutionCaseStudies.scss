@@ -1,0 +1,8 @@
+@import '@/styles/other.scss';
+
+.solution-case-studies {
+  padding-bottom: 124px;
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 100px;
+  }
+}

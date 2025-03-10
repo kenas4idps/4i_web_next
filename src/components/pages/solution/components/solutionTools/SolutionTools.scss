@@ -1,0 +1,17 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.solution-tools {
+  padding-bottom: 270px;
+
+  .load-more-btn {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 170px;
+  }
+}

@@ -1,0 +1,136 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.security {
+  padding-bottom: 120px;
+  padding-top: 40px;
+  position: relative;
+  .blur-circle-container {
+    bottom: 30px;
+    left: 40%;
+    transform: translate(-50%, 50%);
+  }
+
+  .security-container {
+    display: flex;
+    .informations {
+      width: 50%;
+      padding-top: 100px;
+      .informations-container {
+        padding-right: 110px;
+        .title {
+          @include title-15;
+          padding-bottom: 25px;
+        }
+
+        .content {
+          @include text-16;
+        }
+      }
+    }
+
+    .pictures {
+      width: 50%;
+      display: flex;
+      .image {
+        border-radius: 8px;
+        width: 100%;
+      }
+
+      .left-column {
+        width: calc(60% - 8px);
+        padding-right: 8px;
+        padding-top: 100px;
+      }
+
+      .right-column {
+        width: calc(40% - 8px);
+        padding-left: 8px;
+        .medium-img {
+          width: 100%;
+          margin-bottom: 16px;
+        }
+
+        .small-img-container {
+          margin-right: auto;
+          width: 50%;
+          position: relative;
+          display: flex;
+          .dummy {
+            margin-top: 100%;
+          }
+
+          .small-img {
+            background-color: $color-5;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 110px;
+    .security-container {
+      flex-direction: column;
+      .informations {
+        width: 100%;
+        padding-top: 0px;
+        padding-bottom: 75px;
+        .informations-container {
+          padding-right: 0px;
+          .title {
+            padding-bottom: 25px;
+          }
+        }
+      }
+
+      .pictures {
+        width: 100%;
+        display: flex;
+        .image {
+          border-radius: 8px;
+          width: 100%;
+        }
+
+        .left-column {
+          width: calc(60% - 8px);
+          padding-right: 8px;
+          padding-top: 100px;
+        }
+
+        .right-column {
+          width: calc(40% - 8px);
+          padding-left: 8px;
+          .medium-img {
+            width: 100%;
+            margin-bottom: 16px;
+          }
+
+          .small-img-container {
+            margin-right: auto;
+            width: 50%;
+            position: relative;
+            display: flex;
+            .dummy {
+              margin-top: 100%;
+            }
+
+            .small-img {
+              background-color: $color-5;
+              position: absolute;
+              top: 0;
+              bottom: 0;
+              left: 0;
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

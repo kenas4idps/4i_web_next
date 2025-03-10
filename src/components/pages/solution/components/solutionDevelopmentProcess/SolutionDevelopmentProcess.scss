@@ -1,0 +1,22 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.solution-development-process {
+  padding-bottom: 120px;
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 64px;
+  }
+
+  .historic-list .historic-list-container .left-column .left-column-container .description {
+    @include text-16;
+  }
+
+  .solution-development-process-button-container {
+    width: 100%;
+
+    .solution-development-process-button {
+      display: block;
+    }
+  }
+}

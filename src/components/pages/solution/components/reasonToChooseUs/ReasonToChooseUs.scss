@@ -1,0 +1,74 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+
+.reason-to-choose-us {
+  .reason-to-choose-us-super-container {
+    display: flex;
+    padding-bottom: 120px;
+    position: relative;
+    .double-circle-container {
+      right: 150px;
+      top: 200px;
+      transform: translate(50%, 0);
+    }
+
+    .pictures-container {
+      width: 25%;
+      img {
+        border-radius: 8px;
+        margin-bottom: 42px;
+        box-shadow: 0px 25px 55px 0px rgba(0, 0, 0, 0.25);
+        max-width: 100%;
+      }
+    }
+
+    .reason-to-choose-us-container {
+      width: 75%;
+      margin-left: 100px;
+      .title {
+        @include title-15;
+        padding-bottom: 180px;
+      }
+
+      .reasons-container {
+        .reasons-accordion {
+          margin-bottom: 33px;
+          &:last-child {
+            margin-bottom: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-bottom: 33px;
+    .reason-to-choose-us-super-container {
+      padding-bottom: 0;
+      flex-direction: column;
+      .double-circle-container {
+        right: 150px;
+        top: 200px;
+        transform: translate(50%, 0);
+      }
+
+      .pictures-container {
+        display: none;
+      }
+
+      .reason-to-choose-us-container {
+        width: 100%;
+        margin-left: 0px;
+        .title {
+          padding-bottom: 39px;
+        }
+
+        .reasons-container {
+          .reasons-accordion {
+            margin-bottom: 22px;
+          }
+        }
+      }
+    }
+  }
+}
