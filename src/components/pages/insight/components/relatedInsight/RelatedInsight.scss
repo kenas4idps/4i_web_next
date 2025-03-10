@@ -1,0 +1,39 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.related-insight {
+  padding: 95px;
+  padding-top: 80px;
+  padding-bottom: 124px;
+  .title-related-article {
+    padding-bottom: 32px;
+    @include title-8;
+  }
+
+  .related-article-container {
+    position: relative;
+    display: flex;
+    left: -17px;
+    width: calc(100% + 34px);
+    .item-container {
+      padding: 0 17px 0 17px;
+      width: calc(33.333% - 34px);
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding: 30px;
+    padding-top: 0px;
+    padding-bottom: 50px;
+    .related-article-container {
+      left: 0px;
+      width: 100%;
+      flex-direction: column;
+      .item-container {
+        width: 100%;
+        padding: 0;
+      }
+    }
+  }
+}

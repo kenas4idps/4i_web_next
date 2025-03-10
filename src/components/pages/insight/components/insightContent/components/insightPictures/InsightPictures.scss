@@ -1,0 +1,42 @@
+@import '@/styles/other.scss';
+
+.insight-pictures {
+  display: flex;
+  position: relative;
+  padding-bottom: 22px;
+  flex-wrap: wrap;
+  .picture {
+    height: 312px;
+    background-size: cover;
+    margin-bottom: 10px;
+    &.double {
+      width: calc(50% - 5px);
+      &:nth-of-type(2n + 1) {
+        margin-right: 5px;
+      }
+
+      &:nth-of-type(2n + 2) {
+        margin-left: 5px;
+      }
+    }
+
+    &.full-screen {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    .picture {
+      &.double {
+        width: 100%;
+        &:nth-of-type(2n + 1) {
+          margin-right: 0px;
+        }
+
+        &:nth-of-type(2n + 2) {
+          margin-left: 0px;
+        }
+      }
+    }
+  }
+}

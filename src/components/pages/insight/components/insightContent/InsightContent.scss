@@ -1,0 +1,109 @@
+@import '@/styles/color.scss';
+@import '@/styles/font.scss';
+@import '@/styles/other.scss';
+
+.insight-content {
+  position: relative;
+
+  .table-of-contents {
+    position: sticky;
+    top: 0;
+  }
+  .insight-content-container {
+    display: flex;
+    border-bottom: 1px solid rgba(126, 126, 126, 0.5);
+    padding-bottom: 63px;
+    .blur-circle-top-container {
+      top: 0px;
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+
+    .blur-circle-bottom-container {
+      bottom: 0;
+      left: 0;
+      transform: translate(-50%, 0%);
+    }
+
+    .content-super-container {
+      width: 70%;
+      .content-container {
+        padding-right: 57px;
+      }
+    }
+
+    .subscribe-form {
+      width: 30%;
+      .subscribe-form-container {
+        padding: 54px 36px 36px 36px;
+        background: linear-gradient(270deg, #961f50 0%, #370c1e 100%);
+        border-radius: 8px;
+        color: $color-3;
+        .description {
+          @include title-4;
+          padding-bottom: 24px;
+        }
+
+        .form {
+          padding-bottom: 28px;
+          .subscription-status {
+            height: calc(16.5px + 15px + 15px);
+
+            p {
+              margin: 0;
+              padding: 15px 0;
+            }
+
+            .subscription-message {
+              color: $color-sucess;
+            }
+
+            .subscription-error {
+              color: $color-error;
+            }
+          }
+
+          .consent-link {
+            color: inherit;
+            text-decoration: underline;
+            cursor: pointer;
+          }
+
+          .subscribe-btn {
+            width: 100%;
+            margin-top: 20px;
+          }
+        }
+
+        .privacy-statement {
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: $media-query-phone) {
+    padding-top: 0px;
+    .insight-content-container {
+      padding-bottom: 32px;
+      flex-direction: column;
+      border-bottom: none;
+      .content-super-container {
+        width: 100%;
+        .content-container {
+          padding-right: 0;
+        }
+      }
+
+      .subscribe-form {
+        position: relative;
+        left: -$padding-page-wrapper;
+        width: calc(100% + $padding-page-wrapper + $padding-page-wrapper);
+        .subscribe-form-container {
+          border-radius: 0px;
+          padding: 47px 29px;
+        }
+      }
+    }
+  }
+}
